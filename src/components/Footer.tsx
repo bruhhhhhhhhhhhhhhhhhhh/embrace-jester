@@ -5,10 +5,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <h3 className="mb-4 font-mono text-sm font-bold text-foreground">
-              [ LOOKSMAX.STORE ]
+            <h3 className="mb-4 font-mono text-lg font-bold text-foreground">
+              LOOKSMAX.STORE
             </h3>
-            <p className="text-xs leading-relaxed text-muted-foreground">
+            <p className="text-sm leading-relaxed text-muted-foreground">
               Optimized streetwear for those who refuse to settle. Every piece
               engineered for maximum aesthetic impact.
             </p>
@@ -16,8 +16,8 @@ const Footer = () => {
 
           {/* Shop */}
           <div>
-            <h4 className="mb-4 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              SHOP
+            <h4 className="mb-4 font-heading text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              Shop
             </h4>
             <ul className="space-y-2">
               {["New Drops", "Hoodies", "Tees", "Bottoms", "Accessories"].map(
@@ -25,7 +25,7 @@ const Footer = () => {
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {item}
                     </a>
@@ -37,8 +37,8 @@ const Footer = () => {
 
           {/* Info */}
           <div>
-            <h4 className="mb-4 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              INFO
+            <h4 className="mb-4 font-heading text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              Info
             </h4>
             <ul className="space-y-2">
               {["Size Guide", "Shipping", "Returns", "FAQ", "Contact"].map(
@@ -46,7 +46,7 @@ const Footer = () => {
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {item}
                     </a>
@@ -58,8 +58,8 @@ const Footer = () => {
 
           {/* Connect */}
           <div>
-            <h4 className="mb-4 font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              CONNECT
+            <h4 className="mb-4 font-heading text-xs font-bold uppercase tracking-wider text-muted-foreground">
+              Connect
             </h4>
             <ul className="space-y-2">
               {["Twitter / X", "Instagram", "Discord", "TikTok"].map(
@@ -67,7 +67,7 @@ const Footer = () => {
                   <li key={item}>
                     <a
                       href="#"
-                      className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       {item}
                     </a>
@@ -79,8 +79,8 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 border-t pt-6 text-center">
-          <p className="font-mono text-[10px] text-muted-foreground">
-            © 2026 LOOKSMAX.STORE — ALL RIGHTS RESERVED. MOG OR BE MOGGED.
+          <p className="text-xs text-muted-foreground">
+            © 2026 LOOKSMAX.STORE — All rights reserved.
           </p>
         </div>
       </div>

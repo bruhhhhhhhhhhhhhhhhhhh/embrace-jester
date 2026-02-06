@@ -11,8 +11,8 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
     <div className="border-b p-6 last:border-b-0">
       <div className="flex gap-4">
         {/* Avatar */}
-        <Avatar className="h-10 w-10 rounded-none border bg-muted">
-          <AvatarFallback className="rounded-none bg-muted">
+        <Avatar className="h-10 w-10 border bg-muted">
+          <AvatarFallback className="bg-muted">
             <User className="h-5 w-5 text-muted-foreground" />
           </AvatarFallback>
         </Avatar>
@@ -23,7 +23,7 @@ const ReviewCard = ({ review }: ReviewCardProps) => {
             <span className="font-heading text-sm font-bold text-forum-green">
               {review.username}
             </span>
-            <span className="border bg-card px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
+            <span className="rounded-md border bg-card px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
               Reputation: {review.reputation}+
             </span>
             <span className="font-mono text-[10px] text-muted-foreground">
