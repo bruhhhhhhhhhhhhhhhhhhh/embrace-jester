@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Vector Orbit Emblem Tee",
+  "description": "Orbital mark for precision momentum.",
+  "tags": [
+    "looksmax",
+    "vector",
+    "orbit",
+    "emblem",
+    "techwear"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/vector-orbit.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

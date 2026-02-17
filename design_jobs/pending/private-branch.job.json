@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Private Branch Tee",
+  "description": "Access-controlled energy for builders who ship in silence.",
+  "tags": [
+    "looksmax",
+    "private",
+    "branch",
+    "access",
+    "dev"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/private-branch.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

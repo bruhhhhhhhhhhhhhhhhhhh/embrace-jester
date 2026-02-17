@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Mode Active Tee",
+  "description": "Operational state: locked and loaded.",
+  "tags": [
+    "looksmax",
+    "mode",
+    "active",
+    "status",
+    "streetwear"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/looksmax-mode.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

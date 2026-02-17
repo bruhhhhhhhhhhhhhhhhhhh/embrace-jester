@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Status Verified Hybrid Tee",
+  "description": "Badge-forward layout for verified status energy.",
+  "tags": [
+    "looksmax",
+    "status",
+    "verified",
+    "badge",
+    "premium"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/status-verified.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

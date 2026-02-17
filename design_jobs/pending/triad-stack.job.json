@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Triad Stack Emblem Tee",
+  "description": "Stacked geometry symbolizing layered advantage.",
+  "tags": [
+    "looksmax",
+    "triad",
+    "stack",
+    "symbol",
+    "minimal"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/triad-stack.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

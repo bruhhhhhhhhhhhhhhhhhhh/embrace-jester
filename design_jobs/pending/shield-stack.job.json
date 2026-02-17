@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Shield Stack Emblem Tee",
+  "description": "Defensive iconography with a structured grid.",
+  "tags": [
+    "looksmax",
+    "shield",
+    "stack",
+    "emblem",
+    "security"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/shield-stack.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Hex Core Emblem Tee",
+  "description": "Monogram emblem with a high-status geometry read.",
+  "tags": [
+    "looksmax",
+    "emblem",
+    "hex",
+    "core",
+    "premium"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/lmx-hex-core.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

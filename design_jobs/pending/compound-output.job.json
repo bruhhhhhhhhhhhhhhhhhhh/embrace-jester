@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Compound Output Tee",
+  "description": "A quiet flex for the compounding mindset.",
+  "tags": [
+    "looksmax",
+    "compound",
+    "output",
+    "discipline",
+    "streetwear"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/compound-output.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

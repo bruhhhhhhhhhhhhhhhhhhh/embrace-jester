@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Alpha Execution Tee",
+  "description": "High-contrast typographic design built for signal-forward operators.",
+  "tags": [
+    "looksmax",
+    "alpha",
+    "execution",
+    "streetwear",
+    "techwear"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/alpha-execution.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Signal Core Hybrid Tee",
+  "description": "Signal glyph plus typography for instant recognition.",
+  "tags": [
+    "looksmax",
+    "signal",
+    "core",
+    "hybrid",
+    "tech"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/signal-core.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}

@@ -1,0 +1,19 @@
+{
+  "title": "LOOKSMAX Signal Over Noise Tee",
+  "description": "Minimalist statement for clean inputs and decisive output.",
+  "tags": [
+    "looksmax",
+    "signal",
+    "noise",
+    "minimal",
+    "tech"
+  ],
+  "templateProductId": "698841b54c4363802b0db7e3",
+  "assetPath": "public/designs/signal-over-noise.png",
+  "replacePositions": [
+    "front"
+  ],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true
+}
