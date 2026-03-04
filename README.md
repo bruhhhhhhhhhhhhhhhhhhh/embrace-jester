@@ -1,73 +1,112 @@
-# Welcome to your Lovable project
+# Embrace Jester Storefront
 
-## Project info
+React + Vite storefront with a local API for:
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+1. Catalog sync from Printify
+2. Checkout + Stripe
+3. Newsletter
+4. Verified review pipeline + moderation
+5. Conversion QA reporting
 
-## How can I edit this code?
+## Quick Start
 
-There are several ways of editing your application.
+Install:
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
+```bash
 npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
 ```
 
-**Edit a file directly in GitHub**
+Run storefront:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run dev -- --host 0.0.0.0 --port 3030
+```
 
-**Use GitHub Codespaces**
+Run API:
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```bash
+npm run server
+```
 
-## What technologies are used for this project?
+## Core Commands
 
-This project is built with:
+Catalog sync:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+```bash
+npm run fetch:products
+```
 
-## How can I deploy this project?
+Design automation:
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+```bash
+npm run design:validate -- design_jobs/example.job.json
+npm run design:job -- design_jobs/example.job.json
+npm run design:batch -- design_jobs/approved
+```
 
-## Can I connect a custom domain to my Lovable project?
+Quality checks:
 
-Yes, you can!
+```bash
+npm run test
+npm run build
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Stripe local webhook testing:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+```bash
+npm run server
+npm run stripe:listen
+npm run stripe:test-payment-intent
+```
+
+## Docs
+
+1. Launch and operations: `docs/launch-runbook.md`
+2. Printify design automation setup: `docs/printify-design-system.md`
+
+## Required Environment
+
+At minimum:
+
+```bash
+PRINTIFY_TOKEN=...
+PRINTIFY_SHOP_ID=...
+VITE_PRINTIFY_API_BASE=http://localhost:3031
+STRIPE_SECRET_KEY=...
+STRIPE_WEBHOOK_SECRET=... # for local webhook verification
+VITE_STRIPE_PUBLISHABLE_KEY=...
+```
+
+Optional Stripe debugging:
+
+```bash
+STRIPE_WEBHOOK_EVENTS_CACHE_LIMIT=5000
+STRIPE_WEBHOOK_LOG_LIMIT=1000
+STRIPE_WEBHOOK_DEAD_LETTER_LIMIT=500
+STRIPE_WEBHOOK_RETRY_MAX_ATTEMPTS=3
+STRIPE_WEBHOOK_RETRY_BASE_MS=250
+STRIPE_WEBHOOK_RETRY_MAX_MS=3000
+```
+
+Admin-protected pages (`/qa/reviews`, `/qa/conversion`, `/qa/stripe-webhooks`) require:
+
+```bash
+ADMIN_API_TOKEN=...
+VITE_ADMIN_API_TOKEN=...
+```
+
+Keep admin pages disabled in production unless explicitly needed:
+
+```bash
+VITE_ENABLE_ADMIN_ROUTES=false
+```
+
+Fulfillment retry worker (recommended defaults):
+
+```bash
+PRINTIFY_MAX_FULFILLMENT_ATTEMPTS=5
+PRINTIFY_RETRY_BASE_MS=30000
+PRINTIFY_RETRY_MAX_MS=900000
+PRINTIFY_RETRY_SWEEP_MS=60000
+DISABLE_PRINTIFY_RETRY_WORKER=false
+```

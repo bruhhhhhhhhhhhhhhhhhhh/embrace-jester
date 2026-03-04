@@ -1,0 +1,69 @@
+{
+  "requests": [
+    {
+      "id": "review_req_mm2f086q_b19b8n7",
+      "token": "ea5ae39921b9d128b33086d20468b93fd33c1469615024f5",
+      "orderId": "LMX-QA-1772046878",
+      "email": "testbuyer@example.com",
+      "firstName": "Test",
+      "createdAt": "2026-02-25T19:15:58.706Z",
+      "expiresAt": "2026-05-26T19:15:58.708Z",
+      "emailStatus": "dry_run",
+      "items": [
+        {
+          "productId": "698e0a8bdbc6f2ab33061f12",
+          "name": "QA Stripe Test Shirt",
+          "image": "https://images-api.printify.com/mockup/698e0a8bdbc6f2ab33061f12/103802/100701/unisex-garment-dyed-pocket-t-shirt.jpg?camera_label=front",
+          "quantity": 1,
+          "size": "L",
+          "color": "Black"
+        }
+      ],
+      "emailedAt": "2026-02-25T19:15:58.708Z"
+    },
+    {
+      "id": "review_req_mm2ga4ky_w6dzzak",
+      "token": "dfd53d2a1e2c920dfbfd83e11a755355f023258bc17e1b17",
+      "orderId": "LMX-QA-1772049086",
+      "email": "webhook.tester@example.com",
+      "firstName": "Webhook",
+      "createdAt": "2026-02-25T19:51:40.209Z",
+      "expiresAt": "2026-05-26T19:51:40.221Z",
+      "emailStatus": "dry_run",
+      "items": [
+        {
+          "productId": "698e0a8bdbc6f2ab33061f12",
+          "name": "QA Stripe Test Shirt",
+          "image": "https://images-api.printify.com/mockup/698e0a8bdbc6f2ab33061f12/103802/100701/unisex-garment-dyed-pocket-t-shirt.jpg?camera_label=front",
+          "quantity": 1,
+          "size": "L",
+          "color": "Black"
+        }
+      ],
+      "emailedAt": "2026-02-25T19:51:40.221Z"
+    },
+    {
+      "id": "review_req_mm2gxtq8_pre4t48",
+      "token": "e109fb1837c9fb524d9b117c776b59596cb8198800a4028c",
+      "orderId": "LMX-QA-1772050203",
+      "email": "webhook.tester@example.com",
+      "firstName": "Webhook",
+      "createdAt": "2026-02-25T20:10:05.888Z",
+      "expiresAt": "2026-05-26T20:10:05.895Z",
+      "emailStatus": "dry_run",
+      "items": [
+        {
+          "productId": "698e0a8bdbc6f2ab33061f12",
+          "name": "QA Stripe Test Shirt",
+          "image": "https://images-api.printify.com/mockup/698e0a8bdbc6f2ab33061f12/103802/100701/unisex-garment-dyed-pocket-t-shirt.jpg?camera_label=front",
+          "quantity": 1,
+          "size": "L",
+          "color": "Black"
+        }
+      ],
+      "emailedAt": "2026-02-25T20:10:05.896Z"
+    }
+  ],
+  "reviews": [],
+  "updatedAt": "2026-02-25T20:10:05.896Z"
+}

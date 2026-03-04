@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" fill="none">
+  <defs>
+    <radialGradient id="bgRadial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 300) rotate(90) scale(900)">
+      <stop stop-color="#2C2C2C"/>
+      <stop offset="1" stop-color="#0A0A0A"/>
+    </radialGradient>
+    <linearGradient id="ringStroke" x1="280" y1="300" x2="920" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#EDEDED"/>
+      <stop offset="1" stop-color="#7A7A7A"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="1200" fill="url(#bgRadial)"/>
+  <circle cx="600" cy="600" r="340" stroke="url(#ringStroke)" stroke-opacity="0.22" stroke-width="2"/>
+  <circle cx="600" cy="600" r="260" stroke="#FFFFFF" stroke-opacity="0.09" stroke-width="2"/>
+  <path d="M470 450H730L760 520V760H440V520L470 450Z" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="8"/>
+  <path d="M530 450C530 412.444 560.444 382 598 382H602C639.556 382 670 412.444 670 450" stroke="#FFFFFF" stroke-opacity="0.28" stroke-width="8"/>
+
+  <text x="600" y="860" text-anchor="middle" fill="#EDEDED" fill-opacity="0.88" font-family="Arial, Helvetica, sans-serif" font-size="40" letter-spacing="8">LOOKSMAX</text>
+  <text x="600" y="908" text-anchor="middle" fill="#A3A3A3" fill-opacity="0.92" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="6">IMAGE COMING SOON</text>
+</svg>

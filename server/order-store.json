@@ -1,0 +1,273 @@
+{
+  "orders": {
+    "pi_3T4nYECjKBTr8xgb11c8TYtg": {
+      "order": {
+        "id": "LMX-QA-1772046878",
+        "createdAt": "2026-02-25T00:00:00.000Z",
+        "items": [
+          {
+            "id": "698e0a8bdbc6f2ab33061f12",
+            "name": "QA Stripe Test Shirt",
+            "price": 20.68,
+            "image": "https://images-api.printify.com/mockup/698e0a8bdbc6f2ab33061f12/103802/100701/unisex-garment-dyed-pocket-t-shirt.jpg?camera_label=front",
+            "quantity": 1,
+            "size": "L",
+            "color": "Black"
+          }
+        ],
+        "subtotal": 20.68,
+        "shippingCost": 8,
+        "tax": 1.55,
+        "total": 30.23,
+        "paymentMethod": "stripe_payment_element",
+        "shippingMethod": "standard",
+        "contact": {
+          "firstName": "Test",
+          "lastName": "Buyer",
+          "email": "testbuyer@example.com",
+          "phone": ""
+        },
+        "shipping": {
+          "address": "123 Test St",
+          "city": "New York",
+          "region": "NY",
+          "postal": "10001",
+          "country": "US"
+        },
+        "estimatedDelivery": "4-6 business days"
+      },
+      "status": "paid",
+      "stripe": {
+        "sessionId": "pi_3T4nYECjKBTr8xgb11c8TYtg",
+        "paymentIntentId": "pi_3T4nYECjKBTr8xgb11c8TYtg",
+        "paymentStatus": "succeeded"
+      }
+    },
+    "pi_3T4o7ICjKBTr8xgb1tbgAyDz": {
+      "order": {
+        "id": "LMX-QA-1772049086",
+        "createdAt": "2026-02-25T19:51:26Z",
+        "items": [
+          {
+            "id": "698e0a8bdbc6f2ab33061f12",
+            "name": "QA Stripe Test Shirt",
+            "price": 20.68,
+            "image": "https://images-api.printify.com/mockup/698e0a8bdbc6f2ab33061f12/103802/100701/unisex-garment-dyed-pocket-t-shirt.jpg?camera_label=front",
+            "quantity": 1,
+            "size": "L",
+            "color": "Black"
+          }
+        ],
+        "subtotal": 20.68,
+        "shippingCost": 8,
+        "tax": 1.55,
+        "total": 30.23,
+        "paymentMethod": "stripe_payment_element",
+        "shippingMethod": "standard",
+        "contact": {
+          "firstName": "Webhook",
+          "lastName": "Tester",
+          "email": "webhook.tester@example.com",
+          "phone": ""
+        },
+        "shipping": {
+          "address": "123 Test St",
+          "city": "New York",
+          "region": "NY",
+          "postal": "10001",
+          "country": "US"
+        },
+        "estimatedDelivery": "4-6 business days"
+      },
+      "status": "paid",
+      "stripe": {
+        "sessionId": "pi_3T4o7ICjKBTr8xgb1tbgAyDz",
+        "paymentIntentId": "pi_3T4o7ICjKBTr8xgb1tbgAyDz",
+        "paymentStatus": "succeeded"
+      }
+    },
+    "pi_3T4oPICjKBTr8xgb0YUBBad5": {
+      "order": {
+        "id": "LMX-QA-1772050203",
+        "createdAt": "2026-02-25T20:10:03Z",
+        "items": [
+          {
+            "id": "698e0a8bdbc6f2ab33061f12",
+            "name": "QA Stripe Test Shirt",
+            "price": 20.68,
+            "image": "https://images-api.printify.com/mockup/698e0a8bdbc6f2ab33061f12/103802/100701/unisex-garment-dyed-pocket-t-shirt.jpg?camera_label=front",
+            "quantity": 1,
+            "size": "L",
+            "color": "Black"
+          }
+        ],
+        "subtotal": 20.68,
+        "shippingCost": 8,
+        "tax": 1.55,
+        "total": 30.23,
+        "paymentMethod": "stripe_payment_element",
+        "shippingMethod": "standard",
+        "contact": {
+          "firstName": "Webhook",
+          "lastName": "Tester",
+          "email": "webhook.tester@example.com",
+          "phone": ""
+        },
+        "shipping": {
+          "address": "123 Test St",
+          "city": "New York",
+          "region": "NY",
+          "postal": "10001",
+          "country": "US"
+        },
+        "estimatedDelivery": "4-6 business days"
+      },
+      "status": "paid",
+      "stripe": {
+        "sessionId": "pi_3T4oPICjKBTr8xgb0YUBBad5",
+        "paymentIntentId": "pi_3T4oPICjKBTr8xgb0YUBBad5",
+        "paymentStatus": "succeeded"
+      }
+    }
+  },
+  "stripeEvents": {
+    "evt_3T4nYECjKBTr8xgb1vMuZbrd": "2026-02-25T19:15:58.720Z",
+    "evt_3T4o7ICjKBTr8xgb1WVEj3y1": "2026-02-25T19:51:40.241Z",
+    "evt_3T4oPgCjKBTr8xgb1MSRnZfi": "2026-02-25T20:10:31.550Z",
+    "evt_1T4oPjCjKBTr8xgbOyl4jGXP": "2026-02-25T20:10:31.910Z",
+    "evt_3T4oPgCjKBTr8xgb1firLBMT": "2026-02-25T20:10:32.145Z",
+    "evt_1T4oPkCjKBTr8xgb7nZ4jrwd": "2026-02-25T20:10:32.495Z",
+    "evt_1T4oPkCjKBTr8xgbSvj0cdKc": "2026-02-25T20:10:32.864Z"
+  },
+  "stripeWebhookLog": [
+    {
+      "eventId": "evt_3T4oPgCjKBTr8xgb1MSRnZfi",
+      "eventType": "payment_intent.succeeded",
+      "receivedAt": "2026-02-25T20:10:31.550Z",
+      "processedAt": "2026-02-25T20:10:31.550Z",
+      "status": "ignored",
+      "handled": true,
+      "processed": false,
+      "duplicate": false,
+      "note": "Payment intent event did not match a stored order",
+      "paymentIntentId": "pi_3T4oPgCjKBTr8xgb1d5SAnTQ"
+    },
+    {
+      "eventId": "evt_1T4oPjCjKBTr8xgbOyl4jGXP",
+      "eventType": "invoice.paid",
+      "receivedAt": "2026-02-25T20:10:31.909Z",
+      "processedAt": "2026-02-25T20:10:31.910Z",
+      "status": "processed",
+      "handled": true,
+      "processed": true,
+      "duplicate": false,
+      "invoiceId": "in_1T4oPgCjKBTr8xgb17IPEGvE",
+      "customerId": "cus_U2uE4M8y9w3O2M"
+    },
+    {
+      "eventId": "evt_3T4oPgCjKBTr8xgb1firLBMT",
+      "eventType": "payment_intent.succeeded",
+      "receivedAt": "2026-02-25T20:10:32.145Z",
+      "processedAt": "2026-02-25T20:10:32.145Z",
+      "status": "ignored",
+      "handled": true,
+      "processed": false,
+      "duplicate": false,
+      "note": "Payment intent event did not match a stored order",
+      "paymentIntentId": "pi_3T4oPgCjKBTr8xgb1cbqdi15"
+    },
+    {
+      "eventId": "evt_1T4oPkCjKBTr8xgb7nZ4jrwd",
+      "eventType": "invoice.paid",
+      "receivedAt": "2026-02-25T20:10:32.495Z",
+      "processedAt": "2026-02-25T20:10:32.495Z",
+      "status": "processed",
+      "handled": true,
+      "processed": true,
+      "duplicate": false,
+      "invoiceId": "in_1T4oPfCjKBTr8xgb9NSXRUb5",
+      "customerId": "cus_U2uEijuCAnfKmP"
+    },
+    {
+      "eventId": "evt_1T4oPkCjKBTr8xgbSvj0cdKc",
+      "eventType": "customer.subscription.updated",
+      "receivedAt": "2026-02-25T20:10:32.864Z",
+      "processedAt": "2026-02-25T20:10:32.865Z",
+      "status": "processed",
+      "handled": true,
+      "processed": true,
+      "duplicate": false,
+      "subscriptionId": "sub_1T4oPfCjKBTr8xgbv6yaNs1n",
+      "customerId": "cus_U2uE4M8y9w3O2M"
+    },
+    {
+      "eventId": "evt_1T4oPkCjKBTr8xgbSvj0cdKc",
+      "eventType": "customer.subscription.updated",
+      "receivedAt": "2026-02-25T22:11:52.408Z",
+      "processedAt": "2026-02-25T22:11:52.408Z",
+      "status": "duplicate",
+      "handled": true,
+      "processed": false,
+      "duplicate": true,
+      "note": "Skipped replay because event is already marked processed",
+      "customerId": "cus_U2uE4M8y9w3O2M",
+      "subscriptionId": "sub_1T4oPfCjKBTr8xgbv6yaNs1n"
+    }
+  ],
+  "stripeBilling": {
+    "customers": {
+      "cus_U2uE4M8y9w3O2M": {
+        "id": "cus_U2uE4M8y9w3O2M",
+        "delinquent": false,
+        "defaultPaymentMethodId": "pm_1T4oPeCjKBTr8xgbZJO8CbQl",
+        "updatedAt": "2026-02-25T22:10:53.139Z"
+      },
+      "cus_U2uEijuCAnfKmP": {
+        "id": "cus_U2uEijuCAnfKmP",
+        "updatedAt": "2026-02-25T20:10:32.495Z"
+      }
+    },
+    "subscriptions": {
+      "sub_1T4oPfCjKBTr8xgbv6yaNs1n": {
+        "id": "sub_1T4oPfCjKBTr8xgbv6yaNs1n",
+        "customerId": "cus_U2uE4M8y9w3O2M",
+        "status": "active",
+        "cancelAtPeriodEnd": false,
+        "cancelAt": null,
+        "canceledAt": null,
+        "currentPeriodStart": null,
+        "currentPeriodEnd": null,
+        "latestInvoiceId": "in_1T4oPgCjKBTr8xgb17IPEGvE",
+        "latestInvoiceStatus": "paid",
+        "updatedAt": "2026-02-25T22:10:53.139Z"
+      }
+    },
+    "invoices": {
+      "in_1T4oPgCjKBTr8xgb17IPEGvE": {
+        "id": "in_1T4oPgCjKBTr8xgb17IPEGvE",
+        "customerId": "cus_U2uE4M8y9w3O2M",
+        "status": "paid",
+        "paid": false,
+        "amountDue": 1500,
+        "amountPaid": 1500,
+        "currency": "usd",
+        "hostedInvoiceUrl": "https://invoice.stripe.com/i/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFSVo4RFc1ZGRZYVVDOXVGc0g0dDBhNVB2UXhsLDE2MjU5ODI1Mw0200c2K1Sx7U?s=ap",
+        "invoicePdf": "https://pay.stripe.com/invoice/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFSVo4RFc1ZGRZYVVDOXVGc0g0dDBhNVB2UXhsLDE2MjU5ODI1Mw0200c2K1Sx7U/pdf?s=ap",
+        "updatedAt": "2026-02-25T22:10:53.139Z"
+      },
+      "in_1T4oPfCjKBTr8xgb9NSXRUb5": {
+        "id": "in_1T4oPfCjKBTr8xgb9NSXRUb5",
+        "customerId": "cus_U2uEijuCAnfKmP",
+        "status": "paid",
+        "paid": false,
+        "amountDue": 2000,
+        "amountPaid": 2000,
+        "currency": "usd",
+        "hostedInvoiceUrl": "https://invoice.stripe.com/i/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFdVlvd21YTDZOb0Z1b2RITU5SOW95Mm1FM0kzLDE2MjU5MTAzMg0200yygogPlC?s=ap",
+        "invoicePdf": "https://pay.stripe.com/invoice/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFdVlvd21YTDZOb0Z1b2RITU5SOW95Mm1FM0kzLDE2MjU5MTAzMg0200yygogPlC/pdf?s=ap",
+        "updatedAt": "2026-02-25T20:10:32.495Z"
+      }
+    }
+  },
+  "stripeWebhookDeadLetters": []
+}

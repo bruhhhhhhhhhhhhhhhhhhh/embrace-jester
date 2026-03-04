@@ -4,11 +4,36 @@
 
 @layer base {
   :root {
+    --font-body: "Inter", system-ui, -apple-system, sans-serif;
+    --font-heading: "Inter", system-ui, -apple-system, sans-serif;
+    --font-mono: "Courier New", Courier, monospace;
+    --tracking-label: 0.18em;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-7: 2rem;
+    --space-8: 2.5rem;
+
+    --radius-sm: 0.375rem;
+    --radius-md: 0.625rem;
+    --radius-lg: 0.875rem;
+    --radius-pill: 9999px;
+
+    --shadow-elev-1: 0 10px 24px rgba(0, 0, 0, 0.22);
+    --shadow-elev-2: 0 18px 44px rgba(0, 0, 0, 0.36);
+
     --background: 0 0% 7.8%;
     --foreground: 0 0% 93%;
 
     --card: 0 0% 10.2%;
     --card-foreground: 0 0% 93%;
+    --surface-1: 0 0% 9.3%;
+    --surface-2: 0 0% 12.8%;
+    --surface-3: 0 0% 16.4%;
 
     --popover: 0 0% 10.2%;
     --popover-foreground: 0 0% 93%;
@@ -32,7 +57,7 @@
     --input: 0 0% 20%;
     --ring: 218 42% 42%;
 
-    --radius: 0.5rem;
+    --radius: var(--radius-md);
 
     --forum-green: 122 39% 49%;
     --forum-gold: 51 100% 50%;
@@ -56,12 +81,51 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body);
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-heading);
     letter-spacing: -0.02em;
     font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .tracking-token-label {
+    letter-spacing: var(--tracking-label);
+  }
+
+  .rounded-ui-sm {
+    border-radius: var(--radius-sm);
+  }
+
+  .rounded-ui-md {
+    border-radius: var(--radius-md);
+  }
+
+  .rounded-ui-lg {
+    border-radius: var(--radius-lg);
+  }
+
+  .rounded-ui-pill {
+    border-radius: var(--radius-pill);
+  }
+
+  .shadow-elev-1 {
+    box-shadow: var(--shadow-elev-1);
+  }
+
+  .shadow-elev-2 {
+    box-shadow: var(--shadow-elev-2);
+  }
+}
+
+@keyframes loaderRotateSmooth {
+  0% {
+    transform: rotate(-120deg);
+  }
+  100% {
+    transform: rotate(240deg);
   }
 }

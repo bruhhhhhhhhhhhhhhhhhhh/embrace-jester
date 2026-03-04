@@ -4,6 +4,8 @@ import HeroSection from "@/components/HeroSection";
 import ProductGrid from "@/components/ProductGrid";
 import ReviewsSection from "@/components/ReviewsSection";
 import Footer from "@/components/Footer";
+import SocialProofStrip from "@/components/SocialProofStrip";
+import NewReleasesSection from "@/components/NewReleasesSection";
 
 const Index = () => {
   return (
@@ -12,6 +14,8 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <SocialProofStrip />
+        <NewReleasesSection />
         <ProductGrid />
         <ReviewsSection />
       </main>

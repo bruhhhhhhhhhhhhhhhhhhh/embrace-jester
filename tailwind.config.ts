@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -14,8 +15,19 @@ export default {
     },
     extend: {
       fontFamily: {
-        mono: ["'Courier New'", "Courier", "monospace"],
-        heading: ["Inter", "system-ui", "sans-serif"],
+        body: ["var(--font-body)"],
+        mono: ["var(--font-mono)"],
+        heading: ["var(--font-heading)"],
+      },
+      spacing: {
+        "space-1": "var(--space-1)",
+        "space-2": "var(--space-2)",
+        "space-3": "var(--space-3)",
+        "space-4": "var(--space-4)",
+        "space-5": "var(--space-5)",
+        "space-6": "var(--space-6)",
+        "space-7": "var(--space-7)",
+        "space-8": "var(--space-8)",
       },
       colors: {
         border: "hsl(var(--border))",
@@ -23,6 +35,11 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        surface: {
+          1: "hsl(var(--surface-1))",
+          2: "hsl(var(--surface-2))",
+          3: "hsl(var(--surface-3))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -69,6 +86,17 @@ export default {
         lg: "var(--radius)",
         md: "var(--radius)",
         sm: "var(--radius)",
+        "ui-sm": "var(--radius-sm)",
+        "ui-md": "var(--radius-md)",
+        "ui-lg": "var(--radius-lg)",
+        "ui-pill": "var(--radius-pill)",
+      },
+      boxShadow: {
+        "elev-1": "var(--shadow-elev-1)",
+        "elev-2": "var(--shadow-elev-2)",
+      },
+      letterSpacing: {
+        "token-label": "var(--tracking-label)",
       },
       keyframes: {
         "accordion-down": {
@@ -91,5 +119,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

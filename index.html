@@ -17,9 +17,37 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <link rel="preconnect" href="https://images-api.printify.com" />
+    <link rel="preconnect" href="https://pfy-prod-image-storage.s3.us-east-2.amazonaws.com" />
+    <link rel="preconnect" href="https://js.stripe.com" />
   </head>
 
   <body>
+    <script>
+      (function () {
+        function renderError(label, error) {
+          const message =
+            (error && (error.stack || error.message)) || String(error || "Unknown error");
+          document.body.innerHTML =
+            '<div style="min-height:100vh;background:#111;color:#f5f5f5;font-family:system-ui, sans-serif;padding:32px;">' +
+            '<h1 style="margin:0 0 12px;font-size:20px;text-transform:uppercase;letter-spacing:0.12em;">App Error</h1>' +
+            '<p style="margin:0 0 16px;font-size:14px;color:#aaa;">' +
+            label +
+            "</p>" +
+            '<pre style="white-space:pre-wrap;background:#1b1b1b;border:1px solid #333;padding:16px;border-radius:8px;">' +
+            message +
+            "</pre></div>";
+        }
+
+        window.addEventListener("error", function (event) {
+          renderError("Window error", event.error || event.message);
+        });
+
+        window.addEventListener("unhandledrejection", function (event) {
+          renderError("Unhandled promise rejection", event.reason || event);
+        });
+      })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

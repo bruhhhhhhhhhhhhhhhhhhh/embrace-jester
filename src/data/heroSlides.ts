@@ -9,23 +9,23 @@ export interface HeroSlide {
 export const heroSlides: HeroSlide[] = [
   {
     id: "1",
-    title: "DROP 001: STAT-CHECK COLLECTION",
-    subtitle: "Heavyweight cotton. Optimized fit. Mog or be mogged.",
-    cta: "SHOP THE DROP",
-    ctaLink: "#",
+    title: "I PAUSED MY .ORG TO BE HERE",
+    subtitle: "Limited-run tee for builders who show up IRL.",
+    cta: "VIEW THE TEE",
+    ctaLink: "/product/69881e327d7ff99e6b03d225",
   },
   {
     id: "2",
     title: "MOGGER CARGO — NOW RESTOCKED",
     subtitle: "Tactical utility meets raw aesthetic. Limited run.",
     cta: "VIEW CARGOS",
-    ctaLink: "#",
+    ctaLink: "/shop/bottoms",
   },
   {
     id: "3",
     title: "FRAME MAXX OUTERWEAR",
     subtitle: "Engineered silhouettes. Built for visual dominance.",
     cta: "EXPLORE JACKETS",
-    ctaLink: "#",
+    ctaLink: "/shop/outerwear",
   },
 ];

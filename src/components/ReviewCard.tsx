@@ -1,40 +1,67 @@
-import type { Review } from "@/data/reviews";
+import type { PublicReview } from "@/lib/reviews";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { User } from "lucide-react";
+import { Star, User } from "lucide-react";
 
 interface ReviewCardProps {
-  review: Review;
+  review: PublicReview;
 }
 
+const formatDate = (value: string) => {
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return value;
+  return parsed.toLocaleDateString(undefined, {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+};
+
 const ReviewCard = ({ review }: ReviewCardProps) => {
+  const rounded = Math.max(1, Math.min(5, Math.round(review.rating)));
   return (
     <div className="border-b p-6 last:border-b-0">
       <div className="flex gap-4">
-        {/* Avatar */}
         <Avatar className="h-10 w-10 border bg-muted">
           <AvatarFallback className="bg-muted">
             <User className="h-5 w-5 text-muted-foreground" />
           </AvatarFallback>
         </Avatar>
 
-        {/* Content */}
         <div className="flex-1">
           <div className="mb-1 flex flex-wrap items-center gap-3">
             <span className="font-heading text-sm font-bold text-forum-green">
-              {review.username}
+              {review.authorName}
             </span>
-            <span className="rounded-md border bg-card px-2 py-0.5 font-mono text-[10px] text-muted-foreground">
-              Reputation: {review.reputation}+
-            </span>
-            <span className="font-mono text-[10px] text-muted-foreground">
-              Re: {review.product}
+            {review.verified ? (
+              <span className="rounded-md border bg-card px-2 py-0.5 font-mono text-[10px] uppercase text-muted-foreground">
+                Verified Buyer
+              </span>
+            ) : null}
+            <span className="font-mono text-[10px] uppercase text-muted-foreground">
+              Re: {review.productName}
             </span>
           </div>
-          <p className="mb-2 text-sm leading-relaxed text-foreground/80">
-            {review.text}
-          </p>
-          <span className="font-mono text-[10px] text-muted-foreground">
-            Posted {review.timestamp}
+          <div className="mb-2 flex items-center gap-2">
+            <div className="flex items-center gap-1">
+              {Array.from({ length: 5 }, (_, idx) => (
+                <Star
+                  key={`${review.id}-star-${idx}`}
+                  className={`h-3.5 w-3.5 ${
+                    idx < rounded
+                      ? "fill-forum-gold text-forum-gold"
+                      : "fill-transparent text-muted-foreground"
+                  }`}
+                />
+              ))}
+            </div>
+            <span className="text-[11px] font-mono uppercase tracking-wide text-muted-foreground">
+              {rounded}/5
+            </span>
+          </div>
+          <p className="text-sm font-semibold leading-relaxed text-foreground/90">{review.title}</p>
+          <p className="mb-2 text-sm leading-relaxed text-foreground/80">{review.body}</p>
+          <span className="font-mono text-[10px] uppercase text-muted-foreground">
+            Posted {formatDate(review.createdAt)}
           </span>
         </div>
       </div>

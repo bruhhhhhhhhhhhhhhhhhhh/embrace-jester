@@ -1,0 +1,245 @@
+{
+  "events": [
+    {
+      "id": "metric_mlr25vnl_h68owzz",
+      "event": "hero_impression",
+      "timestamp": "2026-02-17T20:30:59.013Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mlr25vb9_hukgcq",
+      "productId": "69881e327d7ff99e6b03d225"
+    },
+    {
+      "id": "metric_mlr26abk_vp41u53",
+      "event": "hero_impression",
+      "timestamp": "2026-02-17T20:31:18.421Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mlr25vb9_hukgcq"
+    },
+    {
+      "id": "metric_mlr26fpd_u563olm",
+      "event": "hero_impression",
+      "timestamp": "2026-02-17T20:31:25.426Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mlr25vb9_hukgcq"
+    },
+    {
+      "id": "metric_mlso6eae_xxybiog",
+      "event": "hero_impression",
+      "timestamp": "2026-02-18T23:35:00.835Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mlso6dwj_wgj0t5",
+      "productId": "69881e327d7ff99e6b03d225"
+    },
+    {
+      "id": "metric_mlso6k6f_dj5ica2",
+      "event": "hero_impression",
+      "timestamp": "2026-02-18T23:35:09.255Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mlso6dwj_wgj0t5"
+    },
+    {
+      "id": "metric_mlso6pd4_uuqugsh",
+      "event": "hero_impression",
+      "timestamp": "2026-02-18T23:35:16.266Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mlso6dwj_wgj0t5"
+    },
+    {
+      "id": "metric_mlssfs03_1gj9bw2",
+      "event": "pdp_view",
+      "timestamp": "2026-02-19T01:34:17.244Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssfrto_8gkwue",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssfs4n_r4prwo2",
+      "event": "pdp_add_to_cart",
+      "timestamp": "2026-02-19T01:34:17.627Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssfrto_8gkwue",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssft2w_g7ntasf",
+      "event": "checkout_started",
+      "timestamp": "2026-02-19T01:34:18.842Z",
+      "path": "/checkout",
+      "device": "desktop",
+      "sessionId": "sess_mlssfrto_8gkwue"
+    },
+    {
+      "id": "metric_mlssgcbs_pyqyra4",
+      "event": "pdp_view",
+      "timestamp": "2026-02-19T01:34:43.786Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssgcay_lmllbd",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssgcpv_67k3yo3",
+      "event": "pdp_add_to_cart",
+      "timestamp": "2026-02-19T01:34:44.295Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssgcay_lmllbd",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssgcyq_0737a1w",
+      "event": "checkout_started",
+      "timestamp": "2026-02-19T01:34:44.631Z",
+      "path": "/checkout",
+      "device": "desktop",
+      "sessionId": "sess_mlssgcay_lmllbd"
+    },
+    {
+      "id": "metric_mlssh899_9pxkz11",
+      "event": "pdp_add_to_cart",
+      "timestamp": "2026-02-19T01:35:25.100Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssh7to_tmxvum",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssh8hx_ci2f33x",
+      "event": "checkout_started",
+      "timestamp": "2026-02-19T01:35:25.496Z",
+      "path": "/checkout",
+      "device": "desktop",
+      "sessionId": "sess_mlssh7to_tmxvum"
+    },
+    {
+      "id": "metric_mlsshp10_r8bq546",
+      "event": "pdp_view",
+      "timestamp": "2026-02-19T01:35:46.852Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlsshoys_e0id5m",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlsshp5n_qxeju2t",
+      "event": "pdp_add_to_cart",
+      "timestamp": "2026-02-19T01:35:47.086Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlsshoys_e0id5m",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlsshpbp_c1jwdby",
+      "event": "checkout_started",
+      "timestamp": "2026-02-19T01:35:47.309Z",
+      "path": "/checkout",
+      "device": "desktop",
+      "sessionId": "sess_mlsshoys_e0id5m"
+    },
+    {
+      "id": "metric_mlssl81u_8npo7hq",
+      "event": "pdp_view",
+      "timestamp": "2026-02-19T01:38:31.248Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssl7tc_jjc08c",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssl9xl_nkxsa2d",
+      "event": "pdp_view",
+      "timestamp": "2026-02-19T01:38:33.939Z",
+      "path": "/product/698841b54c4363802b0db7e3",
+      "device": "desktop",
+      "sessionId": "sess_mlssl7tc_jjc08c",
+      "productId": "698841b54c4363802b0db7e3"
+    },
+    {
+      "id": "metric_mlssm03q_woas4b8",
+      "event": "pdp_view",
+      "timestamp": "2026-02-19T01:39:07.828Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssm01g_b14xh8",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssm0h0_pf52hen",
+      "event": "pdp_add_to_cart",
+      "timestamp": "2026-02-19T01:39:08.377Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssm01g_b14xh8",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssm0oh_ckujy2m",
+      "event": "checkout_started",
+      "timestamp": "2026-02-19T01:39:08.649Z",
+      "path": "/checkout",
+      "device": "desktop",
+      "sessionId": "sess_mlssm01g_b14xh8"
+    },
+    {
+      "id": "metric_mlssqief_nlfpi4f",
+      "event": "pdp_view",
+      "timestamp": "2026-02-19T01:42:38.056Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssqi94_siqltj",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssqiwn_afumbyv",
+      "event": "pdp_add_to_cart",
+      "timestamp": "2026-02-19T01:42:38.879Z",
+      "path": "/product/698e0a8bdbc6f2ab33061f12",
+      "device": "desktop",
+      "sessionId": "sess_mlssqi94_siqltj",
+      "productId": "698e0a8bdbc6f2ab33061f12"
+    },
+    {
+      "id": "metric_mlssqj82_ypauk6f",
+      "event": "checkout_started",
+      "timestamp": "2026-02-19T01:42:39.283Z",
+      "path": "/checkout",
+      "device": "desktop",
+      "sessionId": "sess_mlssqi94_siqltj"
+    },
+    {
+      "id": "metric_mmbcd3ff_djrzdlb",
+      "event": "hero_impression",
+      "timestamp": "2026-03-04T01:11:55.763Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mmbcd3eb_vtbyco",
+      "productId": "69881e327d7ff99e6b03d225"
+    },
+    {
+      "id": "metric_mmbcd9mu_ci0n1jo",
+      "event": "hero_impression",
+      "timestamp": "2026-03-04T01:12:03.812Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mmbcd3eb_vtbyco"
+    },
+    {
+      "id": "metric_mmbce68h_qu4jiop",
+      "event": "hero_impression",
+      "timestamp": "2026-03-04T01:12:46.044Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mmbcd3eb_vtbyco"
+    }
+  ],
+  "updatedAt": "2026-03-04T01:12:46.109Z"
+}

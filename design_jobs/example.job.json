@@ -1,0 +1,13 @@
+{
+  "id": "paused-org-v2-tee",
+  "title": "I Paused My .org To Be Here Tee — V2",
+  "description": "Garment-dyed heavyweight tee with updated front artwork.",
+  "tags": ["new-release", "tech-humor", "tee"],
+  "templateProductId": "REPLACE_WITH_TEMPLATE_PRODUCT_ID",
+  "assetPath": "public/designs/paused_my_org_claw.png",
+  "replacePositions": ["front"],
+  "visible": false,
+  "publish": false,
+  "keepEnabledVariantsOnly": true,
+  "forceEnableAllVariants": false
+}
