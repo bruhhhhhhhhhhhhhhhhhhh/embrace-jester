@@ -38,25 +38,25 @@ const ReviewsSection = () => {
     <section className="py-16">
       <div className="container mx-auto px-4">
         <div className="mb-10 flex items-center gap-4">
-          <h2 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground">
-            COMMUNITY REVIEWS
+          <h2 className="font-heading text-2xl font-bold uppercase tracking-[0.06em] text-foreground">
+            Verified Reviews
           </h2>
           <div className="h-px flex-1 bg-border" />
-          <span className="font-mono text-xs text-muted-foreground">
-            {total} VERIFIED POSTS
+          <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            {total} posts
           </span>
           {averageRating > 0 ? (
-            <span className="font-mono text-xs text-muted-foreground">
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
               {averageRating.toFixed(1)} / 5
             </span>
           ) : null}
         </div>
-        <div className="overflow-hidden rounded-lg border bg-card">
-          <div className="flex items-center justify-between border-b bg-secondary px-6 py-3">
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              PINNED — Verified Buyer Thread
+        <div className="overflow-hidden border border-border bg-card shadow-sm">
+          <div className="flex items-center justify-between border-b border-border bg-background px-6 py-3">
+            <span className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">
+              Pinned Buyer Thread
             </span>
-            <span className="font-mono text-[10px] text-muted-foreground">MODERATED</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Moderated</span>
           </div>
           {loading ? (
             <div className="p-6 text-sm text-muted-foreground">Loading reviews...</div>
@@ -74,7 +74,7 @@ const ReviewsSection = () => {
               {error ? <p className="text-forum-red">Review API: {error}</p> : null}
               <Link
                 to="/shop/new"
-                className="inline-flex rounded-md border border-foreground bg-foreground px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-transparent hover:text-foreground"
+                className="inline-flex border border-foreground bg-foreground px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-background hover:text-foreground"
               >
                 Explore New Releases
               </Link>

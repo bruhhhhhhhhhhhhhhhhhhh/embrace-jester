@@ -1,6 +1,6 @@
 import StaticPageLayout from "@/components/StaticPageLayout";
 
-const SUPPORT_EMAIL = "support@looksmax.store";
+const SUPPORT_EMAIL = "support@embracejester.com";
 
 const Contact = () => (
   <StaticPageLayout
@@ -33,7 +33,7 @@ const Contact = () => (
         </ul>
       </section>
 
-      <p className="rounded-lg border border-border/60 bg-background/40 p-3 text-xs uppercase tracking-widest">
+      <p className="border border-border/60 bg-background/40 p-3 text-xs uppercase tracking-widest">
         Please include screenshots/photos for damaged item claims to speed up resolution.
       </p>
     </div>

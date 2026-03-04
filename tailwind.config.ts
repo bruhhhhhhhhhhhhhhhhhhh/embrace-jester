@@ -13,6 +13,27 @@ export default {
         "2xl": "1400px",
       },
     },
+    borderRadius: {
+      none: "0px",
+      sm: "0px",
+      DEFAULT: "0px",
+      md: "0px",
+      lg: "0px",
+      xl: "0px",
+      "2xl": "0px",
+      "3xl": "0px",
+      full: "0px",
+    },
+    boxShadow: {
+      none: "none",
+      sm: "2px 2px 0 0 hsl(var(--border))",
+      DEFAULT: "3px 3px 0 0 hsl(var(--border))",
+      md: "4px 4px 0 0 hsl(var(--border))",
+      lg: "6px 6px 0 0 hsl(var(--border))",
+      xl: "8px 8px 0 0 hsl(var(--border))",
+      "2xl": "10px 10px 0 0 hsl(var(--border))",
+      inner: "inset 0 0 0 1px hsl(var(--border))",
+    },
     extend: {
       fontFamily: {
         body: ["var(--font-body)"],
@@ -83,9 +104,6 @@ export default {
         },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "var(--radius)",
-        sm: "var(--radius)",
         "ui-sm": "var(--radius-sm)",
         "ui-md": "var(--radius-md)",
         "ui-lg": "var(--radius-lg)",

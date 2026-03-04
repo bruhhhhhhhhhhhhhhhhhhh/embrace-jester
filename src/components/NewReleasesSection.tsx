@@ -18,19 +18,18 @@ const NewReleasesSection = () => {
   return (
     <section className="py-16">
       <div className="container mx-auto px-4">
-        <div className="mb-8 rounded-xl border border-border/70 bg-card px-5 py-5">
+        <div className="mb-8 border border-border bg-card px-5 py-5 shadow-sm">
           <div className="flex items-start gap-4">
-            <div className="mt-1 h-12 w-[3px] rounded-full bg-forum-gold" />
+            <div className="mt-1 h-12 w-[3px] bg-foreground" />
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-muted-foreground">
-                New Releases
+              <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
+                Court Feed
               </p>
-              <h2 className="mt-2 font-heading text-2xl font-bold uppercase tracking-tight text-foreground">
-                Latest Drops
+              <h2 className="mt-2 font-heading text-2xl font-bold uppercase tracking-[0.06em] text-foreground">
+                New Acts
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                Most recent additions to the storefront. Start here before they move into the main
-                collection rotation.
+                Fresh additions to the Embrace Jester storefront before they fold into the core catalog.
               </p>
             </div>
           </div>

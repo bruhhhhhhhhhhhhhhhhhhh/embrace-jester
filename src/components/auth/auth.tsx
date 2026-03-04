@@ -16,7 +16,7 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 const STORAGE_KEY = "looksmax.auth.v1";
 
 const ADMIN_CREDENTIALS = {
-  email: "admin@looksmax.store",
+  email: "admin@embracejester.com",
   password: "mogger",
 };
 

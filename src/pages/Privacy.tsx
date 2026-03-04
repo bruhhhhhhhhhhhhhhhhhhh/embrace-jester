@@ -2,7 +2,7 @@ import StaticPageLayout from "@/components/StaticPageLayout";
 import { Link } from "react-router-dom";
 
 const EFFECTIVE_DATE = "March 1, 2026";
-const SUPPORT_EMAIL = "support@looksmax.store";
+const SUPPORT_EMAIL = "support@embracejester.com";
 
 const Privacy = () => (
   <StaticPageLayout
@@ -15,7 +15,7 @@ const Privacy = () => (
         <strong className="text-foreground">Effective date:</strong> {EFFECTIVE_DATE}
       </p>
       <p>
-        This Privacy Policy applies to personal information collected through LOOKSMAX.STORE,
+        This Privacy Policy applies to personal information collected through EMBRACE JESTER,
         including when you browse, place an order, subscribe to marketing, or contact support.
       </p>
 

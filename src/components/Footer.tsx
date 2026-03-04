@@ -3,7 +3,7 @@ import { type FormEvent, useState } from "react";
 import { apiFetch } from "@/lib/api";
 
 const SHOP_LINKS = [
-  { label: "New Releases", href: "/shop/new" },
+  { label: "New Acts", href: "/shop/new" },
   { label: "Hoodies", href: "/shop/hoodies" },
   { label: "Tees", href: "/shop/tees" },
   { label: "Bottoms", href: "/shop/bottoms" },
@@ -22,22 +22,22 @@ const SOCIAL_LINKS = [
   {
     label: "Twitter / X",
     platform: "x",
-    href: import.meta.env.VITE_SOCIAL_X_URL || "https://x.com/looksmaxstore",
+    href: import.meta.env.VITE_SOCIAL_X_URL || "https://x.com/embracejester",
   },
   {
     label: "Instagram",
     platform: "instagram",
-    href: import.meta.env.VITE_SOCIAL_INSTAGRAM_URL || "https://instagram.com/looksmax.store",
+    href: import.meta.env.VITE_SOCIAL_INSTAGRAM_URL || "https://instagram.com/embracejester",
   },
   {
     label: "TikTok",
     platform: "tiktok",
-    href: import.meta.env.VITE_SOCIAL_TIKTOK_URL || "https://tiktok.com/@looksmax.store",
+    href: import.meta.env.VITE_SOCIAL_TIKTOK_URL || "https://tiktok.com/@embracejester",
   },
   {
     label: "Discord",
     platform: "discord",
-    href: import.meta.env.VITE_SOCIAL_DISCORD_URL || "https://discord.gg/looksmax",
+    href: import.meta.env.VITE_SOCIAL_DISCORD_URL || "https://discord.gg/embracejester",
   },
 ].filter((entry) => Boolean(entry.href));
 
@@ -62,7 +62,7 @@ const Footer = () => {
   const handleNewsletterSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const normalized = email.trim().toLowerCase();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized)) {
+    if (!/^\S+@\S+\.\S+$/.test(normalized)) {
       setStatusMessage("Enter a valid email address.");
       return;
     }
@@ -90,23 +90,21 @@ const Footer = () => {
   };
 
   return (
-    <footer className="border-t bg-card">
+    <footer className="border-t border-border bg-card">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
           <div>
-            <h3 className="mb-4 font-mono text-lg font-bold text-foreground">
-              LOOKSMAX.STORE
+            <h3 className="mb-4 font-heading text-lg font-bold uppercase tracking-[0.08em] text-foreground">
+              EMBRACE JESTER
             </h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Optimized streetwear for those who refuse to settle. Every piece
-              engineered for maximum aesthetic impact.
+              Sinister monochrome streetwear for men building undeniable aesthetic value. Built for
+              harsh contrast and clean silhouettes.
             </p>
           </div>
 
-          {/* Shop */}
           <div>
-            <h4 className="mb-4 font-heading text-xs font-bold uppercase tracking-wider text-muted-foreground">
+            <h4 className="mb-4 font-heading text-xs font-bold uppercase tracking-[0.24em] text-muted-foreground">
               Shop
             </h4>
             <ul className="space-y-2">
@@ -114,7 +112,7 @@ const Footer = () => {
                 <li key={item.label}>
                   <Link
                     to={item.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm uppercase tracking-[0.1em] text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {item.label}
                   </Link>
@@ -123,34 +121,32 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Info */}
           <div>
-            <h4 className="mb-4 font-heading text-xs font-bold uppercase tracking-wider text-muted-foreground">
+            <h4 className="mb-4 font-heading text-xs font-bold uppercase tracking-[0.24em] text-muted-foreground">
               Info
             </h4>
-              <ul className="space-y-2">
-                {INFO_LINKS.map((item) => (
-                  <li key={item.label}>
-                    <Link
-                      to={item.to}
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+            <ul className="space-y-2">
+              {INFO_LINKS.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    to={item.to}
+                    className="text-sm uppercase tracking-[0.1em] text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Connect */}
           <div>
-            <h4 className="mb-4 font-heading text-xs font-bold uppercase tracking-wider text-muted-foreground">
-              Connect
+            <h4 className="mb-4 font-heading text-xs font-bold uppercase tracking-[0.24em] text-muted-foreground">
+              Signals
             </h4>
             <form className="mb-5 space-y-2" onSubmit={handleNewsletterSubmit}>
               <label
                 htmlFor="footer-newsletter-email"
-                className="block text-[10px] font-mono uppercase tracking-[0.22em] text-muted-foreground"
+                className="block text-[10px] font-mono uppercase tracking-[0.24em] text-muted-foreground"
               >
                 Drop Alerts
               </label>
@@ -161,13 +157,13 @@ const Footer = () => {
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="you@example.com"
-                  className="w-full rounded-md border border-border/70 bg-background/40 px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+                  className="w-full border border-border bg-background px-3 py-2 text-xs text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none"
                   autoComplete="email"
                 />
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="rounded-md border border-foreground bg-foreground px-3 py-2 text-[10px] font-mono font-bold uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground disabled:opacity-60"
+                  className="border border-foreground bg-foreground px-3 py-2 text-[10px] font-mono font-bold uppercase tracking-widest text-background transition-colors hover:bg-background hover:text-foreground disabled:opacity-60"
                 >
                   {isSubmitting ? "..." : "Join"}
                 </button>
@@ -183,7 +179,7 @@ const Footer = () => {
                     href={withUtm(item.href, item.platform)}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="text-sm uppercase tracking-[0.1em] text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {item.label}
                   </a>
@@ -193,8 +189,8 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-12 border-t pt-6 text-center">
-          <div className="mb-3 flex items-center justify-center gap-4 text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
+        <div className="mt-12 border-t border-border pt-6 text-center">
+          <div className="mb-3 flex items-center justify-center gap-4 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
             <Link className="hover:text-foreground" to="/privacy">
               Privacy
             </Link>
@@ -205,8 +201,8 @@ const Footer = () => {
               Terms
             </Link>
           </div>
-          <p className="text-xs text-muted-foreground">
-            © 2026 LOOKSMAX.STORE — All rights reserved.
+          <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
+            © 2026 Embrace Jester — All rights reserved.
           </p>
         </div>
       </div>

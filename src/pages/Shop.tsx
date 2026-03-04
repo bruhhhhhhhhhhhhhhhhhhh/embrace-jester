@@ -105,14 +105,14 @@ const Shop = () => {
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-                Shop Thread
+                Court Rack
               </p>
               <div className="mt-2 flex items-start gap-4">
                 <div className="mt-1 h-12 w-[3px] rounded-full bg-foreground/80" />
                 <div>
                   <h1 className="font-heading text-3xl font-bold uppercase tracking-tight">{label}</h1>
                   <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-                    Browse current threads and sort by release or pricing.
+                    Browse current pieces and sort by release cadence or pricing.
                   </p>
                 </div>
               </div>
@@ -196,9 +196,9 @@ const Shop = () => {
                 {label}
               </h2>
               <div className="h-px flex-1 bg-border" />
-              <span className="font-mono text-xs text-muted-foreground">
-                {sortedProducts.length} threads
-              </span>
+                <span className="font-mono text-xs text-muted-foreground">
+                  {sortedProducts.length} items
+                </span>
             </div>
 
             {sortedProducts.length ? (

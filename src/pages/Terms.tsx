@@ -1,13 +1,13 @@
 import StaticPageLayout from "@/components/StaticPageLayout";
 
 const EFFECTIVE_DATE = "March 1, 2026";
-const SUPPORT_EMAIL = "support@looksmax.store";
+const SUPPORT_EMAIL = "support@embracejester.com";
 
 const Terms = () => (
   <StaticPageLayout
     eyebrow="Legal"
     title="Terms Of Service"
-    description="These Terms govern your use of this site and any purchase you make from LOOKSMAX.STORE."
+    description="These Terms govern your use of this site and any purchase you make from EMBRACE JESTER."
   >
     <div className="space-y-6 text-sm leading-relaxed text-muted-foreground">
       <p>

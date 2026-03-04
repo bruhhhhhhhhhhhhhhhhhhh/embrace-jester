@@ -205,23 +205,18 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <article
-      className="group overflow-hidden rounded-ui-md border border-border/70 bg-card shadow-elev-1 transition-colors hover:border-foreground/30"
+      className="group overflow-hidden border border-border bg-card shadow-sm transition-colors hover:border-foreground"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="relative overflow-hidden">
         <Link to={`/product/${product.id}`} className="block">
           <AspectRatio ratio={1}>
-            <div
-              className="relative h-full w-full"
-              style={{
-                backgroundImage: "radial-gradient(circle at top, rgba(255,255,255,0.10), transparent 58%)",
-              }}
-            >
+            <div className="relative h-full w-full bg-background">
               <img
                 src={previewImageTransparent}
                 alt={product.name}
-                className={`absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 transition-opacity ${
+                className={`absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] transition-opacity ${
                   isHovered && (displayedHoverImage || incomingHoverImage) ? "opacity-0" : "opacity-100"
                 }`}
                 loading="lazy"
@@ -234,7 +229,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 <img
                   src={incomingHoverImage}
                   alt={product.name}
-                  className={`absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 transition-opacity duration-700 ease-in-out ${
+                  className={`absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] transition-opacity duration-700 ease-in-out ${
                     isIncomingVisible ? "opacity-100" : "opacity-0"
                   }`}
                   loading="eager"
@@ -248,7 +243,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
                 <img
                   src={displayedHoverImage}
                   alt={product.name}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-105 opacity-100"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03] opacity-100"
                   loading="eager"
                   decoding="async"
                   onError={(event) => {
@@ -261,7 +256,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </Link>
 
         {isLowStock && (
-          <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-md bg-forum-red/90 px-3 py-1">
+          <div className="absolute left-3 top-3 flex items-center gap-1.5 border border-forum-red bg-background px-3 py-1">
             <Lock className="h-3 w-3 text-foreground" />
             <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-foreground">
               LOCKED SOON
@@ -270,7 +265,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         )}
 
         {isSoldOut ? (
-          <div className="absolute left-3 top-3 rounded-md border border-forum-red/60 bg-forum-red/15 px-3 py-1">
+          <div className="absolute left-3 top-3 border border-forum-red bg-background px-3 py-1">
             <span className="font-mono text-[10px] font-bold uppercase tracking-token-label text-forum-red">
               SOLD OUT
             </span>
@@ -278,8 +273,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
         ) : null}
 
         {isNew ? (
-          <div className="absolute right-3 top-3 rounded-md border border-forum-gold/70 bg-forum-gold/20 px-2.5 py-1">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-token-label text-forum-gold">
+          <div className="absolute right-3 top-3 border border-foreground/60 bg-background px-2.5 py-1">
+            <span className="font-mono text-[10px] font-bold uppercase tracking-token-label text-foreground">
               NEW
             </span>
           </div>
@@ -292,19 +287,19 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {product.drop ?? "Limited Release"}
         </p>
         <Link to={`/product/${product.id}`} className="block">
-          <h3 className="line-clamp-2 min-h-[3rem] font-heading text-sm font-bold uppercase tracking-tight text-foreground transition-colors group-hover:text-primary">
+          <h3 className="line-clamp-2 min-h-[3rem] font-heading text-sm font-bold uppercase tracking-[0.06em] text-foreground transition-colors group-hover:text-primary">
             {product.name}
           </h3>
         </Link>
         <div className="mt-3 flex items-center justify-between">
-          <p className="font-mono text-lg font-bold text-forum-gold">${product.price}</p>
+          <p className="font-mono text-lg font-bold text-foreground">${product.price}</p>
           <span className="text-[10px] font-mono uppercase tracking-token-label text-muted-foreground">
             {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
           </span>
         </div>
         <Link
           to={`/product/${product.id}`}
-          className="mt-4 inline-flex w-full items-center justify-center rounded-lg border border-foreground bg-foreground px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-token-label text-background transition-colors hover:bg-transparent hover:text-foreground"
+          className="mt-4 inline-flex w-full items-center justify-center border border-foreground bg-foreground px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-token-label text-background transition-colors hover:bg-background hover:text-foreground"
         >
           View Product
         </Link>

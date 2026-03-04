@@ -148,13 +148,13 @@ const SocialManager = () => {
     videoProvider: "manual",
     audioProvider: "manual",
     autoPublish: false,
-    defaultHashtags: ["#looksmax", "#streetwear", "#merchdrop"],
+    defaultHashtags: ["#embracejester", "#jestermaxx", "#streetwear"],
   });
 
   const [newsletterForm, setNewsletterForm] = useState({
     subject: "New drop is live",
-    headline: "New Looksmax merch just dropped",
-    body: "Fresh product drop is now live. Limited stock and fast turnover. Tap through to secure your size.",
+    headline: "New Embrace Jester drop is live",
+    body: "Fresh monochrome drop is now live. Limited stock and fast turnover. Tap through to secure your size.",
     ctaUrl: "http://localhost:3030/shop",
     testEmail: "",
   });
@@ -378,7 +378,7 @@ const SocialManager = () => {
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-                Looksmax Internal
+                Embrace Jester Internal
               </p>
               <h1 className="mt-2 font-heading text-2xl font-bold uppercase tracking-tight text-foreground">
                 Social Studio

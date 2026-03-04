@@ -21,16 +21,12 @@ const CatalogStatus = ({ className = "" }: { className?: string }) => {
 
   return (
     <div
-      className={`flex flex-wrap items-center justify-between gap-3 border-b border-border/70 pb-3 text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground ${className}`}
+      className={`flex flex-wrap items-center justify-between gap-3 border-b border-border pb-3 text-[10px] font-mono uppercase tracking-[0.22em] text-muted-foreground ${className}`}
     >
       <div className="flex flex-wrap items-center gap-4">
         <span className="inline-flex items-center gap-2 text-foreground">
-          <span
-            className={`h-2 w-2 rounded-full ${
-              source === "printify" ? "bg-forum-green" : "bg-forum-gold"
-            }`}
-          />
-          {source === "printify" ? "Collection Updated" : "Collection Preview"}
+          <span className="h-2 w-2 border border-border bg-foreground" />
+          {source === "printify" ? "Catalog Live" : "Catalog Preview"}
         </span>
         <span>Updated: {lastSyncLabel}</span>
       </div>
@@ -42,7 +38,7 @@ const CatalogStatus = ({ className = "" }: { className?: string }) => {
           className="border-b border-transparent text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:border-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-60"
           title="Manual collection refresh"
         >
-          {syncing ? "Syncing..." : "Refresh Collection"}
+          {syncing ? "Syncing..." : "Refresh Catalog"}
         </button>
       ) : null}
     </div>
