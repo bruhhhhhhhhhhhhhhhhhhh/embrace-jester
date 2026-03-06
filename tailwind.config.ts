@@ -103,15 +103,9 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
-      borderRadius: {
-        "ui-sm": "var(--radius-sm)",
-        "ui-md": "var(--radius-md)",
-        "ui-lg": "var(--radius-lg)",
-        "ui-pill": "var(--radius-pill)",
-      },
       boxShadow: {
-        "elev-1": "var(--shadow-elev-1)",
-        "elev-2": "var(--shadow-elev-2)",
+        "elev-1": "4px 4px 0 0 hsl(var(--border))",
+        "elev-2": "8px 8px 0 0 hsl(var(--border))",
       },
       letterSpacing: {
         "token-label": "var(--tracking-label)",

@@ -20,73 +20,124 @@
     --space-7: 2rem;
     --space-8: 2.5rem;
 
+    --shadow-elev-1: 4px 4px 0 0 hsl(var(--border));
+    --shadow-elev-2: 8px 8px 0 0 hsl(var(--border));
+
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --surface-1: 0 0% 6%;
+    --surface-2: 0 0% 10%;
+    --surface-3: 0 0% 14%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 348 83% 28%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 74%;
+
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 75% 44%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 3%;
+    --input: 0 0% 12%;
+    --ring: 348 83% 28%;
+
+    --radius: 0px;
     --radius-sm: 0px;
     --radius-md: 0px;
     --radius-lg: 0px;
     --radius-pill: 0px;
 
-    --shadow-elev-1: 4px 4px 0 rgba(38, 38, 38, 0.95);
-    --shadow-elev-2: 8px 8px 0 rgba(38, 38, 38, 0.95);
+    --forum-green: 0 0% 98%;
+    --forum-gold: 0 0% 68%;
+    --forum-red: 348 83% 28%;
 
-    --background: 0 0% 0%;
-    --foreground: 220 14% 96%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 348 83% 28%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 3%;
+    --sidebar-ring: 348 83% 28%;
+  }
 
-    --card: 0 0% 2%;
-    --card-foreground: 220 14% 96%;
-    --surface-1: 0 0% 2%;
-    --surface-2: 0 0% 3%;
-    --surface-3: 0 0% 5%;
+  .dark {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
 
-    --popover: 0 0% 2%;
-    --popover-foreground: 220 14% 96%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --surface-1: 0 0% 6%;
+    --surface-2: 0 0% 10%;
+    --surface-3: 0 0% 14%;
 
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 0%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 98%;
 
-    --secondary: 0 0% 5%;
-    --secondary-foreground: 220 14% 96%;
+    --primary: 348 83% 28%;
+    --primary-foreground: 0 0% 98%;
 
-    --muted: 0 0% 7%;
-    --muted-foreground: 0 0% 71%;
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
 
-    --accent: 0 0% 9%;
-    --accent-foreground: 220 14% 96%;
+    --muted: 0 0% 14%;
+    --muted-foreground: 0 0% 74%;
 
-    --destructive: 0 72% 46%;
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 75% 44%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 0 0% 100%;
+    --border: 0 0% 98%;
+    --input: 0 0% 98%;
+    --ring: 348 83% 28%;
 
-    --radius: var(--radius-md);
+    --forum-green: 0 0% 98%;
+    --forum-gold: 0 0% 68%;
+    --forum-red: 348 83% 28%;
 
-    --forum-green: 220 14% 96%;
-    --forum-gold: 0 0% 78%;
-    --forum-red: 0 72% 46%;
-
-    --sidebar-background: 0 0% 2%;
-    --sidebar-foreground: 220 14% 96%;
-    --sidebar-primary: 0 0% 100%;
-    --sidebar-primary-foreground: 0 0% 0%;
-    --sidebar-accent: 0 0% 9%;
-    --sidebar-accent-foreground: 220 14% 96%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 0 0% 100%;
+    --sidebar-background: 0 0% 5%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 348 83% 28%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 14%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 98%;
+    --sidebar-ring: 348 83% 28%;
   }
 }
 
 @layer base {
-  * {
+  *,
+  *::before,
+  *::after {
     @apply border-border;
+    border-radius: 0 !important;
+  }
+
+  ::selection {
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
-    background-image:
-      radial-gradient(circle at 50% -10%, rgba(255, 255, 255, 0.08), transparent 45%),
-      linear-gradient(180deg, #050505 0%, #000000 60%);
+    background-image: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -95,37 +146,11 @@
     font-weight: 700;
     text-transform: uppercase;
   }
-
-  button,
-  input,
-  select,
-  textarea,
-  img,
-  video,
-  [role="button"] {
-    border-radius: 0 !important;
-  }
 }
 
 @layer utilities {
   .tracking-token-label {
     letter-spacing: var(--tracking-label);
-  }
-
-  .rounded-ui-sm {
-    border-radius: var(--radius-sm);
-  }
-
-  .rounded-ui-md {
-    border-radius: var(--radius-md);
-  }
-
-  .rounded-ui-lg {
-    border-radius: var(--radius-lg);
-  }
-
-  .rounded-ui-pill {
-    border-radius: var(--radius-pill);
   }
 
   .shadow-elev-1 {
