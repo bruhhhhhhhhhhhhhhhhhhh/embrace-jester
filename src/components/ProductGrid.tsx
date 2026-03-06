@@ -4,7 +4,6 @@ import CatalogStatus from "./catalog/CatalogStatus";
 import { Link } from "react-router-dom";
 
 const QUICK_COLLECTIONS = [
-  { label: "New", href: "/shop/new" },
   { label: "Tees", href: "/shop/tees" },
   { label: "Bottoms", href: "/shop/bottoms" },
   { label: "Hoodies", href: "/shop/hoodies" },
@@ -27,7 +26,7 @@ const ProductGrid = () => {
                   Shop
                 </p>
                 <h2 className="mt-2 font-heading text-2xl font-bold uppercase tracking-[0.06em] text-foreground">
-                  All Relics
+                  All Products
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Browse the full catalog and move into product pages for variants, sizing, and live Stripe checkout.

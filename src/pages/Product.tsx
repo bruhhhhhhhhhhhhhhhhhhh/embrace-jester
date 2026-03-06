@@ -330,7 +330,7 @@ const Product = () => {
         <NotificationBar />
         <Header />
         <main className="container mx-auto px-4 py-16">
-          <div className="rounded-2xl border bg-card p-10 text-center">
+          <div className="rounded-none border border-border bg-card p-10 text-center">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
               {loading ? "Loading Product" : "Product Missing"}
             </p>
@@ -344,7 +344,7 @@ const Product = () => {
             </p>
             <Link
               to="/shop"
-              className="mt-6 inline-flex items-center justify-center rounded-lg border border-foreground bg-foreground px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground"
+              className="mt-6 inline-flex items-center justify-center rounded-none border border-primary bg-primary px-5 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary"
             >
               Back to Shop
             </Link>
@@ -361,8 +361,8 @@ const Product = () => {
     product.stock <= 0
       ? "border-forum-red/50 bg-forum-red/10 text-forum-red"
       : product.stock < 5
-        ? "border-forum-gold/40 bg-forum-gold/10 text-forum-gold"
-        : "border-forum-green/40 bg-forum-green/10 text-forum-green";
+        ? "border-primary/40 bg-primary/10 text-primary"
+        : "border-border bg-background text-foreground";
   const shipEstimate = "Estimated delivery 2-5 days";
   const freeShippingThreshold = 100;
   const workingSubtotal = product.price * quantity;
@@ -499,7 +499,7 @@ const Product = () => {
       <Header />
       <main className="container mx-auto px-4 py-12 pb-28 md:pb-12">
         <div className="mb-6 flex flex-wrap items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground">
-          <Link to="/shop" className="hover:text-foreground">
+          <Link to="/shop" className="hover:text-primary">
             Shop
           </Link>
           <span>/</span>
@@ -508,15 +508,15 @@ const Product = () => {
 
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5">
-            <div className="rounded-2xl border bg-card p-4">
+            <div className="rounded-none border bg-card p-4">
               <div className="mb-4 flex flex-wrap items-center gap-2 text-[10px] font-mono uppercase tracking-widest">
                 <button
                   type="button"
                   onClick={() => setViewMode("360")}
                   className={
                     viewMode === "360"
-                      ? "rounded-full border border-foreground bg-foreground px-4 py-2 text-background"
-                      : "rounded-full border px-4 py-2 text-muted-foreground transition-colors hover:text-foreground"
+                      ? "rounded-none border border-primary bg-primary px-4 py-2 text-primary-foreground"
+                      : "rounded-none border border-border bg-background px-4 py-2 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                   }
                 >
                   360 View
@@ -526,8 +526,8 @@ const Product = () => {
                   onClick={() => setViewMode("gallery")}
                   className={
                     viewMode === "gallery"
-                      ? "rounded-full border border-foreground bg-foreground px-4 py-2 text-background"
-                      : "rounded-full border px-4 py-2 text-muted-foreground transition-colors hover:text-foreground"
+                      ? "rounded-none border border-primary bg-primary px-4 py-2 text-primary-foreground"
+                      : "rounded-none border border-border bg-background px-4 py-2 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                   }
                 >
                   Gallery + Zoom
@@ -537,7 +537,7 @@ const Product = () => {
               {viewMode === "360" ? (
                 <>
                   <div
-                    className="relative overflow-hidden rounded-xl border border-border/60 bg-background/40"
+                    className="relative overflow-hidden rounded-none border border-border bg-background"
                     style={{
                       backgroundImage: selectedColorHex
                         ? `radial-gradient(circle at top, ${selectedColorHex}55, transparent 70%)`
@@ -571,7 +571,7 @@ const Product = () => {
                           <img
                             src={frontVisual}
                             alt={`${product.name} front`}
-                            className="h-full w-full object-contain drop-shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
+                            className="h-full w-full object-contain shadow-elev-1"
                             draggable={false}
                             decoding="async"
                             onError={(event) => withImageFallback(event, frontMockup)}
@@ -590,7 +590,7 @@ const Product = () => {
                           <img
                             src={backVisual}
                             alt={`${product.name} back`}
-                            className="h-full w-full object-contain drop-shadow-[0_25px_60px_rgba(0,0,0,0.45)]"
+                            className="h-full w-full object-contain shadow-elev-1"
                             draggable={false}
                             decoding="async"
                             onError={(event) => withImageFallback(event, backMockup)}
@@ -604,10 +604,10 @@ const Product = () => {
                         </div>
                       </div>
 
-                      <div className="absolute left-4 top-4 rounded-full border bg-background/70 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                      <div className="absolute left-4 top-4 rounded-none border border-border bg-background px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                         360 View
                       </div>
-                      <div className="absolute bottom-4 left-4 rounded-full border bg-background/70 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                      <div className="absolute bottom-4 left-4 rounded-none border border-border bg-background px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                         Drag to rotate
                       </div>
                     </div>
@@ -633,7 +633,7 @@ const Product = () => {
               ) : (
                 <>
                   <div
-                    className="group relative overflow-hidden rounded-xl bg-muted/30"
+                    className="group relative overflow-hidden rounded-none border border-border bg-background"
                     style={{
                       backgroundImage: selectedColorHex
                         ? `radial-gradient(circle at top, ${selectedColorHex}55, transparent 70%)`
@@ -650,7 +650,7 @@ const Product = () => {
                       <img
                         src={activeImage}
                         alt={product.name}
-                        className="h-full w-full object-contain transition-transform duration-200 group-hover:scale-150"
+                        className="h-full w-full object-contain"
                         style={{ transformOrigin: zoomOrigin }}
                         draggable={false}
                         decoding="async"
@@ -664,7 +664,7 @@ const Product = () => {
                       ) : null}
                       {lensVisible ? (
                         <div
-                          className="pointer-events-none absolute h-40 w-40 rounded-full border border-foreground/50 shadow-[0_12px_40px_rgba(0,0,0,0.45)]"
+                          className="pointer-events-none absolute h-40 w-40 rounded-none border border-foreground/50 shadow-none"
                           style={{
                             left: `${lensPosition.x}%`,
                             top: `${lensPosition.y}%`,
@@ -675,16 +675,16 @@ const Product = () => {
                           }}
                         />
                       ) : null}
-                      <div className="absolute left-4 top-4 rounded-full border bg-background/70 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                      <div className="absolute left-4 top-4 rounded-none border border-border bg-background px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                         Gallery
                       </div>
-                      <div className="absolute bottom-4 left-4 rounded-full border bg-background/70 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                      <div className="absolute bottom-4 left-4 rounded-none border border-border bg-background px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                         Hover to zoom
                       </div>
                       <button
                         type="button"
                         onClick={() => setIsGalleryOpen(true)}
-                        className="absolute right-4 top-4 rounded-full border bg-background/70 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+                        className="absolute right-4 top-4 rounded-none border border-border bg-background px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                       >
                         Expand
                       </button>
@@ -697,10 +697,10 @@ const Product = () => {
                         key={`${image}-${index}`}
                         type="button"
                         onClick={() => setActiveImageIndex(index)}
-                        className={`relative overflow-hidden rounded-lg border ${
+                        className={`relative overflow-hidden rounded-none border ${
                           index === activeImageIndex
-                            ? "border-foreground"
-                            : "border-border/60 hover:border-foreground/60"
+                            ? "border-primary"
+                            : "border-border hover:border-primary"
                         }`}
                       >
                         <img
@@ -724,7 +724,7 @@ const Product = () => {
               )}
             </div>
 
-            <div className="rounded-2xl border bg-card p-6">
+            <div className="rounded-none border bg-card p-6">
               <div className="flex items-center justify-between">
                 <div className="font-heading text-xs font-bold uppercase tracking-widest text-muted-foreground">
                   Product Details
@@ -735,7 +735,7 @@ const Product = () => {
               </div>
               <div className="mt-4 grid gap-6 lg:grid-cols-[1.25fr_0.9fr]">
                 <div className="space-y-4">
-                  <div className="rounded-xl border bg-background/40 p-4">
+                  <div className="rounded-none border bg-background/40 p-4">
                     <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                       Build Highlights
                     </div>
@@ -745,7 +745,7 @@ const Product = () => {
                           key={detail}
                           className="flex items-start gap-3 text-sm text-muted-foreground"
                         >
-                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-forum-gold/80" />
+                          <span className="mt-2 h-1.5 w-1.5 rounded-none bg-primary/80" />
                           <span>{detail}</span>
                         </li>
                       ))}
@@ -753,11 +753,11 @@ const Product = () => {
                   </div>
 
                   {extraSpecsDisplay.length ? (
-                    <div className="rounded-xl border bg-background/30 p-4">
+                    <div className="rounded-none border bg-background/30 p-4">
                       <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                         More Specs
                       </div>
-                      <ul className="mt-3 divide-y divide-border/50 rounded-lg border border-border/60 bg-background/60 px-3">
+                      <ul className="mt-3 divide-y divide-border/50 rounded-none border border-border/60 bg-background/60 px-3">
                         {extraSpecsDisplay.map((spec) => (
                           <li
                             key={spec}
@@ -780,15 +780,15 @@ const Product = () => {
 
                 <div className="space-y-4">
                   {bundleItems.length ? (
-                    <div className="rounded-xl border bg-secondary/40 p-4">
+                    <div className="rounded-none border bg-secondary/40 p-4">
                       <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                         <span>Frequently bought together</span>
                         <span className="text-foreground">{bundleCount + 1} items</span>
                       </div>
                       <div className="mt-4 space-y-3 text-sm text-muted-foreground">
-                        <div className="flex items-center gap-3 rounded-lg border bg-background/70 p-3">
+                        <div className="flex items-center gap-3 rounded-none border bg-background/70 p-3">
                           <input type="checkbox" checked readOnly />
-                          <div className="h-12 w-12 overflow-hidden rounded-md border bg-muted">
+                          <div className="h-12 w-12 overflow-hidden rounded-none border bg-muted">
                             <img
                               src={heroImage}
                               alt={product.name}
@@ -804,14 +804,14 @@ const Product = () => {
                             </p>
                             <p className="text-sm text-foreground">{product.name}</p>
                           </div>
-                          <span className="text-xs font-mono text-forum-gold">
+                          <span className="text-xs font-mono text-primary">
                             {formatMoney(product.price)}
                           </span>
                         </div>
                         {bundleItems.map((item) => (
                           <label
                             key={item.id}
-                            className="flex items-center gap-3 rounded-lg border bg-background/60 p-3"
+                            className="flex items-center gap-3 rounded-none border bg-background/60 p-3"
                           >
                             <input
                               type="checkbox"
@@ -823,7 +823,7 @@ const Product = () => {
                                 }))
                               }
                             />
-                            <div className="h-12 w-12 overflow-hidden rounded-md border bg-muted">
+                            <div className="h-12 w-12 overflow-hidden rounded-none border bg-muted">
                               <img
                                 src={item.image}
                                 alt={item.name}
@@ -839,7 +839,7 @@ const Product = () => {
                                 {item.drop ?? "Limited release"}
                               </p>
                             </div>
-                            <span className="text-xs font-mono text-forum-gold">
+                            <span className="text-xs font-mono text-primary">
                               {formatMoney(item.price)}
                             </span>
                           </label>
@@ -849,13 +849,13 @@ const Product = () => {
                         <span className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                           Bundle total
                         </span>
-                        <span className="font-mono text-sm text-forum-gold">
+                        <span className="font-mono text-sm text-primary">
                           {formatMoney(bundleTotal)}
                         </span>
                       </div>
                       <button
                         type="button"
-                        className="mt-4 w-full rounded-lg border border-foreground bg-foreground px-4 py-2 text-[10px] font-mono uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground"
+                        className="mt-4 w-full rounded-none border border-primary bg-primary px-4 py-2 text-[10px] font-body font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary"
                         onClick={() => {
                           add({
                             id: product.id,
@@ -903,7 +903,7 @@ const Product = () => {
                       </button>
                     </div>
                   ) : (
-                    <div className="rounded-xl border bg-secondary/40 p-4">
+                    <div className="rounded-none border bg-secondary/40 p-4">
                       <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                         Fit & Care Snapshot
                       </div>
@@ -916,14 +916,14 @@ const Product = () => {
                             <span className="text-sm text-foreground">{row.value}</span>
                           </div>
                         ))}
-                        <div className="rounded-lg border border-dashed border-border/70 bg-background/70 px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                        <div className="rounded-none border border-dashed border-border/70 bg-background/70 px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                           Add another drop to unlock bundle UI.
                         </div>
                       </div>
                     </div>
                   )}
 
-                  <div className="rounded-xl border bg-background/30 p-4">
+                  <div className="rounded-none border bg-background/30 p-4">
                     <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                       Quick Specs
                     </div>
@@ -944,11 +944,11 @@ const Product = () => {
           </div>
 
           <div className="space-y-6 lg:sticky lg:top-[112px] lg:self-start">
-            <div className="rounded-2xl border bg-card p-6">
+            <div className="rounded-none border bg-card p-6">
               <p className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
                 {product.drop ?? "Limited Release"}
               </p>
-              <h1 className="mt-3 font-heading text-3xl font-bold uppercase tracking-tight">
+              <h1 className="mt-3 font-heading text-3xl font-bold uppercase tracking-widest">
                 {product.name}
               </h1>
               <div className="mt-2 flex flex-wrap items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground">
@@ -956,7 +956,7 @@ const Product = () => {
                   <span>Loading reviews...</span>
                 ) : reviewSummary.total > 0 ? (
                   <>
-                    <span className="rounded-full border border-forum-gold/60 bg-forum-gold/10 px-3 py-1 text-forum-gold">
+                    <span className="rounded-none border border-primary/60 bg-primary/10 px-3 py-1 text-primary">
                       {reviewSummary.averageRating.toFixed(1)} / 5
                     </span>
                     <span>{reviewSummary.total} verified reviews</span>
@@ -966,30 +966,30 @@ const Product = () => {
                 )}
               </div>
               <div className="mt-3 flex flex-wrap items-center gap-3">
-                <span className="font-mono text-2xl text-forum-gold">
+                <span className="font-mono text-2xl text-primary">
                   {formatMoney(product.price)}
                 </span>
-                <span className="rounded-full border px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                <span className="rounded-none border px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                   {product.stock} in stock
                 </span>
-                <span className="rounded-full border px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+                <span className="rounded-none border px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
                   {product.viewers} watching
                 </span>
               </div>
               <div className="mt-4 grid gap-2 sm:grid-cols-3">
-                <div className={`rounded-lg border px-3 py-3 ${stockTone}`}>
+                <div className={`rounded-none border px-3 py-3 ${stockTone}`}>
                   <p className="text-[10px] font-mono uppercase tracking-[0.18em]">Availability</p>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wider">{stockLabel}</p>
                   <p className="mt-1 text-[11px] opacity-80">{product.stock} units ready</p>
                 </div>
-                <div className="rounded-lg border border-border/60 bg-background/30 px-3 py-3 text-muted-foreground">
+                <div className="rounded-none border border-border/60 bg-background/30 px-3 py-3 text-muted-foreground">
                   <p className="text-[10px] font-mono uppercase tracking-[0.18em]">Shipping</p>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-foreground">
                     {shipEstimate}
                   </p>
                   <p className="mt-1 text-[11px]">Free shipping over {formatMoney(freeShippingThreshold)}</p>
                 </div>
-                <div className="rounded-lg border border-border/60 bg-background/30 px-3 py-3 text-muted-foreground">
+                <div className="rounded-none border border-border/60 bg-background/30 px-3 py-3 text-muted-foreground">
                   <p className="text-[10px] font-mono uppercase tracking-[0.18em]">Returns</p>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-foreground">
                     14-day size exchange
@@ -998,7 +998,7 @@ const Product = () => {
                 </div>
               </div>
               {isNew ? (
-                <div className="mt-3 inline-flex rounded-full border border-forum-gold/70 bg-forum-gold/20 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-forum-gold">
+                <div className="mt-3 inline-flex rounded-none border border-primary/70 bg-primary/20 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-primary">
                   New Release
                 </div>
               ) : null}
@@ -1021,14 +1021,14 @@ const Product = () => {
                           key={color.name}
                           type="button"
                           onClick={() => setSelectedColor(color.name)}
-                          className={`flex items-center gap-2 rounded-full border px-3 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors ${
+                          className={`flex items-center gap-2 rounded-none border px-3 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors ${
                             active
-                              ? "border-foreground bg-foreground text-background"
-                              : "text-muted-foreground hover:text-foreground"
+                              ? "border-primary bg-primary text-primary-foreground"
+                              : "border-border bg-background text-muted-foreground hover:border-primary hover:text-primary"
                           }`}
                         >
                           <span
-                            className="h-3.5 w-3.5 rounded-full border border-background/40"
+                            className="h-3.5 w-3.5 rounded-none border border-background/40"
                             style={{ backgroundColor: color.hex }}
                           />
                           {color.name}
@@ -1053,10 +1053,10 @@ const Product = () => {
                           key={size}
                           type="button"
                           onClick={() => setSelectedSize(size)}
-                          className={`rounded-full border px-4 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors ${
+                          className={`rounded-none border px-4 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors ${
                             active
-                              ? "border-foreground bg-foreground text-background"
-                              : "text-muted-foreground hover:text-foreground"
+                              ? "border-primary bg-primary text-primary-foreground"
+                              : "border-border bg-background text-muted-foreground hover:border-primary hover:text-primary"
                           }`}
                         >
                           {size}
@@ -1070,13 +1070,13 @@ const Product = () => {
               <div className="mt-5 flex flex-wrap items-center gap-3">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="rounded-full border px-4 py-2 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground">
+                    <button className="rounded-none border border-border bg-background px-4 py-2 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary hover:text-primary">
                       Size guide + fit notes
                     </button>
                   </DialogTrigger>
-                  <DialogContent className="max-w-2xl bg-card">
+                  <DialogContent className="max-w-2xl rounded-none border border-border bg-card">
                     <DialogHeader>
-                      <DialogTitle className="font-heading text-xl uppercase tracking-tight">
+                      <DialogTitle className="font-heading text-xl uppercase tracking-widest">
                         Size & Fit
                       </DialogTitle>
                       <DialogDescription>
@@ -1084,7 +1084,7 @@ const Product = () => {
                       </DialogDescription>
                     </DialogHeader>
                     <div className="mt-6 grid gap-6">
-                      <div className="rounded-xl border bg-background/40 p-4">
+                      <div className="rounded-none border bg-background/40 p-4">
                         <div className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
                           Fit Notes
                         </div>
@@ -1095,12 +1095,12 @@ const Product = () => {
                         </ul>
                       </div>
 
-                      <div className="rounded-xl border bg-background/40 p-4">
+                      <div className="rounded-none border bg-background/40 p-4">
                         <div className="flex items-center justify-between text-xs font-mono uppercase tracking-widest text-muted-foreground">
                           <span>Size Guide</span>
                           <span className="text-foreground">{product.name}</span>
                         </div>
-                        <div className="mt-3 overflow-x-auto rounded-lg border bg-card">
+                        <div className="mt-3 overflow-x-auto rounded-none border bg-card">
                           <table className="min-w-full text-left text-xs">
                             <thead className="bg-secondary">
                               <tr>
@@ -1140,7 +1140,7 @@ const Product = () => {
                 <label className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground">
                   qty
                   <input
-                    className="w-20 rounded-lg border bg-card px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="w-20 rounded-none border bg-card px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
                     type="number"
                     min={1}
                     value={quantity}
@@ -1152,28 +1152,28 @@ const Product = () => {
               </div>
 
               <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                <button
-                  className="rounded-lg border border-foreground bg-foreground px-4 py-3 font-mono text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground"
+                  <button
+                  className="rounded-none border border-primary bg-primary px-4 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary"
                   onClick={addCurrentToCart}
                 >
                   Add to Cart
                 </button>
                 <Link
                   to="/checkout"
-                  className="inline-flex items-center justify-center rounded-lg border px-4 py-3 font-mono text-xs font-bold uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background"
+                  className="inline-flex items-center justify-center rounded-none border border-primary bg-background px-4 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
                 >
                   Buy Now
                 </Link>
               </div>
 
-              <div className="mt-4 rounded-xl border border-border/60 bg-background/40 p-4">
+              <div className="mt-4 rounded-none border border-border/60 bg-background/40 p-4">
                 <div className="grid gap-2 text-[11px] font-mono uppercase tracking-token-label text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <ShieldCheck className="h-3.5 w-3.5 text-forum-green" />
+                    <ShieldCheck className="h-3.5 w-3.5 text-foreground" />
                     <span>Secure Stripe checkout</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Truck className="h-3.5 w-3.5 text-forum-gold" />
+                    <Truck className="h-3.5 w-3.5 text-primary" />
                     <span>{shipEstimate}</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -1183,14 +1183,14 @@ const Product = () => {
                 </div>
               </div>
 
-              <div className="mt-4 rounded-xl border border-border/60 bg-background/40 p-4">
+              <div className="mt-4 rounded-none border border-border/60 bg-background/40 p-4">
                 <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
                   <span>Free shipping progress</span>
                   <span className="text-foreground">{freeShippingProgress}%</span>
                 </div>
-                <div className="mt-2 h-2 overflow-hidden rounded-full bg-border/70">
+                <div className="mt-2 h-2 overflow-hidden rounded-none bg-border/70">
                   <div
-                    className="h-full rounded-full bg-forum-gold transition-[width] duration-300"
+                    className="h-full rounded-none bg-primary transition-[width] duration-300"
                     style={{ width: `${freeShippingProgress}%` }}
                   />
                 </div>
@@ -1202,7 +1202,7 @@ const Product = () => {
               </div>
             </div>
 
-            <div className="rounded-2xl border bg-card p-6">
+            <div className="rounded-none border bg-card p-6">
               <div className="font-heading text-xs font-bold uppercase tracking-widest text-muted-foreground">
                 Shipping & Returns
               </div>
@@ -1217,7 +1217,7 @@ const Product = () => {
         {relatedItems.length ? (
           <div className="mt-12">
             <div className="mb-6 flex items-center gap-4">
-              <h2 className="font-heading text-2xl font-bold uppercase tracking-tight text-foreground">
+              <h2 className="font-heading text-2xl font-bold uppercase tracking-widest text-foreground">
                 Related Threads
               </h2>
               <div className="h-px flex-1 bg-border" />
@@ -1243,12 +1243,12 @@ const Product = () => {
                 {selectedColor || "Default color"}
                 {selectedSize ? ` · ${selectedSize}` : ""}
               </p>
-              <p className="font-mono text-sm text-forum-gold">{formatMoney(product.price * quantity)}</p>
+              <p className="font-mono text-sm text-primary">{formatMoney(product.price * quantity)}</p>
             </div>
             <button
               type="button"
               onClick={addCurrentToCart}
-              className="rounded-lg border border-foreground bg-foreground px-4 py-2 text-[11px] font-mono font-bold uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground"
+              className="rounded-none border border-primary bg-primary px-4 py-2 text-[11px] font-body font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary"
             >
               Add to Cart
             </button>
@@ -1264,20 +1264,20 @@ const Product = () => {
                 <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
                   Fullscreen Gallery
                 </p>
-                <h2 className="mt-2 font-heading text-2xl font-bold uppercase tracking-tight">
+                <h2 className="mt-2 font-heading text-2xl font-bold uppercase tracking-widest">
                   {product.name}
                 </h2>
               </div>
               <button
                 type="button"
                 onClick={() => setIsGalleryOpen(false)}
-                className="rounded-full border px-3 py-2 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+                className="rounded-none border border-border bg-background px-3 py-2 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="relative overflow-hidden rounded-2xl border bg-card p-6">
+            <div className="relative overflow-hidden rounded-none border bg-card p-6">
               <img
                 src={activeImage}
                 alt={product.name}
@@ -1288,14 +1288,14 @@ const Product = () => {
               <button
                 type="button"
                 onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full border bg-background/80 p-2 text-muted-foreground transition-colors hover:text-foreground"
+                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none border border-border bg-background p-2 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full border bg-background/80 p-2 text-muted-foreground transition-colors hover:text-foreground"
+                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none border border-border bg-background p-2 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -1308,10 +1308,10 @@ const Product = () => {
                     key={`${image}-${index}`}
                     type="button"
                     onClick={() => setActiveImageIndex(index)}
-                    className={`relative overflow-hidden rounded-lg border ${
+                    className={`relative overflow-hidden rounded-none border ${
                       index === activeImageIndex
-                        ? "border-foreground"
-                        : "border-border/60 hover:border-foreground/60"
+                        ? "border-primary"
+                        : "border-border hover:border-primary"
                     }`}
                   >
                     <img

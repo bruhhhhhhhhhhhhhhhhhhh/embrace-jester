@@ -95,9 +95,9 @@ const HeroSection = () => {
   const isInternalLink = slide.ctaLink.startsWith("/");
 
   return (
-    <section className="relative w-full overflow-hidden border-b border-border">
+    <section className="relative w-full overflow-hidden border-b border-border bg-background">
       {/* Slides */}
-      <div className="relative h-[62vh] w-full md:h-[78vh]">
+      <div className="relative h-[62vh] w-full border-b border-border md:h-[78vh]">
         {heroSlides.map((s, i) => {
           return (
             <div
@@ -145,7 +145,7 @@ const HeroSection = () => {
                   fetchPriority={i === current ? "high" : "auto"}
                 />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/75 to-background/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
             </div>
           );
         })}
@@ -153,14 +153,14 @@ const HeroSection = () => {
         {/* Content overlay */}
         <div className="pointer-events-none absolute inset-0">
           <div className="container mx-auto flex h-full items-end px-6 pb-10 md:pb-16">
-            <div className="pointer-events-auto max-w-xl border border-border bg-background/90 p-5 text-left shadow-md md:p-6">
+            <div className="pointer-events-auto max-w-xl rounded-none border border-border bg-card p-5 text-left shadow-elev-1 md:p-6">
               <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:text-xs">
                 EMBRACE JESTER
               </p>
-              <h1 className="mb-3 font-heading text-2xl font-bold uppercase leading-tight tracking-[0.04em] text-foreground md:text-4xl lg:text-5xl">
+              <h1 className="mb-3 font-heading text-2xl font-bold uppercase leading-tight tracking-widest text-foreground md:text-4xl lg:text-5xl">
                 {slide.title}
               </h1>
-              <p className="mb-5 max-w-lg text-sm text-foreground/80 md:text-base">
+              <p className="mb-5 max-w-lg font-body text-sm text-foreground/85 md:text-base">
                 {slide.subtitle}
               </p>
               {isInternalLink ? (
@@ -171,7 +171,7 @@ const HeroSection = () => {
                       productId: productIdFromCta(slide.ctaLink),
                     })
                   }
-                  className="inline-flex border border-foreground bg-foreground px-6 py-3 font-heading text-xs font-bold uppercase tracking-[0.22em] text-background transition-colors hover:bg-background hover:text-foreground md:px-8 md:py-4 md:text-sm"
+                  className="inline-flex rounded-none border border-primary bg-primary px-6 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary md:px-8 md:py-4 md:text-sm"
                 >
                   {slide.cta}
                 </Link>
@@ -179,7 +179,7 @@ const HeroSection = () => {
                 <a
                   href={slide.ctaLink}
                   onClick={() => trackConversionEvent("hero_cta_click")}
-                  className="inline-flex border border-foreground bg-foreground px-6 py-3 font-heading text-xs font-bold uppercase tracking-[0.22em] text-background transition-colors hover:bg-background hover:text-foreground md:px-8 md:py-4 md:text-sm"
+                  className="inline-flex rounded-none border border-primary bg-primary px-6 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary md:px-8 md:py-4 md:text-sm"
                 >
                   {slide.cta}
                 </a>
@@ -191,14 +191,14 @@ const HeroSection = () => {
         {/* Arrows */}
         <button
           onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 border border-border bg-background/85 p-2 text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background md:left-8 md:p-3"
+          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none border border-border bg-background px-2 py-2 text-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground md:left-8 md:px-3 md:py-3"
           aria-label="Previous slide"
         >
           <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
         </button>
         <button
           onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 border border-border bg-background/85 p-2 text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background md:right-8 md:p-3"
+          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none border border-border bg-background px-2 py-2 text-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground md:right-8 md:px-3 md:py-3"
           aria-label="Next slide"
         >
           <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
@@ -211,10 +211,10 @@ const HeroSection = () => {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`h-2 w-8 border border-border transition-all ${
+            className={`h-2 w-8 rounded-none border border-border transition-colors ${
               i === current
                 ? "bg-foreground"
-                : "bg-background hover:border-foreground/70"
+                : "bg-background hover:border-primary"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />

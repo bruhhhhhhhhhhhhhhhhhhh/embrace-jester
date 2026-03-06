@@ -26,7 +26,7 @@ const NewReleasesSection = () => {
                 Court Feed
               </p>
               <h2 className="mt-2 font-heading text-2xl font-bold uppercase tracking-[0.06em] text-foreground">
-                New Acts
+                All Products
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
                 Fresh additions to the Embrace Jester storefront before they fold into the core catalog.

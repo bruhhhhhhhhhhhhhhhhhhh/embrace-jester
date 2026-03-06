@@ -10,7 +10,7 @@ import { getNewProductWindowDays, isNewProduct, toTimestamp } from "@/lib/produc
 
 const CATEGORY_LABELS: Record<string, string> = {
   all: "All Items",
-  new: "New Releases",
+  new: "All Products",
   hoodies: "Hoodies",
   tees: "Tees",
   bottoms: "Bottoms",
@@ -28,7 +28,6 @@ const CATEGORY_KEYWORDS: Record<string, string[]> = {
 
 const SHOP_TABS: Array<{ key: string; label: string; href: string }> = [
   { key: "all", label: "All", href: "/shop" },
-  { key: "new", label: "New Releases", href: "/shop/new" },
   { key: "hoodies", label: "Hoodies", href: "/shop/hoodies" },
   { key: "tees", label: "Tees", href: "/shop/tees" },
   { key: "bottoms", label: "Bottoms", href: "/shop/bottoms" },

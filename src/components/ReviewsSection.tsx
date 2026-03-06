@@ -73,10 +73,10 @@ const ReviewsSection = () => {
               </p>
               {error ? <p className="text-forum-red">Review API: {error}</p> : null}
               <Link
-                to="/shop/new"
+                to="/shop"
                 className="inline-flex border border-foreground bg-foreground px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-background transition-colors hover:bg-background hover:text-foreground"
               >
-                Explore New Releases
+                Explore All Products
               </Link>
             </div>
           )}

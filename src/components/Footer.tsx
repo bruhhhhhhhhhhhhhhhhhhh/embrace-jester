@@ -3,7 +3,7 @@ import { type FormEvent, useState } from "react";
 import { apiFetch } from "@/lib/api";
 
 const SHOP_LINKS = [
-  { label: "New Acts", href: "/shop/new" },
+  { label: "All Products", href: "/shop" },
   { label: "Hoodies", href: "/shop/hoodies" },
   { label: "Tees", href: "/shop/tees" },
   { label: "Bottoms", href: "/shop/bottoms" },
