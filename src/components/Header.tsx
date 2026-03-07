@@ -28,42 +28,42 @@ const Header = () => {
 
   return (
     <header className="sticky top-10 z-40 border-b border-border bg-background">
-      <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-4">
-        <Link to="/" className="group inline-flex items-center gap-3">
-          <span className="relative flex h-10 w-10 items-center justify-center overflow-hidden rounded-none border border-foreground bg-background text-foreground">
-            <span className="font-heading text-[11px] font-black uppercase tracking-widest">EJ</span>
-            <span className="pointer-events-none absolute inset-[4px] rounded-none border border-border" />
+      <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
+        <Link to="/" className="group inline-flex items-center gap-3 focus-visible:outline-none">
+          <span className="relative flex h-11 w-11 items-center justify-center overflow-hidden border border-foreground bg-background text-foreground transition-colors duration-150 group-hover:bg-foreground group-hover:text-background">
+            <span className="font-heading text-[11px] font-black uppercase tracking-[0.28em]">EJ</span>
+            <span className="pointer-events-none absolute inset-[4px] border border-border transition-colors duration-150 group-hover:border-background" />
           </span>
           <span className="hidden leading-none sm:block">
-            <span className="block font-heading text-[14px] font-extrabold uppercase tracking-widest text-foreground transition-colors group-hover:text-primary">
+            <span className="block font-heading text-[13px] font-extrabold uppercase tracking-[0.22em] text-foreground">
               EMBRACE JESTER
             </span>
-            <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.32em] text-muted-foreground">
-              PSL 8 JESTER
+            <span className="mt-1 block font-mono text-[9px] uppercase tracking-[0.3em] text-muted-foreground">
+              Uniforms In Black
             </span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex">
           <div className="relative hidden xl:block">
             <button
               onClick={() => setCollectionsOpen(!collectionsOpen)}
               onBlur={() => setTimeout(() => setCollectionsOpen(false), 150)}
-              className="flex items-center gap-1.5 border-r border-border pr-5 font-heading text-[11px] font-semibold uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+              className="flex items-center gap-1.5 border-r border-border pr-5 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-muted-foreground transition-colors duration-150 hover:text-foreground focus-visible:text-foreground"
             >
-              Collections
+              Shop
               <ChevronDown
                 className={`h-4 w-4 transition-transform ${collectionsOpen ? "rotate-180" : ""}`}
               />
             </button>
 
             {collectionsOpen && (
-              <div className="absolute left-0 top-full z-50 mt-3 w-56 rounded-none border border-border bg-card p-2 shadow-elev-1">
+              <div className="absolute left-0 top-full z-50 mt-3 w-56 border border-border bg-card p-2 shadow-elev-1">
                 {COLLECTION_LINKS.map((cat) => (
                   <Link
                     key={cat.label}
                     to={cat.href}
-                    className="block rounded-none border border-transparent px-4 py-2.5 font-body text-xs uppercase tracking-[0.18em] text-foreground transition-colors hover:border-primary hover:bg-background"
+                    className="block border border-transparent px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.22em] text-foreground transition-colors duration-150 hover:border-foreground hover:bg-background focus-visible:border-foreground"
                     onClick={() => setCollectionsOpen(false)}
                   >
                     {cat.label}
@@ -78,10 +78,10 @@ const Header = () => {
               key={item.label}
               to={item.href}
               className={({ isActive }) =>
-                `pb-1 font-heading text-[11px] font-semibold uppercase tracking-widest transition-colors ${
+                `border-b pb-1 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] transition-colors duration-150 ${
                   isActive
-                    ? "border-b border-foreground text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "border-foreground text-foreground"
+                    : "border-transparent text-muted-foreground hover:border-border hover:text-foreground focus-visible:border-border focus-visible:text-foreground"
                 }`
               }
             >
@@ -90,28 +90,32 @@ const Header = () => {
           ))}
         </nav>
 
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-2">
           <Link
             to="/search"
-            className="flex h-8 w-8 items-center justify-center rounded-none border border-border bg-background text-muted-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+            className="flex h-9 w-9 items-center justify-center border border-border bg-background text-muted-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background"
+            aria-label="Search"
           >
-            <Search className="h-5 w-5" />
+            <Search className="h-4.5 w-4.5" />
           </Link>
           <Link
             to="/login"
-            className="relative flex h-8 w-8 items-center justify-center rounded-none border border-border bg-background text-muted-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+            className="relative flex h-9 w-9 items-center justify-center border border-border bg-background text-muted-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background"
+            aria-label="Account"
           >
-            <User className="h-5 w-5" />
+            <User className="h-4.5 w-4.5" />
             {user ? (
-              <span className="absolute -right-1 -top-1 h-2.5 w-2.5 rounded-none border border-border bg-foreground" />
+              <span className="absolute -right-1 -top-1 h-2.5 w-2.5 border border-background bg-foreground" />
             ) : null}
           </Link>
           <Link
             to="/cart"
-            className="relative flex h-8 w-8 items-center justify-center rounded-none border border-border bg-background text-muted-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
+            className="relative flex h-9 min-w-[52px] items-center justify-center gap-2 border border-border bg-background px-2 text-muted-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background"
+            aria-label="Cart"
           >
-            <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -right-2 -top-2 flex h-4 min-w-[16px] items-center justify-center rounded-none border border-foreground bg-foreground px-1 text-[10px] font-bold text-background">
+            <ShoppingCart className="h-4.5 w-4.5" />
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-[0.2em]">Cart</span>
+            <span className="absolute -right-2 -top-2 flex h-4 min-w-[16px] items-center justify-center border border-foreground bg-foreground px-1 text-[9px] font-bold text-background">
               {count}
             </span>
           </Link>
@@ -125,10 +129,10 @@ const Header = () => {
               key={item.label}
               to={item.href}
               className={({ isActive }) =>
-                `whitespace-nowrap pb-1 font-mono text-[10px] uppercase tracking-[0.24em] ${
+                `whitespace-nowrap border-b pb-1 font-mono text-[10px] uppercase tracking-[0.24em] ${
                   isActive
-                    ? "border-b border-foreground text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "border-foreground text-foreground"
+                    : "border-transparent text-muted-foreground hover:border-border hover:text-foreground focus-visible:border-border focus-visible:text-foreground"
                 }`
               }
             >

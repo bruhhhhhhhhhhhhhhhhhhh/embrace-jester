@@ -9,23 +9,23 @@ export interface HeroSlide {
 export const heroSlides: HeroSlide[] = [
   {
     id: "1",
-    title: "EMBRACE THE MASK",
-    subtitle: "Monochrome essentials for men building presence in silence.",
-    cta: "VIEW THE DROP",
+    title: "UNIFORMS FOR CONTROLLED PRESENCE",
+    subtitle: "Built in black. Quiet, rigid, deliberate.",
+    cta: "SHOP THE DROP",
     ctaLink: "/product/69881e327d7ff99e6b03d225",
   },
   {
     id: "2",
-    title: "JESTER CARGO RESTOCK",
-    subtitle: "Sharp utility lines cut for movement, structure, and contrast.",
-    cta: "SHOP BOTTOMS",
+    title: "SEVERE ESSENTIALS",
+    subtitle: "Structured utility with clean proportion.",
+    cta: "VIEW COLLECTION",
     ctaLink: "/shop/bottoms",
   },
   {
     id: "3",
-    title: "DARK COURT OUTERWEAR",
-    subtitle: "Hard silhouettes with stark detailing for the night rotation.",
-    cta: "EXPLORE OUTERWEAR",
+    title: "OUTER LAYERS, REDUCED",
+    subtitle: "Cold structure. Hard finish. No excess.",
+    cta: "VIEW COLLECTION",
     ctaLink: "/shop/outerwear",
   },
 ];

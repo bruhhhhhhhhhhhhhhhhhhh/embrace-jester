@@ -1,9 +1,9 @@
-import { Lock } from "lucide-react";
 import type { Product } from "@/data/products";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { memo, useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { isNewProduct } from "@/lib/productFreshness";
+import { formatMoney } from "@/lib/money";
 
 interface ProductCardProps {
   product: Product;
@@ -64,6 +64,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const isLowStock = product.stock > 0 && product.stock < 5;
   const isSoldOut = product.stock <= 0;
   const isNew = isNewProduct(product.createdAt);
+  const statusBadge = isSoldOut ? "SOLD OUT" : isLowStock ? "LOW STOCK" : isNew ? "NEW" : null;
   const previewImage = useMemo(() => product.gallery?.[0] ?? product.image, [product.gallery, product.image]);
   const previewImageTransparent = useMemo(() => toTransparentMockup(previewImage), [previewImage]);
   const [isHovered, setIsHovered] = useState(false);
@@ -205,20 +206,24 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   return (
     <article
-      className="group overflow-hidden rounded-none border border-border bg-card shadow-none transition-[border-color,box-shadow] duration-150 hover:border-primary hover:shadow-elev-2"
+      className="group overflow-hidden border border-border bg-card shadow-none transition-[border-color,box-shadow,transform] duration-150 hover:border-foreground hover:shadow-elev-1"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative overflow-hidden rounded-none border-b border-border">
-        <Link to={`/product/${product.id}`} className="block">
+      <div className="relative overflow-hidden border-b border-border">
+        <Link
+          to={`/product/${product.id}`}
+          className="block focus-visible:outline-none"
+          aria-label={`View ${product.name}`}
+        >
           <AspectRatio ratio={1}>
-            <div className="relative h-full w-full rounded-none bg-background">
+            <div className="relative h-full w-full bg-background">
               <img
                 src={previewImageTransparent}
                 alt={product.name}
-                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ${
+                className={`absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-200 ${
                   isHovered && (displayedHoverImage || incomingHoverImage) ? "opacity-0" : "opacity-100"
-                }`}
+                } ${isHovered ? "scale-[1.01]" : "scale-100"}`}
                 loading="lazy"
                 decoding="async"
                 onError={(event) => {
@@ -255,53 +260,37 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </AspectRatio>
         </Link>
 
-        {isLowStock && (
-          <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-none border border-forum-red bg-background px-3 py-1">
-            <Lock className="h-3 w-3 text-foreground" />
-            <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-foreground">
-              LOCKED SOON
-            </span>
-          </div>
-        )}
-
-        {isSoldOut ? (
-          <div className="absolute left-3 top-3 rounded-none border border-forum-red bg-background px-3 py-1">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-token-label text-forum-red">
-              SOLD OUT
+        {statusBadge ? (
+          <div className="absolute left-3 top-3 border border-foreground bg-background px-3 py-1">
+            <span className="font-mono text-[10px] font-semibold uppercase tracking-token-label text-foreground">
+              {statusBadge}
             </span>
           </div>
         ) : null}
-
-        {isNew ? (
-          <div className="absolute right-3 top-3 rounded-none border border-foreground/60 bg-background px-2.5 py-1">
-            <span className="font-mono text-[10px] font-bold uppercase tracking-token-label text-foreground">
-              NEW
-            </span>
-          </div>
-        ) : null}
-
       </div>
 
-      <div className="p-4">
-        <p className="mb-1 text-[10px] font-mono uppercase tracking-token-label text-muted-foreground">
-          {product.drop ?? "Limited Release"}
+      <div className="space-y-4 p-4">
+        <p className="text-[10px] font-mono uppercase tracking-token-label text-muted-foreground">
+          {product.drop ?? "Collection"}
         </p>
-        <Link to={`/product/${product.id}`} className="block">
-          <h3 className="line-clamp-2 min-h-[3rem] font-heading text-sm font-bold uppercase tracking-widest text-foreground transition-colors group-hover:text-primary">
+        <Link to={`/product/${product.id}`} className="block focus-visible:outline-none">
+          <h3 className="line-clamp-2 min-h-[3rem] font-heading text-sm font-bold uppercase tracking-[0.12em] text-foreground">
             {product.name}
           </h3>
         </Link>
-        <div className="mt-3 flex items-center justify-between">
-          <p className="font-body text-lg font-bold uppercase tracking-[0.06em] text-primary">${product.price}</p>
+        <div className="flex items-center justify-between gap-3 border-t border-border pt-3">
+          <p className="font-mono text-lg font-semibold uppercase tracking-[0.08em] text-foreground">
+            {formatMoney(product.price)}
+          </p>
           <span className="text-[10px] font-mono uppercase tracking-token-label text-muted-foreground">
-            {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
+            {product.category ?? "Ready to ship"}
           </span>
         </div>
         <Link
           to={`/product/${product.id}`}
-          className="mt-4 inline-flex w-full items-center justify-center rounded-none border border-primary bg-primary px-4 py-2 font-body text-[10px] font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary"
+          className="inline-flex w-full items-center justify-center border border-primary bg-primary px-4 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary focus-visible:bg-background focus-visible:text-primary"
         >
-          View Product
+          View Item
         </Link>
       </div>
     </article>

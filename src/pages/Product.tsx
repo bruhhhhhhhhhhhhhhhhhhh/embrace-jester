@@ -7,7 +7,7 @@ import {
   type MouseEvent,
   type SyntheticEvent,
 } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import NotificationBar from "@/components/NotificationBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -67,6 +67,7 @@ const withImageFallback = (
 
 const Product = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { products, loading } = useCatalog();
   const product = useMemo(
     () => products.find((item) => item.id === id || item.aliases?.includes(id ?? "")),
@@ -258,6 +259,55 @@ const Product = () => {
     );
   }, [product, selectedColor, selectedSize]);
 
+  const enabledVariants = useMemo(
+    () => product?.printify?.variants?.filter((variant) => variant.isEnabled ?? true) ?? [],
+    [product]
+  );
+
+  const availableColorNames = useMemo(() => {
+    if (!product?.colors?.length) return new Set<string>();
+    if (!enabledVariants.length) {
+      return new Set(product.colors.map((color) => color.name));
+    }
+    return new Set(
+      enabledVariants
+        .filter((variant) => !selectedSize || variant.size === selectedSize)
+        .map((variant) => variant.color)
+        .filter((value): value is string => Boolean(value))
+    );
+  }, [enabledVariants, product, selectedSize]);
+
+  const availableSizes = useMemo(() => {
+    if (!product?.sizes?.length) return new Set<string>();
+    if (!enabledVariants.length) {
+      return new Set(product.sizes);
+    }
+    return new Set(
+      enabledVariants
+        .filter((variant) => !selectedColor || variant.color === selectedColor)
+        .map((variant) => variant.size)
+        .filter((value): value is string => Boolean(value))
+    );
+  }, [enabledVariants, product, selectedColor]);
+
+  useEffect(() => {
+    if (!product?.colors?.length || !selectedColor) return;
+    if (availableColorNames.has(selectedColor)) return;
+    const nextColor = product.colors.find((color) => availableColorNames.has(color.name));
+    if (nextColor) {
+      setSelectedColor(nextColor.name);
+    }
+  }, [availableColorNames, product, selectedColor]);
+
+  useEffect(() => {
+    if (!product?.sizes?.length || !selectedSize) return;
+    if (availableSizes.has(selectedSize)) return;
+    const nextSize = product.sizes.find((size) => availableSizes.has(size));
+    if (nextSize) {
+      setSelectedSize(nextSize);
+    }
+  }, [availableSizes, product, selectedSize]);
+
   useEffect(() => {
     if (!product) return;
     let cancelled = false;
@@ -332,21 +382,21 @@ const Product = () => {
         <main className="container mx-auto px-4 py-16">
           <div className="rounded-none border border-border bg-card p-10 text-center">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              {loading ? "Loading Product" : "Product Missing"}
+              {loading ? "Loading Item" : "Item Missing"}
             </p>
             <h1 className="mt-3 font-heading text-3xl font-bold uppercase">
-              {loading ? "Fetching inventory" : "Thread Not Found"}
+              {loading ? "Loading" : "Item Not Found"}
             </h1>
-              <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 text-sm text-muted-foreground">
               {loading
                 ? "Syncing the latest inventory."
-                : "That item is no longer listed. Return to the shop to browse the drop."}
+                : "This item is no longer available. Return to the shop to continue browsing."}
             </p>
             <Link
               to="/shop"
-              className="mt-6 inline-flex items-center justify-center rounded-none border border-primary bg-primary px-5 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary"
+              className="mt-6 inline-flex items-center justify-center border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary"
             >
-              Back to Shop
+              View Collection
             </Link>
           </div>
         </main>
@@ -356,24 +406,25 @@ const Product = () => {
   }
 
   const stockLabel =
-    product.stock <= 0 ? "Out of stock" : product.stock < 5 ? "Low stock" : "In stock";
+    product.stock <= 0 ? "Sold out" : product.stock < 5 ? "Low stock" : "Available";
   const stockTone =
     product.stock <= 0
-      ? "border-forum-red/50 bg-forum-red/10 text-forum-red"
+      ? "border-foreground bg-foreground text-background"
       : product.stock < 5
-        ? "border-primary/40 bg-primary/10 text-primary"
+        ? "border-foreground bg-background text-foreground"
         : "border-border bg-background text-foreground";
   const shipEstimate = "Estimated delivery 2-5 days";
   const freeShippingThreshold = 100;
   const workingSubtotal = product.price * quantity;
   const freeShippingRemaining = Math.max(0, freeShippingThreshold - workingSubtotal);
   const freeShippingProgress = Math.min(100, Math.round((workingSubtotal / freeShippingThreshold) * 100));
+  const isAvailable = product.stock > 0;
 
   const details = product.details ?? [
-    "Limited run drop",
-    "Cut for layered fits",
+    "Limited run release",
+    "Clean proportion for daily wear",
     "Premium materials",
-    "Designed for daily wear",
+    "Built for repeat use",
   ];
   const detailHighlights = details.slice(0, 6);
   const extraSpecs = details.slice(6);
@@ -466,6 +517,7 @@ const Product = () => {
   };
 
   const addCurrentToCart = () => {
+    if (!isAvailable) return;
     add({
       id: product.id,
       name: product.name,
@@ -483,14 +535,14 @@ const Product = () => {
           }
         : undefined,
     });
-    toast(
-      selectedColor || selectedSize
-        ? `${product.name} · ${[selectedSize && `Size ${selectedSize}`, selectedColor && `Color ${selectedColor}`]
-            .filter(Boolean)
-            .join(" · ")} added to cart`
-        : `${product.name} added to cart`
-    );
+    toast("Added to cart.");
     trackConversionEvent("pdp_add_to_cart", { productId: product.id });
+  };
+
+  const handleCheckoutNow = () => {
+    if (!isAvailable) return;
+    addCurrentToCart();
+    navigate("/checkout");
   };
 
   return (
@@ -499,7 +551,7 @@ const Product = () => {
       <Header />
       <main className="container mx-auto px-4 py-12 pb-28 md:pb-12">
         <div className="mb-6 flex flex-wrap items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground">
-          <Link to="/shop" className="hover:text-primary">
+          <Link to="/shop" className="hover:text-foreground focus-visible:text-foreground">
             Shop
           </Link>
           <span>/</span>
@@ -509,40 +561,35 @@ const Product = () => {
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-5">
             <div className="rounded-none border bg-card p-4">
-              <div className="mb-4 flex flex-wrap items-center gap-2 text-[10px] font-mono uppercase tracking-widest">
-                <button
-                  type="button"
-                  onClick={() => setViewMode("360")}
+                  <div className="mb-4 flex flex-wrap items-center gap-2 text-[10px] font-mono uppercase tracking-widest">
+                    <button
+                      type="button"
+                      onClick={() => setViewMode("360")}
                   className={
                     viewMode === "360"
                       ? "rounded-none border border-primary bg-primary px-4 py-2 text-primary-foreground"
                       : "rounded-none border border-border bg-background px-4 py-2 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                   }
-                >
-                  360 View
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setViewMode("gallery")}
+                    >
+                      360
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setViewMode("gallery")}
                   className={
                     viewMode === "gallery"
                       ? "rounded-none border border-primary bg-primary px-4 py-2 text-primary-foreground"
                       : "rounded-none border border-border bg-background px-4 py-2 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
                   }
-                >
-                  Gallery + Zoom
-                </button>
-              </div>
+                    >
+                      Gallery
+                    </button>
+                  </div>
 
               {viewMode === "360" ? (
                 <>
                   <div
                     className="relative overflow-hidden rounded-none border border-border bg-background"
-                    style={{
-                      backgroundImage: selectedColorHex
-                        ? `radial-gradient(circle at top, ${selectedColorHex}55, transparent 70%)`
-                        : undefined,
-                    }}
                   >
                     <div
                       className="relative flex h-[420px] select-none items-center justify-center md:h-[520px] cursor-grab active:cursor-grabbing touch-none"
@@ -634,11 +681,6 @@ const Product = () => {
                 <>
                   <div
                     className="group relative overflow-hidden rounded-none border border-border bg-background"
-                    style={{
-                      backgroundImage: selectedColorHex
-                        ? `radial-gradient(circle at top, ${selectedColorHex}55, transparent 70%)`
-                        : undefined,
-                    }}
                     onMouseMove={handleZoomMove}
                     onMouseEnter={() => setLensVisible(true)}
                     onMouseLeave={() => {
@@ -782,7 +824,7 @@ const Product = () => {
                   {bundleItems.length ? (
                     <div className="rounded-none border bg-secondary/40 p-4">
                       <div className="flex items-center justify-between text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                        <span>Frequently bought together</span>
+                        <span>Pair with</span>
                         <span className="text-foreground">{bundleCount + 1} items</span>
                       </div>
                       <div className="mt-4 space-y-3 text-sm text-muted-foreground">
@@ -800,7 +842,7 @@ const Product = () => {
                           </div>
                           <div className="flex-1">
                             <p className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
-                              Current item
+                              Current selection
                             </p>
                             <p className="text-sm text-foreground">{product.name}</p>
                           </div>
@@ -899,7 +941,7 @@ const Product = () => {
                           toast("Bundle added to cart");
                         }}
                       >
-                        Add bundle to cart
+                        Add selected
                       </button>
                     </div>
                   ) : (
@@ -917,7 +959,7 @@ const Product = () => {
                           </div>
                         ))}
                         <div className="rounded-none border border-dashed border-border/70 bg-background/70 px-3 py-2 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                          Add another drop to unlock bundle UI.
+                          Related items appear here when available.
                         </div>
                       </div>
                     </div>
@@ -946,17 +988,17 @@ const Product = () => {
           <div className="space-y-6 lg:sticky lg:top-[112px] lg:self-start">
             <div className="rounded-none border bg-card p-6">
               <p className="font-mono text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                {product.drop ?? "Limited Release"}
+                {product.drop ?? "Collection"}
               </p>
-              <h1 className="mt-3 font-heading text-3xl font-bold uppercase tracking-widest">
+              <h1 className="mt-3 font-heading text-3xl font-bold uppercase leading-[0.94] tracking-[0.1em]">
                 {product.name}
               </h1>
-              <div className="mt-2 flex flex-wrap items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground">
+              <div className="mt-3 flex flex-wrap items-center gap-3 text-xs font-mono uppercase tracking-widest text-muted-foreground">
                 {reviewSummary.loading ? (
-                  <span>Loading reviews...</span>
+                  <span>Loading reviews</span>
                 ) : reviewSummary.total > 0 ? (
                   <>
-                    <span className="rounded-none border border-primary/60 bg-primary/10 px-3 py-1 text-primary">
+                    <span className="border border-border bg-background px-3 py-1 text-foreground">
                       {reviewSummary.averageRating.toFixed(1)} / 5
                     </span>
                     <span>{reviewSummary.total} verified reviews</span>
@@ -965,29 +1007,33 @@ const Product = () => {
                   <span>No verified reviews yet</span>
                 )}
               </div>
-              <div className="mt-3 flex flex-wrap items-center gap-3">
-                <span className="font-mono text-2xl text-primary">
+              <div className="mt-5 flex flex-wrap items-end justify-between gap-4 border-t border-border pt-4">
+                <span className="font-mono text-3xl font-semibold uppercase tracking-[0.08em] text-foreground">
                   {formatMoney(product.price)}
                 </span>
-                <span className="rounded-none border px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                  {product.stock} in stock
-                </span>
-                <span className="rounded-none border px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
-                  {product.viewers} watching
-                </span>
+                <div className="flex flex-wrap gap-2">
+                  <span className={`border px-3 py-1 text-[10px] font-mono uppercase tracking-widest ${stockTone}`}>
+                    {stockLabel}
+                  </span>
+                  {isNew ? (
+                    <span className="border border-border bg-background px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-foreground">
+                      New
+                    </span>
+                  ) : null}
+                </div>
               </div>
               <div className="mt-4 grid gap-2 sm:grid-cols-3">
                 <div className={`rounded-none border px-3 py-3 ${stockTone}`}>
-                  <p className="text-[10px] font-mono uppercase tracking-[0.18em]">Availability</p>
+                  <p className="text-[10px] font-mono uppercase tracking-[0.18em]">Status</p>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wider">{stockLabel}</p>
-                  <p className="mt-1 text-[11px] opacity-80">{product.stock} units ready</p>
+                  <p className="mt-1 text-[11px] opacity-80">Current catalog availability.</p>
                 </div>
                 <div className="rounded-none border border-border/60 bg-background/30 px-3 py-3 text-muted-foreground">
                   <p className="text-[10px] font-mono uppercase tracking-[0.18em]">Shipping</p>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-foreground">
                     {shipEstimate}
                   </p>
-                  <p className="mt-1 text-[11px]">Free shipping over {formatMoney(freeShippingThreshold)}</p>
+                  <p className="mt-1 text-[11px]">Free shipping over {formatMoney(freeShippingThreshold)}.</p>
                 </div>
                 <div className="rounded-none border border-border/60 bg-background/30 px-3 py-3 text-muted-foreground">
                   <p className="text-[10px] font-mono uppercase tracking-[0.18em]">Returns</p>
@@ -997,14 +1043,9 @@ const Product = () => {
                   <p className="mt-1 text-[11px]">Fast support if fit is off</p>
                 </div>
               </div>
-              {isNew ? (
-                <div className="mt-3 inline-flex rounded-none border border-primary/70 bg-primary/20 px-3 py-1 text-[10px] font-mono uppercase tracking-widest text-primary">
-                  New Release
-                </div>
-              ) : null}
               <p className="mt-4 text-sm text-muted-foreground">
                 {product.description ??
-                  "Precision-cut essentials built for a sharp silhouette and all-day comfort."}
+                  "Clean structure. Daily wear. No excess."}
               </p>
 
               {product.colors?.length ? (
@@ -1016,15 +1057,20 @@ const Product = () => {
                   <div className="mt-3 flex flex-wrap gap-2">
                     {product.colors.map((color) => {
                       const active = color.name === selectedColor;
+                      const disabled =
+                        availableColorNames.size > 0 && !availableColorNames.has(color.name);
                       return (
                         <button
                           key={color.name}
                           type="button"
                           onClick={() => setSelectedColor(color.name)}
-                          className={`flex items-center gap-2 rounded-none border px-3 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors ${
+                          disabled={disabled}
+                          className={`flex min-h-11 items-center gap-2 border px-3 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors duration-150 focus-visible:outline-none ${
                             active
-                              ? "border-primary bg-primary text-primary-foreground"
-                              : "border-border bg-background text-muted-foreground hover:border-primary hover:text-primary"
+                              ? "border-foreground bg-foreground text-background"
+                              : disabled
+                                ? "cursor-not-allowed border-border bg-card text-muted-foreground/40"
+                                : "border-border bg-background text-foreground hover:border-foreground hover:bg-foreground hover:text-background"
                           }`}
                         >
                           <span
@@ -1048,15 +1094,19 @@ const Product = () => {
                   <div className="mt-3 flex flex-wrap gap-2">
                     {product.sizes.map((size) => {
                       const active = size === selectedSize;
+                      const disabled = availableSizes.size > 0 && !availableSizes.has(size);
                       return (
                         <button
                           key={size}
                           type="button"
                           onClick={() => setSelectedSize(size)}
-                          className={`rounded-none border px-4 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors ${
+                          disabled={disabled}
+                          className={`min-h-11 border px-4 py-2 text-[10px] font-mono uppercase tracking-widest transition-colors duration-150 focus-visible:outline-none ${
                             active
-                              ? "border-primary bg-primary text-primary-foreground"
-                              : "border-border bg-background text-muted-foreground hover:border-primary hover:text-primary"
+                              ? "border-foreground bg-foreground text-background"
+                              : disabled
+                                ? "cursor-not-allowed border-border bg-card text-muted-foreground/40"
+                                : "border-border bg-background text-foreground hover:border-foreground hover:bg-foreground hover:text-background"
                           }`}
                         >
                           {size}
@@ -1070,8 +1120,8 @@ const Product = () => {
               <div className="mt-5 flex flex-wrap items-center gap-3">
                 <Dialog>
                   <DialogTrigger asChild>
-                    <button className="rounded-none border border-border bg-background px-4 py-2 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary hover:text-primary">
-                      Size guide + fit notes
+                    <button className="border border-border bg-background px-4 py-2 text-[10px] font-mono uppercase tracking-widest text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground focus-visible:border-foreground focus-visible:text-foreground">
+                      Size guide
                     </button>
                   </DialogTrigger>
                   <DialogContent className="max-w-2xl rounded-none border border-border bg-card">
@@ -1136,34 +1186,51 @@ const Product = () => {
                 </Dialog>
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center gap-4">
-                <label className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-muted-foreground">
-                  qty
+              <div className="mt-6 grid gap-3 sm:grid-cols-[148px_minmax(0,1fr)_minmax(0,1fr)]">
+                <div className="inline-flex h-12 items-stretch border border-border">
+                  <button
+                    type="button"
+                    className="flex h-full w-12 items-center justify-center border-r border-border bg-background text-foreground transition-colors duration-150 hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background"
+                    onClick={() => setQuantity((current) => Math.max(1, current - 1))}
+                    disabled={!isAvailable}
+                  >
+                    -
+                  </button>
                   <input
-                    className="w-20 rounded-none border bg-card px-2 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-primary"
+                    className="h-full min-w-0 flex-1 border-0 bg-card text-center font-mono text-sm text-foreground focus:outline-none"
                     type="number"
                     min={1}
                     value={quantity}
                     onChange={(event) =>
                       setQuantity(Math.max(1, Number(event.target.value) || 1))
                     }
+                    aria-label="Quantity"
+                    disabled={!isAvailable}
                   />
-                </label>
-              </div>
-
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   <button
-                  className="rounded-none border border-primary bg-primary px-4 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary"
+                    type="button"
+                    className="flex h-full w-12 items-center justify-center border-l border-border bg-background text-foreground transition-colors duration-150 hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background"
+                    onClick={() => setQuantity((current) => current + 1)}
+                    disabled={!isAvailable}
+                  >
+                    +
+                  </button>
+                </div>
+                <button
+                  className="h-12 border border-primary bg-primary px-4 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary focus-visible:bg-background focus-visible:text-primary disabled:cursor-not-allowed disabled:opacity-40"
                   onClick={addCurrentToCart}
+                  disabled={!isAvailable}
                 >
-                  Add to Cart
+                  Add To Cart
                 </button>
-                <Link
-                  to="/checkout"
-                  className="inline-flex items-center justify-center rounded-none border border-primary bg-background px-4 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+                <button
+                  type="button"
+                  onClick={handleCheckoutNow}
+                  className="inline-flex h-12 items-center justify-center border border-border bg-background px-4 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background disabled:cursor-not-allowed disabled:opacity-40"
+                  disabled={!isAvailable}
                 >
-                  Buy Now
-                </Link>
+                  Check Out
+                </button>
               </div>
 
               <div className="mt-4 rounded-none border border-border/60 bg-background/40 p-4">
@@ -1173,7 +1240,7 @@ const Product = () => {
                     <span>Secure Stripe checkout</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <Truck className="h-3.5 w-3.5 text-primary" />
+                    <Truck className="h-3.5 w-3.5 text-foreground" />
                     <span>{shipEstimate}</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -1218,7 +1285,7 @@ const Product = () => {
           <div className="mt-12">
             <div className="mb-6 flex items-center gap-4">
               <h2 className="font-heading text-2xl font-bold uppercase tracking-widest text-foreground">
-                Related Threads
+                Related Items
               </h2>
               <div className="h-px flex-1 bg-border" />
               <span className="font-mono text-xs text-muted-foreground">
@@ -1236,19 +1303,19 @@ const Product = () => {
       <Footer />
 
       {product.stock > 0 ? (
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border/70 bg-background/95 px-4 py-3 backdrop-blur md:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background px-4 py-3 md:hidden">
           <div className="mx-auto flex max-w-5xl items-center gap-3">
             <div className="min-w-0 flex-1">
               <p className="truncate text-[11px] font-mono uppercase tracking-widest text-muted-foreground">
                 {selectedColor || "Default color"}
                 {selectedSize ? ` · ${selectedSize}` : ""}
               </p>
-              <p className="font-mono text-sm text-primary">{formatMoney(product.price * quantity)}</p>
+              <p className="font-mono text-sm text-foreground">{formatMoney(product.price * quantity)}</p>
             </div>
             <button
               type="button"
               onClick={addCurrentToCart}
-              className="rounded-none border border-primary bg-primary px-4 py-2 text-[11px] font-body font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary"
+              className="border border-primary bg-primary px-4 py-2 text-[11px] font-mono font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary"
             >
               Add to Cart
             </button>
@@ -1257,12 +1324,12 @@ const Product = () => {
       ) : null}
 
       {isGalleryOpen ? (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-background/95 px-4 py-12 backdrop-blur">
+        <div className="fixed inset-0 z-50 overflow-y-auto bg-background px-4 py-12">
           <div className="mx-auto w-full max-w-5xl">
             <div className="mb-6 flex items-center justify-between">
               <div>
                 <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                  Fullscreen Gallery
+                  Gallery
                 </p>
                 <h2 className="mt-2 font-heading text-2xl font-bold uppercase tracking-widest">
                   {product.name}
@@ -1271,7 +1338,7 @@ const Product = () => {
               <button
                 type="button"
                 onClick={() => setIsGalleryOpen(false)}
-                className="rounded-none border border-border bg-background px-3 py-2 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                className="border border-border bg-background px-3 py-2 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -1288,14 +1355,14 @@ const Product = () => {
               <button
                 type="button"
                 onClick={prevImage}
-                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none border border-border bg-background p-2 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                className="absolute left-4 top-1/2 -translate-y-1/2 border border-border bg-background p-2 text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 type="button"
                 onClick={nextImage}
-                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none border border-border bg-background p-2 text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                className="absolute right-4 top-1/2 -translate-y-1/2 border border-border bg-background p-2 text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -1310,8 +1377,8 @@ const Product = () => {
                     onClick={() => setActiveImageIndex(index)}
                     className={`relative overflow-hidden rounded-none border ${
                       index === activeImageIndex
-                        ? "border-primary"
-                        : "border-border hover:border-primary"
+                        ? "border-foreground"
+                        : "border-border hover:border-foreground"
                     }`}
                   >
                     <img

@@ -96,8 +96,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative w-full overflow-hidden border-b border-border bg-background">
-      {/* Slides */}
-      <div className="relative h-[62vh] w-full border-b border-border md:h-[78vh]">
+      <div className="relative h-[68vh] min-h-[560px] w-full border-b border-border md:h-[82vh]">
         {heroSlides.map((s, i) => {
           return (
             <div
@@ -145,22 +144,21 @@ const HeroSection = () => {
                   fetchPriority={i === current ? "high" : "auto"}
                 />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/30" />
+              <div className="absolute inset-0 bg-black/55" />
             </div>
           );
         })}
 
-        {/* Content overlay */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="container mx-auto flex h-full items-end px-6 pb-10 md:pb-16">
-            <div className="pointer-events-auto max-w-xl rounded-none border border-border bg-card p-5 text-left shadow-elev-1 md:p-6">
-              <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.3em] text-muted-foreground md:text-xs">
-                EMBRACE JESTER
+          <div className="container mx-auto flex h-full items-end px-6 pb-20 md:pb-24">
+            <div className="pointer-events-auto max-w-2xl text-left">
+              <p className="mb-4 inline-flex border border-border bg-background/90 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground md:text-xs">
+                Embrace Jester / Editorial Uniforms
               </p>
-              <h1 className="mb-3 font-heading text-2xl font-bold uppercase leading-tight tracking-widest text-foreground md:text-4xl lg:text-5xl">
+              <h1 className="max-w-[12ch] font-heading text-4xl font-bold uppercase leading-[0.88] tracking-[0.08em] text-foreground md:text-6xl lg:text-7xl">
                 {slide.title}
               </h1>
-              <p className="mb-5 max-w-lg font-body text-sm text-foreground/85 md:text-base">
+              <p className="mt-4 max-w-md font-body text-sm text-foreground/80 md:text-base">
                 {slide.subtitle}
               </p>
               {isInternalLink ? (
@@ -171,7 +169,7 @@ const HeroSection = () => {
                       productId: productIdFromCta(slide.ctaLink),
                     })
                   }
-                  className="inline-flex rounded-none border border-primary bg-primary px-6 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary md:px-8 md:py-4 md:text-sm"
+                  className="mt-7 inline-flex border border-primary bg-primary px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary focus-visible:bg-background focus-visible:text-primary md:px-8 md:py-4"
                 >
                   {slide.cta}
                 </Link>
@@ -179,7 +177,7 @@ const HeroSection = () => {
                 <a
                   href={slide.ctaLink}
                   onClick={() => trackConversionEvent("hero_cta_click")}
-                  className="inline-flex rounded-none border border-primary bg-primary px-6 py-3 font-body text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-background hover:text-primary hover:border-primary md:px-8 md:py-4 md:text-sm"
+                  className="mt-7 inline-flex border border-primary bg-primary px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary focus-visible:bg-background focus-visible:text-primary md:px-8 md:py-4"
                 >
                   {slide.cta}
                 </a>
@@ -188,33 +186,31 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Arrows */}
         <button
           onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-none border border-border bg-background px-2 py-2 text-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground md:left-8 md:px-3 md:py-3"
+          className="absolute left-4 top-1/2 -translate-y-1/2 border border-border bg-background/90 px-2 py-2 text-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background md:left-8 md:px-3 md:py-3"
           aria-label="Previous slide"
         >
           <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
         </button>
         <button
           onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-none border border-border bg-background px-2 py-2 text-foreground transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground md:right-8 md:px-3 md:py-3"
+          className="absolute right-4 top-1/2 -translate-y-1/2 border border-border bg-background/90 px-2 py-2 text-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background md:right-8 md:px-3 md:py-3"
           aria-label="Next slide"
         >
           <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
         </button>
       </div>
 
-      {/* Dots */}
       <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
         {heroSlides.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`h-2 w-8 rounded-none border border-border transition-colors ${
+            className={`h-2 w-10 border border-border transition-colors duration-150 focus-visible:border-foreground ${
               i === current
                 ? "bg-foreground"
-                : "bg-background hover:border-primary"
+                : "bg-background hover:border-foreground"
             }`}
             aria-label={`Go to slide ${i + 1}`}
           />
