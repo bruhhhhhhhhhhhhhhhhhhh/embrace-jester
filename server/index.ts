@@ -2471,24 +2471,20 @@ const server = http.createServer(async (req, res) => {
 
         const quantity = Math.max(1, Number(body.quantity ?? 1) || 1);
         const trialPeriodDays = Number(body.trialPeriodDays);
-        const subscription = await stripeClient.subscriptions.create(
-          {
-            customer: customer.id,
-            items: [{ price: body.priceId, quantity }],
-            payment_behavior: "default_incomplete",
-            payment_settings: body.paymentMethodId
-              ? { save_default_payment_method: "on_subscription" }
+        const subscription = await stripeClient.subscriptions.create({
+          customer: customer.id,
+          items: [{ price: body.priceId, quantity }],
+          payment_behavior: "default_incomplete",
+          payment_settings: body.paymentMethodId
+            ? { save_default_payment_method: "on_subscription" }
+            : undefined,
+          trial_period_days:
+            Number.isFinite(trialPeriodDays) && trialPeriodDays > 0
+              ? Math.round(trialPeriodDays)
               : undefined,
-            trial_period_days:
-              Number.isFinite(trialPeriodDays) && trialPeriodDays > 0
-                ? Math.round(trialPeriodDays)
-                : undefined,
-            metadata,
-          },
-          {
-            expand: ["latest_invoice.payment_intent", "latest_invoice", "customer"],
-          }
-        );
+          metadata,
+          expand: ["latest_invoice.payment_intent", "latest_invoice", "customer"],
+        });
 
         const store = await readOrderStore();
         upsertBillingCustomerSnapshot(store, customer);
@@ -2572,17 +2568,15 @@ const server = http.createServer(async (req, res) => {
         return;
       }
 
-      if (body.action === "cancel_now") {
-        await stripeClient.subscriptions.del(body.subscriptionId);
-      } else {
-        await stripeClient.subscriptions.update(body.subscriptionId, {
-          cancel_at_period_end: body.action === "cancel",
-        });
-      }
-
-      const subscription = await stripeClient.subscriptions.retrieve(body.subscriptionId, {
-        expand: ["latest_invoice.payment_intent", "latest_invoice", "customer"],
-      });
+      const subscription =
+        body.action === "cancel_now"
+          ? await stripeClient.subscriptions.cancel(body.subscriptionId, {
+              expand: ["latest_invoice.payment_intent", "latest_invoice", "customer"],
+            })
+          : await stripeClient.subscriptions.update(body.subscriptionId, {
+              cancel_at_period_end: body.action === "cancel",
+              expand: ["latest_invoice.payment_intent", "latest_invoice", "customer"],
+            });
 
       const store = await readOrderStore();
       upsertBillingSubscriptionSnapshot(store, subscription);

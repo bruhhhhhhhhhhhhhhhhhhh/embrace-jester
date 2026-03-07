@@ -144,17 +144,18 @@ const HeroSection = () => {
                   fetchPriority={i === current ? "high" : "auto"}
                 />
               )}
-              <div className="absolute inset-0 bg-black/55" />
+              <div className="absolute inset-0 bg-black/68" />
             </div>
           );
         })}
 
         <div className="pointer-events-none absolute inset-0">
           <div className="container mx-auto flex h-full items-end px-6 pb-20 md:pb-24">
-            <div className="pointer-events-auto max-w-2xl text-left">
-              <p className="mb-4 inline-flex border border-border bg-background/90 px-3 py-2 font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground md:text-xs">
-                Embrace Jester / Editorial Uniforms
-              </p>
+            <div className="pointer-events-auto max-w-xl text-left">
+              <div className="mb-5 flex items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground md:text-xs">
+                <span>Embrace Jester / Editorial Uniforms</span>
+                <span className="h-px w-12 bg-border" />
+              </div>
               <h1 className="max-w-[12ch] font-heading text-4xl font-bold uppercase leading-[0.88] tracking-[0.08em] text-foreground md:text-6xl lg:text-7xl">
                 {slide.title}
               </h1>
@@ -169,7 +170,7 @@ const HeroSection = () => {
                       productId: productIdFromCta(slide.ctaLink),
                     })
                   }
-                  className="mt-7 inline-flex border border-primary bg-primary px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary focus-visible:bg-background focus-visible:text-primary md:px-8 md:py-4"
+                  className="mt-7 inline-flex rounded-none border border-foreground bg-foreground px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-background transition-colors duration-150 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0 md:px-8 md:py-4"
                 >
                   {slide.cta}
                 </Link>
@@ -177,7 +178,7 @@ const HeroSection = () => {
                 <a
                   href={slide.ctaLink}
                   onClick={() => trackConversionEvent("hero_cta_click")}
-                  className="mt-7 inline-flex border border-primary bg-primary px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary focus-visible:bg-background focus-visible:text-primary md:px-8 md:py-4"
+                  className="mt-7 inline-flex rounded-none border border-foreground bg-foreground px-6 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-background transition-colors duration-150 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0 md:px-8 md:py-4"
                 >
                   {slide.cta}
                 </a>

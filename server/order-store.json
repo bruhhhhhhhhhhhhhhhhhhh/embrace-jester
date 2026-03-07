@@ -224,7 +224,10 @@
     "evt_3T4oPgCjKBTr8xgb1firLBMT": "2026-02-25T20:10:32.145Z",
     "evt_1T4oPkCjKBTr8xgb7nZ4jrwd": "2026-02-25T20:10:32.495Z",
     "evt_1T4oPkCjKBTr8xgbSvj0cdKc": "2026-02-25T20:10:32.864Z",
-    "evt_3T7OEJCjKBTr8xgb0jXS3XPF": "2026-03-04T22:49:25.595Z"
+    "evt_3T7OEJCjKBTr8xgb0jXS3XPF": "2026-03-04T22:49:25.595Z",
+    "evt_1T8AnbCjKBTr8xgbGgrH2RZw": "2026-03-07T02:41:03.383Z",
+    "evt_1T8AnhCjKBTr8xgbjPPJgGJg": "2026-03-07T02:41:09.982Z",
+    "evt_1T8B4LCjKBTr8xgbp4h8X98Q": "2026-03-07T02:58:21.647Z"
   },
   "stripeWebhookLog": [
     {
@@ -311,6 +314,42 @@
       "duplicate": false,
       "paymentIntentId": "pi_3T7OEJCjKBTr8xgb0UgjwjPq",
       "orderId": "LMX-QA-1772664563"
+    },
+    {
+      "eventId": "evt_1T8AnbCjKBTr8xgbGgrH2RZw",
+      "eventType": "customer.subscription.updated",
+      "receivedAt": "2026-03-07T02:41:03.382Z",
+      "processedAt": "2026-03-07T02:41:03.383Z",
+      "status": "processed",
+      "handled": true,
+      "processed": true,
+      "duplicate": false,
+      "subscriptionId": "sub_1T4oPfCjKBTr8xgbv6yaNs1n",
+      "customerId": "cus_U2uE4M8y9w3O2M"
+    },
+    {
+      "eventId": "evt_1T8AnhCjKBTr8xgbjPPJgGJg",
+      "eventType": "customer.subscription.updated",
+      "receivedAt": "2026-03-07T02:41:09.982Z",
+      "processedAt": "2026-03-07T02:41:09.983Z",
+      "status": "processed",
+      "handled": true,
+      "processed": true,
+      "duplicate": false,
+      "subscriptionId": "sub_1T4oPfCjKBTr8xgbv6yaNs1n",
+      "customerId": "cus_U2uE4M8y9w3O2M"
+    },
+    {
+      "eventId": "evt_1T8B4LCjKBTr8xgbp4h8X98Q",
+      "eventType": "customer.subscription.updated",
+      "receivedAt": "2026-03-07T02:58:21.645Z",
+      "processedAt": "2026-03-07T02:58:21.647Z",
+      "status": "processed",
+      "handled": true,
+      "processed": true,
+      "duplicate": false,
+      "subscriptionId": "sub_1T8B2vCjKBTr8xgbBB0XbGRz",
+      "customerId": "cus_U6NoHZT1bRgucg"
     }
   ],
   "stripeBilling": {
@@ -319,11 +358,18 @@
         "id": "cus_U2uE4M8y9w3O2M",
         "delinquent": false,
         "defaultPaymentMethodId": "pm_1T4oPeCjKBTr8xgbZJO8CbQl",
-        "updatedAt": "2026-02-25T22:10:53.139Z"
+        "updatedAt": "2026-03-07T02:41:57.797Z"
       },
       "cus_U2uEijuCAnfKmP": {
         "id": "cus_U2uEijuCAnfKmP",
         "updatedAt": "2026-02-25T20:10:32.495Z"
+      },
+      "cus_U6NoHZT1bRgucg": {
+        "id": "cus_U6NoHZT1bRgucg",
+        "email": "billing-create-1772852211@example.com",
+        "name": "Stripe Billing QA",
+        "delinquent": false,
+        "updatedAt": "2026-03-07T02:58:21.647Z"
       }
     },
     "subscriptions": {
@@ -338,7 +384,20 @@
         "currentPeriodEnd": null,
         "latestInvoiceId": "in_1T4oPgCjKBTr8xgb17IPEGvE",
         "latestInvoiceStatus": "paid",
-        "updatedAt": "2026-02-25T22:10:53.139Z"
+        "updatedAt": "2026-03-07T02:41:57.797Z"
+      },
+      "sub_1T8B2vCjKBTr8xgbBB0XbGRz": {
+        "id": "sub_1T8B2vCjKBTr8xgbBB0XbGRz",
+        "customerId": "cus_U6NoHZT1bRgucg",
+        "status": "incomplete_expired",
+        "cancelAtPeriodEnd": false,
+        "cancelAt": null,
+        "canceledAt": "2026-03-07T02:58:20.000Z",
+        "currentPeriodStart": null,
+        "currentPeriodEnd": null,
+        "latestInvoiceId": "in_1T8B2vCjKBTr8xgb8VxIZ4iZ",
+        "latestInvoiceStatus": "void",
+        "updatedAt": "2026-03-07T02:58:21.647Z"
       }
     },
     "invoices": {
@@ -350,9 +409,9 @@
         "amountDue": 1500,
         "amountPaid": 1500,
         "currency": "usd",
-        "hostedInvoiceUrl": "https://invoice.stripe.com/i/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFSVo4RFc1ZGRZYVVDOXVGc0g0dDBhNVB2UXhsLDE2MjU5ODI1Mw0200c2K1Sx7U?s=ap",
-        "invoicePdf": "https://pay.stripe.com/invoice/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFSVo4RFc1ZGRZYVVDOXVGc0g0dDBhNVB2UXhsLDE2MjU5ODI1Mw0200c2K1Sx7U/pdf?s=ap",
-        "updatedAt": "2026-02-25T22:10:53.139Z"
+        "hostedInvoiceUrl": "https://invoice.stripe.com/i/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFSVo4RFc1ZGRZYVVDOXVGc0g0dDBhNVB2UXhsLDE2MzM5MjExNw0200VFbahibO?s=ap",
+        "invoicePdf": "https://pay.stripe.com/invoice/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFSVo4RFc1ZGRZYVVDOXVGc0g0dDBhNVB2UXhsLDE2MzM5MjExNw0200VFbahibO/pdf?s=ap",
+        "updatedAt": "2026-03-07T02:41:57.797Z"
       },
       "in_1T4oPfCjKBTr8xgb9NSXRUb5": {
         "id": "in_1T4oPfCjKBTr8xgb9NSXRUb5",
@@ -365,6 +424,18 @@
         "hostedInvoiceUrl": "https://invoice.stripe.com/i/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFdVlvd21YTDZOb0Z1b2RITU5SOW95Mm1FM0kzLDE2MjU5MTAzMg0200yygogPlC?s=ap",
         "invoicePdf": "https://pay.stripe.com/invoice/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VMnVFdVlvd21YTDZOb0Z1b2RITU5SOW95Mm1FM0kzLDE2MjU5MTAzMg0200yygogPlC/pdf?s=ap",
         "updatedAt": "2026-02-25T20:10:32.495Z"
+      },
+      "in_1T8B2vCjKBTr8xgb8VxIZ4iZ": {
+        "id": "in_1T8B2vCjKBTr8xgb8VxIZ4iZ",
+        "customerId": "cus_U6NoHZT1bRgucg",
+        "status": "void",
+        "paid": false,
+        "amountDue": 1500,
+        "amountPaid": 0,
+        "currency": "usd",
+        "hostedInvoiceUrl": "https://invoice.stripe.com/i/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VNk5vWUVvQ0U4UEdiOUJjcFRldzdZeDRsRjRNdjJ6LDE2MzM5MzEwMQ0200KjADihay?s=ap",
+        "invoicePdf": "https://pay.stripe.com/invoice/acct_1T4QRwCjKBTr8xgb/test_YWNjdF8xVDRRUndDaktCVHI4eGdiLF9VNk5vWUVvQ0U4UEdiOUJjcFRldzdZeDRsRjRNdjJ6LDE2MzM5MzEwMQ0200KjADihay/pdf?s=ap",
+        "updatedAt": "2026-03-07T02:58:21.480Z"
       }
     }
   },

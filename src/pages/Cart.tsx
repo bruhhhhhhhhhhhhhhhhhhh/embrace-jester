@@ -17,8 +17,8 @@ const Cart = () => {
   );
   const optionButtonClass = (active: boolean) =>
     active
-      ? "min-h-10 border border-foreground bg-foreground px-3 py-2 text-[10px] font-mono uppercase tracking-[0.22em] text-background"
-      : "min-h-10 border border-border bg-background px-3 py-2 text-[10px] font-mono uppercase tracking-[0.22em] text-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:border-foreground focus-visible:bg-foreground focus-visible:text-background";
+      ? "min-h-10 rounded-none border border-foreground bg-foreground px-3 py-2 text-[10px] font-mono uppercase tracking-[0.22em] text-background"
+      : "min-h-10 rounded-none border border-border bg-background px-3 py-2 text-[10px] font-mono uppercase tracking-[0.22em] text-foreground transition-colors duration-150 hover:border-foreground hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0";
 
   return (
     <div className="min-h-screen bg-background">
@@ -46,7 +46,7 @@ const Cart = () => {
                 Subtotal {formatMoney(subtotal)}
               </span>
               <button
-                className="border border-border bg-background px-3 py-1 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                className="rounded-none border border-border bg-background px-3 py-1 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-40"
                 onClick={clear}
                 disabled={!items.length}
               >
@@ -59,16 +59,16 @@ const Cart = () => {
         {!items.length ? (
           <div className="mt-8 border border-border bg-card p-10 text-center">
             <p className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-              No items selected
+              Cart
             </p>
             <h2 className="mt-3 font-heading text-2xl font-bold uppercase tracking-[0.12em]">
-              Cart Is Empty
+              Cart Empty
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Your cart is currently empty.
+              No items selected.
             </p>
             <Link
-              className="mt-6 inline-flex items-center justify-center border border-primary bg-primary px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary"
+              className="mt-6 inline-flex items-center justify-center rounded-none border border-foreground bg-foreground px-5 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-background transition-colors duration-150 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0"
               to="/shop"
             >
               View Collection
@@ -185,13 +185,13 @@ const Cart = () => {
                             <div className="inline-flex items-center border border-border">
                               <button
                                 type="button"
-                                className="h-10 w-10 border-r border-border bg-background text-foreground transition-colors duration-150 hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background"
+                                className="h-10 w-10 rounded-none border-r border-border bg-background text-foreground transition-colors duration-150 hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0"
                                 onClick={() => setQty(item.variantKey, Math.max(1, item.quantity - 1))}
                               >
                                 -
                               </button>
                               <input
-                                className="h-10 w-14 border-0 bg-card text-center font-mono text-xs text-foreground focus:outline-none"
+                                className="h-10 w-14 rounded-none border-0 bg-card text-center font-mono text-xs text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0"
                                 type="number"
                                 min={1}
                                 value={item.quantity}
@@ -201,7 +201,7 @@ const Cart = () => {
                               />
                               <button
                                 type="button"
-                                className="h-10 w-10 border-l border-border bg-background text-foreground transition-colors duration-150 hover:bg-foreground hover:text-background focus-visible:bg-foreground focus-visible:text-background"
+                                className="h-10 w-10 rounded-none border-l border-border bg-background text-foreground transition-colors duration-150 hover:bg-foreground hover:text-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0"
                                 onClick={() => setQty(item.variantKey, item.quantity + 1)}
                               >
                                 +
@@ -209,7 +209,7 @@ const Cart = () => {
                             </div>
                           </div>
                           <button
-                            className="border border-border px-3 py-2 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground focus-visible:border-foreground focus-visible:text-foreground"
+                            className="rounded-none border border-border px-3 py-2 text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors duration-150 hover:border-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0"
                             onClick={() => remove(item.variantKey)}
                           >
                             Remove
@@ -244,7 +244,7 @@ const Cart = () => {
                     </div>
                     <div className="mt-2 h-2 overflow-hidden rounded-none bg-border/70">
                       <div
-                        className="h-full rounded-none bg-primary transition-[width] duration-300"
+                        className="h-full rounded-none bg-foreground transition-[width] duration-300"
                         style={{ width: `${freeShippingProgress}%` }}
                       />
                     </div>
@@ -266,20 +266,20 @@ const Cart = () => {
 
                 <Link
                   to="/checkout"
-                  className="mt-5 block border border-primary bg-primary px-4 py-3 text-center font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary"
+                  className="mt-5 block rounded-none border border-foreground bg-foreground px-4 py-3 text-center font-mono text-[11px] font-semibold uppercase tracking-[0.24em] text-background transition-colors duration-150 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0"
                 >
                   Check Out
                 </Link>
 
                 <Link
                   to="/shop"
-                  className="mt-3 block text-center text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors duration-150 hover:text-foreground"
+                  className="mt-3 block text-center text-xs font-mono uppercase tracking-widest text-muted-foreground transition-colors duration-150 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0"
                 >
                   View Collection
                 </Link>
 
                 <div className="mt-4 text-xs text-muted-foreground">
-                  Checkout supports Stripe payment methods and real-time shipping + tax estimates.
+                  Shipping and totals update at checkout.
                 </div>
               </div>
 
@@ -293,14 +293,14 @@ const Cart = () => {
                     placeholder="Enter code"
                   />
                   <button
-                    className="border border-primary bg-primary px-4 py-2 text-xs font-mono font-semibold uppercase tracking-[0.22em] text-primary-foreground opacity-60"
+                    className="rounded-none border border-border bg-background px-4 py-2 text-xs font-mono font-semibold uppercase tracking-[0.22em] text-muted-foreground opacity-60"
                     disabled
                   >
                     Apply
                   </button>
                 </div>
                 <div className="mt-3 text-xs text-muted-foreground">
-                  Promo redemption is applied at checkout when available.
+                  Promo codes apply after verification.
                 </div>
               </div>
             </div>

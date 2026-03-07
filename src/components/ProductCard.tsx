@@ -288,7 +288,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
         <Link
           to={`/product/${product.id}`}
-          className="inline-flex w-full items-center justify-center border border-primary bg-primary px-4 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-primary-foreground transition-colors duration-150 hover:bg-background hover:text-primary hover:border-primary focus-visible:bg-background focus-visible:text-primary"
+          className="inline-flex w-full items-center justify-center rounded-none border border-foreground bg-foreground px-4 py-3 font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-background transition-colors duration-150 hover:bg-background hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-0"
         >
           View Item
         </Link>

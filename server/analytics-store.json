@@ -264,7 +264,32 @@
       "path": "/",
       "device": "desktop",
       "sessionId": "sess_mmecbm17_sv9adj"
+    },
+    {
+      "id": "metric_mmfn071w_3me7t5f",
+      "event": "hero_impression",
+      "timestamp": "2026-03-07T01:20:53.205Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mmfn063a_32jyas",
+      "productId": "69881e327d7ff99e6b03d225"
+    },
+    {
+      "id": "metric_mmfn0ck5_8u0y5lm",
+      "event": "hero_impression",
+      "timestamp": "2026-03-07T01:21:01.368Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mmfn063a_32jyas"
+    },
+    {
+      "id": "metric_mmfn0i7f_ug5a2gl",
+      "event": "hero_impression",
+      "timestamp": "2026-03-07T01:21:08.738Z",
+      "path": "/",
+      "device": "desktop",
+      "sessionId": "sess_mmfn063a_32jyas"
     }
   ],
-  "updatedAt": "2026-03-06T03:34:20.866Z"
+  "updatedAt": "2026-03-07T01:21:09.003Z"
 }
