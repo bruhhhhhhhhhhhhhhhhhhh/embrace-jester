@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { type FormEvent, useState } from "react";
+import { legal } from "@/config/legal";
 import { apiFetch } from "@/lib/api";
 
 const SHOP_LINKS = [
@@ -15,7 +16,16 @@ const INFO_LINKS = [
   { label: "Shipping", to: "/shipping" },
   { label: "Returns", to: "/returns" },
   { label: "FAQ", to: "/faq" },
+  { label: "Accessibility", to: legal.accessibilityPath },
   { label: "Contact", to: "/contact" },
+];
+
+const LEGAL_LINKS = [
+  { label: "Privacy Policy", to: "/privacy" },
+  { label: "Your Privacy Choices", to: legal.privacyChoicesPath },
+  { label: "Accessibility", to: legal.accessibilityPath },
+  { label: "Review Policy", to: legal.reviewPolicyPath },
+  { label: "Terms", to: "/terms" },
 ];
 
 const SOCIAL_LINKS = [
@@ -95,7 +105,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <h3 className="mb-4 font-heading text-lg font-bold uppercase tracking-[0.08em] text-foreground">
-              EMBRACE JESTER
+              {legal.brandName}
             </h3>
             <p className="text-sm leading-relaxed text-muted-foreground">
               Sinister monochrome streetwear for men building undeniable aesthetic value. Built for
@@ -171,6 +181,13 @@ const Footer = () => {
               {statusMessage ? (
                 <p className="text-[11px] text-muted-foreground">{statusMessage}</p>
               ) : null}
+              <p className="text-[11px] leading-relaxed text-muted-foreground">
+                By subscribing, you agree to receive store emails. Unsubscribe anytime. See our{" "}
+                <Link className="text-foreground underline" to="/privacy">
+                  Privacy Policy
+                </Link>
+                .
+              </p>
             </form>
             <ul className="space-y-2">
               {SOCIAL_LINKS.map((item) => (
@@ -190,15 +207,14 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 border-t border-border pt-6 text-center">
-          <div className="mb-3 flex items-center justify-center gap-4 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
-            <Link className="hover:text-foreground" to="/privacy">
-              Privacy
-            </Link>
+          <div className="mb-3 flex flex-wrap items-center justify-center gap-4 text-[11px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
+            {LEGAL_LINKS.map((item) => (
+              <Link key={item.label} className="hover:text-foreground" to={item.to}>
+                {item.label}
+              </Link>
+            ))}
             <Link className="hover:text-foreground" to="/cookies">
               Cookies
-            </Link>
-            <Link className="hover:text-foreground" to="/terms">
-              Terms
             </Link>
           </div>
           <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">

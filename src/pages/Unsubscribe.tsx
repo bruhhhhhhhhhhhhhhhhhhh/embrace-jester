@@ -1,6 +1,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { useLocation } from "react-router-dom";
 import StaticPageLayout from "@/components/StaticPageLayout";
+import { legal } from "@/config/legal";
 import { apiFetch } from "@/lib/api";
 
 const isValidEmail = (value: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -31,7 +32,7 @@ const Unsubscribe = () => {
         method: "POST",
         body: JSON.stringify({ email: normalized }),
       });
-      setStatus("You are unsubscribed from drop newsletters.");
+      setStatus("You are unsubscribed from marketing emails.");
     } catch (error) {
       setStatus((error as Error).message || "Unsubscribe failed. Please retry.");
     } finally {
@@ -43,7 +44,7 @@ const Unsubscribe = () => {
     <StaticPageLayout
       eyebrow="Email Preferences"
       title="Unsubscribe"
-      description="You can opt out of product drop emails at any time. Transactional order updates will still be delivered."
+      description="You can opt out of marketing emails at any time. Transactional order updates will still be sent when required."
     >
       <form className="max-w-xl space-y-4" onSubmit={handleSubmit}>
         <label className="block text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground">
@@ -53,17 +54,25 @@ const Unsubscribe = () => {
           type="email"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          className="w-full rounded-lg border border-border/70 bg-background/40 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+          className="w-full border border-border/70 bg-background/40 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none"
           placeholder="you@example.com"
           autoComplete="email"
         />
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-md border border-foreground bg-foreground px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground disabled:opacity-60"
+          className="border border-foreground bg-foreground px-4 py-2 text-[10px] font-mono font-bold uppercase tracking-widest text-background transition-colors hover:bg-transparent hover:text-foreground disabled:opacity-60"
         >
           {submitting ? "Saving..." : "Unsubscribe"}
         </button>
+        <p className="text-xs leading-relaxed text-muted-foreground">
+          Marketing emails should include sender identity, a mailing address, and a working unsubscribe link.
+          If you still receive promotional emails after opting out, contact{" "}
+          <a className="text-foreground underline" href={`mailto:${legal.supportEmail}`}>
+            {legal.supportEmail}
+          </a>
+          .
+        </p>
         {status ? <p className="text-sm text-muted-foreground">{status}</p> : null}
       </form>
     </StaticPageLayout>

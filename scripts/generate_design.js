@@ -1,7 +1,17 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { createCanvas, registerFont } from "canvas";
+
+let createCanvas;
+let registerFont;
+
+try {
+  ({ createCanvas, registerFont } = await import("canvas"));
+} catch {
+  throw new Error(
+    "[generate_design] Missing optional dependency 'canvas'. Install it locally before running this script."
+  );
+}
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

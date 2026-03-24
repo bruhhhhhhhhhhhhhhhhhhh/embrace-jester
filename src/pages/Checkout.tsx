@@ -686,6 +686,14 @@ const Checkout = () => {
                     onChange={updateField("phone")}
                   />
                 </div>
+                <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+                  We use the information you provide to process and deliver your order, provide
+                  support, and maintain the store. See our{" "}
+                  <Link className="text-foreground underline" to="/privacy">
+                    Privacy Policy
+                  </Link>
+                  .
+                </p>
               </div>
 
               <div className={panelClass}>
@@ -772,7 +780,7 @@ const Checkout = () => {
                     </p>
                   ) : shippingQuote ? (
                     <p className="mt-3 text-[10px] font-mono uppercase tracking-widest text-foreground">
-                      Live shipping rates applied.
+                      Shipping estimate updated.
                     </p>
                   ) : null}
                 </div>
@@ -886,9 +894,9 @@ const Checkout = () => {
                   <span className="text-foreground">{shippingLabel}</span>
                 </div>
                 <div className="mt-2 flex items-center justify-between">
-                  <span>Rate Source</span>
+                  <span>Shipping Quote</span>
                   <span className="text-foreground">
-                    {shippingQuote ? "Live carrier quote" : "Estimated"}
+                    {shippingQuote ? "Calculated" : "Estimated"}
                   </span>
                 </div>
                 <div className="mt-2 flex items-center justify-between">

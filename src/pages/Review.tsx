@@ -209,6 +209,18 @@ const Review = () => {
                   placeholder="Defaults to Verified Buyer"
                   className="w-full rounded-lg border border-border/70 bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground/60 focus:outline-none"
                 />
+                <p className="text-xs leading-relaxed text-muted-foreground">
+                  Your name, rating, review content, and any submitted media may be displayed
+                  publicly if your review is approved. See our{" "}
+                  <Link className="text-foreground underline" to="/privacy">
+                    Privacy Policy
+                  </Link>{" "}
+                  and{" "}
+                  <Link className="text-foreground underline" to="/review-policy">
+                    Review Policy
+                  </Link>
+                  .
+                </p>
 
                 {successMessage ? <p className="text-sm text-forum-green">{successMessage}</p> : null}
                 {error ? <p className="text-sm text-forum-red">{error}</p> : null}

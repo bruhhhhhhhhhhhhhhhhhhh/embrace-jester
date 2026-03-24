@@ -25,7 +25,7 @@ const SocialProofStrip = () => {
       icon: ShieldCheck,
       label: "Checkout",
       value: "Stripe Secured",
-      note: "Protected payment and 14-day size exchange support",
+      note: "Protected payment and 30-day order-issue support",
     },
   ];
 

@@ -25,9 +25,12 @@ const Returns = lazy(() => import("./pages/Returns"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Contact = lazy(() => import("./pages/Contact"));
 const Privacy = lazy(() => import("./pages/Privacy"));
+const PrivacyChoices = lazy(() => import("./pages/PrivacyChoices"));
 const Terms = lazy(() => import("./pages/Terms"));
 const Cookies = lazy(() => import("./pages/Cookies"));
+const Accessibility = lazy(() => import("./pages/Accessibility"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe"));
+const ReviewPolicy = lazy(() => import("./pages/ReviewPolicy"));
 const About = lazy(() => import("./pages/About"));
 const Review = lazy(() => import("./pages/Review"));
 const ConversionQA = lazy(() => import("./pages/ConversionQA"));
@@ -64,9 +67,12 @@ const App = () => {
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/privacy" element={<Privacy />} />
+                  <Route path="/privacy-choices" element={<PrivacyChoices />} />
                   <Route path="/cookies" element={<Cookies />} />
                   <Route path="/terms" element={<Terms />} />
+                  <Route path="/accessibility" element={<Accessibility />} />
                   <Route path="/unsubscribe" element={<Unsubscribe />} />
+                  <Route path="/review-policy" element={<ReviewPolicy />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/review" element={<Review />} />
                   {showAdminRoutes ? (

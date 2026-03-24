@@ -153,7 +153,7 @@ const HeroSection = () => {
           <div className="container mx-auto flex h-full items-end px-6 pb-20 md:pb-24">
             <div className="pointer-events-auto max-w-xl text-left">
               <div className="mb-5 flex items-center gap-3 font-mono text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground md:text-xs">
-                <span>Embrace Jester / Editorial Uniforms</span>
+                <span>Featured Tee</span>
                 <span className="h-px w-12 bg-border" />
               </div>
               <h1 className="max-w-[12ch] font-heading text-4xl font-bold uppercase leading-[0.88] tracking-[0.08em] text-foreground md:text-6xl lg:text-7xl">

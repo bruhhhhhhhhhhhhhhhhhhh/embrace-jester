@@ -1,31 +1,45 @@
 import StaticPageLayout from "@/components/StaticPageLayout";
+import { legal } from "@/config/legal";
 
 const Returns = () => (
   <StaticPageLayout
     eyebrow="Support"
-    title="Returns & Exchanges"
-    description="If your item arrives damaged, misprinted, or the wrong size, we resolve it quickly. Standard refund and exchange eligibility is outlined below."
+    title="Returns"
+    description="This policy explains how damage, defect, and wrong-item claims are handled for made-to-order apparel."
   >
-    <div className="space-y-6 text-sm text-muted-foreground">
+    <div className="space-y-6 text-sm leading-relaxed text-muted-foreground">
+      <p>
+        <strong className="text-foreground">Last updated:</strong> {legal.lastUpdatedReturns}
+      </p>
+
       <section>
         <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
-          Eligible Returns
+          Change Of Mind, Size, and Color
         </h2>
-        <ul className="mt-3 space-y-2 list-disc pl-5">
-          <li>Return requests should be submitted within 14 days of delivery.</li>
-          <li>Items must be unworn and unwashed for size-based exchanges.</li>
-          <li>Damaged or defective items are replaced or refunded after review.</li>
+        <ul className="mt-3 list-disc space-y-2 pl-5">
+          <li>{legal.returnPolicy.sizeExchangeEligibilitySummary}</li>
+          <li>{legal.returnPolicy.finalSaleSummary}</li>
         </ul>
       </section>
 
       <section>
         <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
-          Non-Returnable
+          Damaged, Defective, or Incorrect Items
         </h2>
-        <ul className="mt-3 space-y-2 list-disc pl-5">
-          <li>Custom or personalized items unless defective.</li>
-          <li>Items with obvious wear or laundering.</li>
-          <li>Final sale items marked non-returnable at purchase.</li>
+        <ul className="mt-3 list-disc space-y-2 pl-5">
+          <li>{legal.returnPolicy.issueEligibilitySummary}</li>
+          <li>{legal.returnPolicy.conditionSummary}</li>
+          <li>{legal.returnPolicy.returnShippingSummary}</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="font-heading text-lg font-bold uppercase tracking-wide text-foreground">
+          Approved Resolution
+        </h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5">
+          <li>Approved claims are resolved with a replacement or reprint at no extra charge.</li>
+          <li>No return is required for approved defect or wrong-item claims.</li>
         </ul>
       </section>
 
@@ -34,8 +48,11 @@ const Returns = () => (
           Start A Request
         </h2>
         <p className="mt-3">
-          Email support with order ID, reason, and photos if relevant. We typically respond within
-          1 business day.
+          Email{" "}
+          <a className="text-foreground underline" href={`mailto:${legal.supportEmail}`}>
+            {legal.supportEmail}
+          </a>
+          {" "}with your order ID, request type, and any relevant photos.
         </p>
       </section>
     </div>

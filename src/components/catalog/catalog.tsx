@@ -101,6 +101,11 @@ const toCategory = (title: string) => {
 
 const unique = <T,>(items: T[]) => Array.from(new Set(items));
 
+const PRODUCT_DESCRIPTION_OVERRIDES: Record<string, string> = {
+  "698841b54c4363802b0db7e3":
+    "Heavyweight garment-dyed tee with a relaxed fit, clean drape, and front graphic. Available in sizes S-4XL.",
+};
+
 const mapPrintifyProduct = (product: PrintifyProduct): Product => {
   const options = product.options ?? [];
   const variants = product.variants ?? [];
@@ -232,7 +237,8 @@ const mapPrintifyProduct = (product: PrintifyProduct): Product => {
       const match = colors.find((color) => color.name === name);
       return match ?? { name, hex: "#111111" };
     }),
-    description: stripHtml(product.description),
+    description:
+      PRODUCT_DESCRIPTION_OVERRIDES[product.id] ?? stripHtml(product.description),
     details: product.tags?.length ? product.tags : undefined,
     drop: product.visible ? "Available now" : "Preview",
     source: "printify",

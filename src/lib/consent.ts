@@ -1,3 +1,4 @@
+// Legacy storage key kept to avoid silently resetting existing storefront consent state.
 export const CONSENT_STORAGE_KEY = "looksmax.cookie-consent.v1";
 export const CONSENT_EVENT_NAME = "looksmax:consent-updated";
 
@@ -29,7 +30,29 @@ export const readStoredConsent = (): StoredConsent | null => {
   }
 };
 
-export const isOptionalTrackingAllowed = () => readStoredConsent()?.status === "accepted";
+export const clearStoredConsent = () => {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.removeItem(CONSENT_STORAGE_KEY);
+  } catch {
+    // Ignore localStorage write failures and continue for this session.
+  }
+  broadcastConsentUpdated("essential_only");
+};
+
+export const isGlobalPrivacyControlEnabled = () => {
+  if (typeof navigator === "undefined") return false;
+  return Boolean((navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl);
+};
+
+export const getConsentStatus = (): ConsentStatus | null => {
+  const stored = readStoredConsent()?.status ?? null;
+  if (stored) return stored;
+  if (isGlobalPrivacyControlEnabled()) return "essential_only";
+  return null;
+};
+
+export const isOptionalTrackingAllowed = () => getConsentStatus() === "accepted";
 
 export const broadcastConsentUpdated = (status: ConsentStatus) => {
   if (typeof window === "undefined") return;

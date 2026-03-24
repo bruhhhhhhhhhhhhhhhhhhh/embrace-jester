@@ -1,15 +1,29 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { persistConsent, readStoredConsent, type ConsentStatus } from "@/lib/consent";
+import {
+  CONSENT_EVENT_NAME,
+  persistConsent,
+  readStoredConsent,
+  type ConsentStatus,
+} from "@/lib/consent";
+import { legal } from "@/config/legal";
 
 const CookieBanner = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const consent = readStoredConsent();
-    setIsVisible(!consent);
-    setIsLoaded(true);
+    const syncVisibility = () => {
+      const consent = readStoredConsent();
+      setIsVisible(!consent);
+      setIsLoaded(true);
+    };
+
+    syncVisibility();
+    window.addEventListener(CONSENT_EVENT_NAME, syncVisibility);
+    return () => {
+      window.removeEventListener(CONSENT_EVENT_NAME, syncVisibility);
+    };
   }, []);
 
   const handleConsent = (status: ConsentStatus) => {
@@ -31,6 +45,10 @@ const CookieBanner = () => {
           and{" "}
           <Link className="text-foreground underline" to="/privacy">
             Privacy Policy
+          </Link>
+          ,{" "}
+          <Link className="text-foreground underline" to={legal.privacyChoicesPath}>
+            Your Privacy Choices
           </Link>
           .
         </p>

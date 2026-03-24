@@ -25,6 +25,43 @@ type EcommercePayload = {
 
 let analyticsReady = false;
 
+const revokeOptionalTracking = () => {
+  if (typeof window === "undefined") return;
+
+  const win = window as Window & {
+    gtag?: (...args: unknown[]) => void;
+    fbq?: (...args: unknown[]) => void;
+    ttq?: {
+      disableCookie?: () => void;
+    };
+  };
+
+  try {
+    win.gtag?.("consent", "update", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+  } catch {
+    // noop
+  }
+
+  try {
+    win.fbq?.("consent", "revoke");
+  } catch {
+    // noop
+  }
+
+  try {
+    win.ttq?.disableCookie?.();
+  } catch {
+    // noop
+  }
+
+  analyticsReady = false;
+};
+
 const toEventItems = (items: AnalyticsItem[] = []) =>
   items.map((item) => ({
     item_id: item.id,
@@ -69,6 +106,12 @@ const ensureGoogleTag = () => {
   }
 
   win.gtag("js", new Date());
+  win.gtag("consent", "update", {
+    analytics_storage: "granted",
+    ad_storage: "granted",
+    ad_user_data: "granted",
+    ad_personalization: "granted",
+  });
   win.gtag("config", GA_MEASUREMENT_ID, {
     send_page_view: false,
     anonymize_ip: true,
@@ -157,9 +200,15 @@ const ensureTikTokPixel = () => {
   const ttq = win.ttq as unknown as {
     load: (pixelId: string) => void;
     page: () => void;
+    enableCookie?: () => void;
   };
   if (!document.getElementById("looksmax-tiktok-pixel")) {
     ttq.load(TIKTOK_PIXEL_ID);
+  }
+  try {
+    ttq.enableCookie?.();
+  } catch {
+    // noop
   }
 };
 
@@ -181,6 +230,11 @@ const mapToMetaEvent = (event: string) => {
 };
 
 export const initializeAnalytics = () => {
+  if (!isOptionalTrackingAllowed()) {
+    revokeOptionalTracking();
+    return;
+  }
+
   withOptionalTracking(() => {
     ensureGoogleTag();
     ensureMetaPixel();

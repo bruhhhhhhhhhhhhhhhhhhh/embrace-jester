@@ -16,6 +16,7 @@ import { formatMoney } from "@/lib/money";
 import { useCartActions } from "@/components/cart/cart";
 import { toast } from "@/components/ui/sonner";
 import ProductCard from "@/components/ProductCard";
+import { legal } from "@/config/legal";
 import { trackViewItem } from "@/lib/analytics";
 import { isNewProduct } from "@/lib/productFreshness";
 import { trackConversionEvent, trackConversionEventOnce } from "@/lib/conversion";
@@ -44,6 +45,10 @@ const toTransparentMockup = (url: string) =>
   url.replace(/\.(jpe?g|webp)(\?.*)?$/i, (_, __, query = "") => `.png${query}`);
 const SIZE_FALLBACK_LABEL = "See size chart";
 const PRODUCT_FALLBACK_IMAGE = "/mockups/product-fallback.svg";
+const PRODUCT_DESCRIPTION_OVERRIDES: Record<string, string> = {
+  "698841b54c4363802b0db7e3":
+    "Heavyweight garment-dyed tee with a relaxed fit, clean drape, and front graphic. Available in sizes S-4XL.",
+};
 
 const withImageFallback = (
   event: SyntheticEvent<HTMLImageElement, Event>,
@@ -73,6 +78,10 @@ const Product = () => {
     () => products.find((item) => item.id === id || item.aliases?.includes(id ?? "")),
     [id, products]
   );
+  const productDescription = useMemo(() => {
+    if (!product) return "Clean structure. Daily wear. No excess.";
+    return PRODUCT_DESCRIPTION_OVERRIDES[product.id] ?? product.description ?? "Clean structure. Daily wear. No excess.";
+  }, [product]);
   const { add } = useCartActions();
 
   const [selectedSize, setSelectedSize] = useState("");
@@ -1038,14 +1047,13 @@ const Product = () => {
                 <div className="rounded-none border border-border/60 bg-background/30 px-3 py-3 text-muted-foreground">
                   <p className="text-[10px] font-mono uppercase tracking-[0.18em]">Returns</p>
                   <p className="mt-1 text-xs font-semibold uppercase tracking-wider text-foreground">
-                    14-day size exchange
+                    30-day defect support
                   </p>
-                  <p className="mt-1 text-[11px]">Fast support if fit is off</p>
+                  <p className="mt-1 text-[11px]">Replacement or reprint for approved order issues</p>
                 </div>
               </div>
               <p className="mt-4 text-sm text-muted-foreground">
-                {product.description ??
-                  "Clean structure. Daily wear. No excess."}
+                {productDescription}
               </p>
 
               {product.colors?.length ? (
@@ -1245,7 +1253,7 @@ const Product = () => {
                   </div>
                   <div className="flex items-center gap-2">
                     <RotateCcw className="h-3.5 w-3.5 text-muted-foreground" />
-                    <span>14-day size exchange</span>
+                    <span>30-day defect support</span>
                   </div>
                 </div>
               </div>
@@ -1274,8 +1282,10 @@ const Product = () => {
                 Shipping & Returns
               </div>
               <p className="mt-3 text-sm text-muted-foreground">
-                Free standard shipping over $100. Orders ship in 2-4 business days. Returns accepted
-                within 14 days for unworn items.
+                Free standard shipping over $100. Production usually begins within{" "}
+                {legal.shippingPolicy.processingWindowBusinessDays}. Approved damage, defect, or
+                wrong-item claims can be reported within {legal.returnPolicy.defectReportWindowDays}{" "}
+                days of delivery.
               </p>
             </div>
           </div>
