@@ -9,6 +9,8 @@ type LegalConfig = {
   legalFooterName: string;
   supportEmail: string;
   privacyEmail: string;
+  supportInboxOperational: boolean;
+  supportInboxActivationTodo: string;
   marketingSenderName: string;
   marketingFromEmail: string;
   mailingAddressLine1: TextValue;
@@ -34,13 +36,12 @@ type LegalConfig = {
   accessibilityPath: string;
   reviewPolicyPath: string;
   returnPolicy: {
-    sizeExchangeWindowDays: number;
     defectReportWindowDays: number;
-    conditionSummary: string;
-    sizeExchangeEligibilitySummary: string;
-    issueEligibilitySummary: string;
-    finalSaleSummary: string;
-    returnShippingSummary: string;
+    nonDefectReturnsSummary: string;
+    defectIssueSummary: string;
+    claimDocumentationSummary: string;
+    approvedClaimsSummary: string;
+    noReturnRequiredSummary: string;
   };
   shippingPolicy: {
     processingWindowBusinessDays: string;
@@ -52,11 +53,14 @@ type LegalConfig = {
 };
 
 export const legal = {
-  brandName: "EMBRACE JESTER",
-  legalEntityName: "Embrace Jester (no registered legal entity yet)",
+  brandName: "Embrace Jester",
+  legalEntityName: "No registered legal entity yet. Operating under the brand name Embrace Jester.",
   legalFooterName: "Embrace Jester",
   supportEmail: "support@embracejester.com",
   privacyEmail: "support@embracejester.com",
+  supportInboxOperational: false,
+  supportInboxActivationTodo:
+    "TODO: Confirm support@embracejester.com mailbox activation before public launch and replace mailbox-in-setup notes once live.",
   marketingSenderName: "Embrace Jester",
   marketingFromEmail: "support@embracejester.com",
   mailingAddressLine1: "353 Davisville Avenue",
@@ -67,14 +71,14 @@ export const legal = {
   country: "Canada",
   governingLawRegion: "Ontario",
   governingLawCountry: "Canada",
-  lastUpdatedTerms: "March 23, 2026",
-  lastUpdatedPrivacy: "March 23, 2026",
-  lastUpdatedCookies: "March 23, 2026",
-  lastUpdatedReturns: "March 23, 2026",
-  lastUpdatedShipping: "March 23, 2026",
-  lastUpdatedAccessibility: "March 23, 2026",
-  lastUpdatedReviewPolicy: "March 23, 2026",
-  supportResponseWindowBusinessDays: 1,
+  lastUpdatedTerms: "March 24, 2026",
+  lastUpdatedPrivacy: "March 24, 2026",
+  lastUpdatedCookies: "March 24, 2026",
+  lastUpdatedReturns: "March 24, 2026",
+  lastUpdatedShipping: "March 24, 2026",
+  lastUpdatedAccessibility: "March 24, 2026",
+  lastUpdatedReviewPolicy: "March 24, 2026",
+  supportResponseWindowBusinessDays: 5,
   privacyRequestResponseWindowBusinessDays: 5,
   reviewContactEmail: "support@embracejester.com",
   unsubscribePath: "/unsubscribe",
@@ -82,18 +86,17 @@ export const legal = {
   accessibilityPath: "/accessibility",
   reviewPolicyPath: "/review-policy",
   returnPolicy: {
-    sizeExchangeWindowDays: 0,
     defectReportWindowDays: 30,
-    conditionSummary:
-      "For approved order-issue claims, include your order number and clear photos of the item and packaging when relevant.",
-    sizeExchangeEligibilitySummary:
+    nonDefectReturnsSummary:
       "Returns and exchanges are not supported for wrong size, wrong color, or change of mind.",
-    issueEligibilitySummary:
+    defectIssueSummary:
       "Damage, defect, or wrong-item reports must be submitted within 30 days of delivery.",
-    finalSaleSummary:
-      "All sales are final except approved claims for damage, defect, or incorrect items.",
-    returnShippingSummary:
-      "Approved defect claims do not require a return. We cover the replacement or reprint when the item arrives damaged, defective, or incorrect.",
+    claimDocumentationSummary:
+      "For approved order-issue claims, include your order number and clear photos of the item and packaging when relevant.",
+    approvedClaimsSummary:
+      "Approved defect or wrong-item claims may be resolved with a replacement, reprint, or refund.",
+    noReturnRequiredSummary:
+      "No return is required for approved defect or wrong-item claims.",
   },
   shippingPolicy: {
     processingWindowBusinessDays: "1-3 business days",
@@ -128,3 +131,6 @@ export const getMailingAddressLines = () => {
 
 // Reminder for outbound marketing email templates and providers:
 // include sender identity, a valid physical mailing address, and a working unsubscribe link.
+// Support inbox status:
+// support@embracejester.com is the designated public contact address, but mailbox activation
+// should be confirmed before launch so customer-facing copy does not overstate inbox availability.

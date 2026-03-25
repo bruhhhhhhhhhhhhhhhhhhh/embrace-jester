@@ -14,7 +14,7 @@ const SHOP_LINKS = [
 const INFO_LINKS = [
   { label: "Size Guide", to: "/size-guide" },
   { label: "Shipping", to: "/shipping" },
-  { label: "Returns", to: "/returns" },
+  { label: "Returns & Exchanges", to: "/returns" },
   { label: "FAQ", to: "/faq" },
   { label: "Accessibility", to: legal.accessibilityPath },
   { label: "Contact", to: "/contact" },
@@ -22,9 +22,12 @@ const INFO_LINKS = [
 
 const LEGAL_LINKS = [
   { label: "Privacy Policy", to: "/privacy" },
+  { label: "Shipping", to: "/shipping" },
+  { label: "Returns & Exchanges", to: "/returns" },
   { label: "Your Privacy Choices", to: legal.privacyChoicesPath },
   { label: "Accessibility", to: legal.accessibilityPath },
   { label: "Review Policy", to: legal.reviewPolicyPath },
+  { label: "Contact", to: "/contact" },
   { label: "Terms", to: "/terms" },
 ];
 
@@ -182,7 +185,8 @@ const Footer = () => {
                 <p className="text-[11px] text-muted-foreground">{statusMessage}</p>
               ) : null}
               <p className="text-[11px] leading-relaxed text-muted-foreground">
-                By subscribing, you agree to receive store emails. Unsubscribe anytime. See our{" "}
+                We use your email to send store updates and marketing emails. You can unsubscribe at
+                any time. See our{" "}
                 <Link className="text-foreground underline" to="/privacy">
                   Privacy Policy
                 </Link>

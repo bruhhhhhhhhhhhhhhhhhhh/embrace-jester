@@ -66,13 +66,22 @@ const Unsubscribe = () => {
           {submitting ? "Saving..." : "Unsubscribe"}
         </button>
         <p className="text-xs leading-relaxed text-muted-foreground">
-          Marketing emails should include sender identity, a mailing address, and a working unsubscribe link.
-          If you still receive promotional emails after opting out, contact{" "}
-          <a className="text-foreground underline" href={`mailto:${legal.supportEmail}`}>
-            {legal.supportEmail}
-          </a>
-          .
+          We use your email to send store updates and marketing emails. You can unsubscribe at any
+          time. Designated marketing sender: {legal.marketingSenderName} via {legal.marketingFromEmail}.
         </p>
+        {!legal.supportInboxOperational ? (
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            Mailbox activation is still in progress. Confirm delivery before public launch.
+          </p>
+        ) : (
+          <p className="text-xs leading-relaxed text-muted-foreground">
+            If you still receive promotional emails after opting out, contact{" "}
+            <a className="text-foreground underline" href={`mailto:${legal.supportEmail}`}>
+              {legal.supportEmail}
+            </a>
+            .
+          </p>
+        )}
         {status ? <p className="text-sm text-muted-foreground">{status}</p> : null}
       </form>
     </StaticPageLayout>

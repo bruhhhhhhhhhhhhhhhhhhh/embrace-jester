@@ -20,15 +20,24 @@ const Contact = () => (
           Customer Support
         </h2>
         <p className="mt-2">
-          Email{" "}
-          <a className="text-foreground underline" href={`mailto:${legal.supportEmail}`}>
-            {legal.supportEmail}
-          </a>
-          {" "}for order issues, delivery questions, or product support.
+          Designated support email:{" "}
+          {legal.supportInboxOperational ? (
+            <a className="text-foreground underline" href={`mailto:${legal.supportEmail}`}>
+              {legal.supportEmail}
+            </a>
+          ) : (
+            <span className="text-foreground">{legal.supportEmail}</span>
+          )}
+          .
         </p>
         <p className="mt-2">
           Current response window: {formatLegalResponseWindow(legal.supportResponseWindowBusinessDays)}.
         </p>
+        {!legal.supportInboxOperational ? (
+          <p className="mt-2 border border-border/60 bg-background/40 p-3 text-xs uppercase tracking-[0.16em]">
+            Mailbox activation is in progress. Confirm inbox delivery before public launch.
+          </p>
+        ) : null}
       </section>
 
       <section>
@@ -36,10 +45,14 @@ const Contact = () => (
           Privacy Requests
         </h2>
         <p className="mt-2">
-          Privacy requests can be sent to{" "}
-          <a className="text-foreground underline" href={`mailto:${legal.privacyEmail}`}>
-            {legal.privacyEmail}
-          </a>
+          Designated privacy contact:{" "}
+          {legal.supportInboxOperational ? (
+            <a className="text-foreground underline" href={`mailto:${legal.privacyEmail}`}>
+              {legal.privacyEmail}
+            </a>
+          ) : (
+            <span className="text-foreground">{legal.privacyEmail}</span>
+          )}
           .
         </p>
         <p className="mt-2">

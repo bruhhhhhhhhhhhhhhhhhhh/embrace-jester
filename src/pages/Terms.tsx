@@ -6,7 +6,7 @@ const Terms = () => (
   <StaticPageLayout
     eyebrow="Legal"
     title="Terms Of Service"
-    description="These terms govern your use of the storefront and any order placed through it."
+    description="These terms govern your use of the storefront and any order placed through Embrace Jester."
   >
     <div className="space-y-6 text-sm leading-relaxed text-muted-foreground">
       <p>
@@ -58,7 +58,8 @@ const Terms = () => (
           4. Made-To-Order Fulfillment
         </h2>
         <ul className="mt-2 list-disc space-y-2 pl-5">
-          <li>Orders are made to order and fulfilled through third-party production partners, including the Printify provider network.</li>
+          <li>Products are made to order and fulfilled through third-party print providers via Printify.</li>
+          <li>Fulfillment location may vary by product and customer destination.</li>
           <li>Products may ship in separate packages when produced at different facilities.</li>
           <li>Once production begins, edits or cancellations may no longer be available.</li>
         </ul>
@@ -74,6 +75,7 @@ const Terms = () => (
           <li>Express transit is typically {legal.shippingPolicy.expressTransitBusinessDays}.</li>
           <li>{legal.shippingPolicy.estimatesDisclaimer}</li>
           <li>You are responsible for entering an accurate and complete shipping address.</li>
+          <li>Cross-border shipments may involve international shipping charges, customs duties, or import taxes depending on origin and destination.</li>
         </ul>
         <p className="mt-2">
           See our <Link className="text-foreground underline" to="/shipping">Shipping Policy</Link> for more detail.
@@ -82,17 +84,17 @@ const Terms = () => (
 
       <section>
         <h2 className="font-heading text-base font-bold uppercase tracking-wide text-foreground">
-          6. Returns, Replacements, and Order Issues
+          6. Returns, Exchanges, and Order Issues
         </h2>
         <ul className="mt-2 list-disc space-y-2 pl-5">
-          <li>{legal.returnPolicy.sizeExchangeEligibilitySummary}</li>
-          <li>{legal.returnPolicy.issueEligibilitySummary}</li>
-          <li>{legal.returnPolicy.conditionSummary}</li>
-          <li>{legal.returnPolicy.finalSaleSummary}</li>
-          <li>{legal.returnPolicy.returnShippingSummary}</li>
+          <li>{legal.returnPolicy.nonDefectReturnsSummary}</li>
+          <li>{legal.returnPolicy.defectIssueSummary}</li>
+          <li>{legal.returnPolicy.claimDocumentationSummary}</li>
+          <li>{legal.returnPolicy.approvedClaimsSummary}</li>
+          <li>{legal.returnPolicy.noReturnRequiredSummary}</li>
         </ul>
         <p className="mt-2">
-          See our <Link className="text-foreground underline" to="/returns">Returns Policy</Link> for the current process.
+          See our <Link className="text-foreground underline" to="/returns">Returns &amp; Exchanges Policy</Link> for the current process.
         </p>
       </section>
 
@@ -138,11 +140,7 @@ const Terms = () => (
           a revised date.
         </p>
         <p className="mt-2">
-          Questions about these Terms can be sent to{" "}
-          <a className="text-foreground underline" href={`mailto:${legal.supportEmail}`}>
-            {legal.supportEmail}
-          </a>
-          .
+          Questions about these Terms should be directed through the <Link className="text-foreground underline" to="/contact">Contact page</Link>.
         </p>
       </section>
     </div>

@@ -72,7 +72,8 @@ const Privacy = () => (
           4. How We Share Information
         </h2>
         <ul className="mt-2 list-disc space-y-2 pl-5">
-          <li>Production and fulfillment partners, shipping carriers, and payment processors.</li>
+          <li>Payment processors, shipping carriers, and service providers that help us process and deliver orders.</li>
+          <li>Print-on-demand fulfillment providers that produce and ship made-to-order items through our fulfillment workflow.</li>
           <li>Infrastructure, analytics, email, support, and fraud-prevention vendors acting on our instructions.</li>
           <li>Authorities or legal counterparties when required by law or necessary to protect rights and safety.</li>
         </ul>
@@ -99,7 +100,18 @@ const Privacy = () => (
 
       <section>
         <h2 className="font-heading text-base font-bold uppercase tracking-wide text-foreground">
-          6. Retention
+          6. International Transfers
+        </h2>
+        <p className="mt-2">
+          Some service providers, payment processors, carriers, and fulfillment partners may process
+          information outside Canada. This can include providers involved in payment processing,
+          analytics, customer communications, and made-to-order fulfillment.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="font-heading text-base font-bold uppercase tracking-wide text-foreground">
+          7. Retention
         </h2>
         <ul className="mt-2 list-disc space-y-2 pl-5">
           <li>Order and transaction records are retained as needed for operations, accounting, and disputes.</li>
@@ -110,7 +122,7 @@ const Privacy = () => (
 
       <section>
         <h2 className="font-heading text-base font-bold uppercase tracking-wide text-foreground">
-          7. Your Rights and Choices
+          8. Your Rights and Choices
         </h2>
         <p className="mt-2">
           Depending on where you live, you may have rights to access, correct, delete, or export
@@ -124,7 +136,7 @@ const Privacy = () => (
 
       <section>
         <h2 className="font-heading text-base font-bold uppercase tracking-wide text-foreground">
-          8. Security and Children
+          9. Security and Children
         </h2>
         <p className="mt-2">
           We use reasonable technical and organizational safeguards, but no storage or transmission
@@ -134,19 +146,28 @@ const Privacy = () => (
 
       <section>
         <h2 className="font-heading text-base font-bold uppercase tracking-wide text-foreground">
-          9. Contact
+          10. Contact
         </h2>
         <p className="mt-2">
-          Privacy questions and requests may be sent to{" "}
-          <a className="text-foreground underline" href={`mailto:${legal.privacyEmail}`}>
-            {legal.privacyEmail}
-          </a>
-          .
+          Designated privacy contact:{" "}
+          {legal.supportInboxOperational ? (
+            <a className="text-foreground underline" href={`mailto:${legal.privacyEmail}`}>
+              {legal.privacyEmail}
+            </a>
+          ) : (
+            <span className="text-foreground">{legal.privacyEmail}</span>
+          )}
+          . You can also review the <Link className="text-foreground underline" to="/contact">Contact page</Link>.
         </p>
         <p className="mt-2">
           Current privacy-request response window:{" "}
           {formatLegalResponseWindow(legal.privacyRequestResponseWindowBusinessDays)}.
         </p>
+        {!legal.supportInboxOperational ? (
+          <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+            Designated inbox status: mailbox activation is in progress. Confirm delivery before launch.
+          </p>
+        ) : null}
         {hasPublishedMailingAddress ? (
           <div className="mt-3 space-y-1 text-sm text-muted-foreground">
             {getMailingAddressLines().map((line) => (

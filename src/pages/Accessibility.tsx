@@ -38,15 +38,24 @@ const Accessibility = () => (
           Report An Accessibility Issue
         </h2>
         <p className="mt-2">
-          If you encounter an accessibility barrier, email{" "}
-          <a className="text-foreground underline" href={`mailto:${legal.supportEmail}`}>
-            {legal.supportEmail}
-          </a>
+          Designated accessibility contact:{" "}
+          {legal.supportInboxOperational ? (
+            <a className="text-foreground underline" href={`mailto:${legal.supportEmail}`}>
+              {legal.supportEmail}
+            </a>
+          ) : (
+            <span className="text-foreground">{legal.supportEmail}</span>
+          )}
           . Please include the page, device, browser, and a short description of the issue.
         </p>
         <p className="mt-2">
           Current support response window: {formatLegalResponseWindow(legal.supportResponseWindowBusinessDays)}.
         </p>
+        {!legal.supportInboxOperational ? (
+          <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+            Mailbox activation is in progress. Confirm inbox delivery before launch.
+          </p>
+        ) : null}
       </section>
     </div>
   </StaticPageLayout>

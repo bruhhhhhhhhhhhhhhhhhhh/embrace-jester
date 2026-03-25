@@ -60,12 +60,22 @@ const ReviewPolicy = () => (
           5. Questions or Disputes
         </h2>
         <p className="mt-2">
-          For questions about a review or moderation decision, contact{" "}
-          <a className="text-foreground underline" href={`mailto:${legal.reviewContactEmail}`}>
-            {legal.reviewContactEmail}
-          </a>
-          . See also our <Link className="text-foreground underline" to="/privacy">Privacy Policy</Link>.
+          For questions about a review or moderation decision, use the designated review contact at{" "}
+          {legal.supportInboxOperational ? (
+            <a className="text-foreground underline" href={`mailto:${legal.reviewContactEmail}`}>
+              {legal.reviewContactEmail}
+            </a>
+          ) : (
+            <span className="text-foreground">{legal.reviewContactEmail}</span>
+          )}
+          . See also our <Link className="text-foreground underline" to="/privacy">Privacy Policy</Link> and{" "}
+          <Link className="text-foreground underline" to="/contact">Contact</Link>.
         </p>
+        {!legal.supportInboxOperational ? (
+          <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+            Mailbox activation is in progress. Confirm inbox delivery before launch.
+          </p>
+        ) : null}
       </section>
     </div>
   </StaticPageLayout>

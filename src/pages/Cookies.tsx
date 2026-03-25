@@ -82,6 +82,7 @@ const Cookies = () => {
           <ul className="mt-2 list-disc space-y-2 pl-5">
             <li>You can choose Essential Only or allow optional tracking when prompted.</li>
             <li>Optional technologies are not required for cart, checkout, or order support.</li>
+            <li>If your browser sends a Global Privacy Control signal and no saved choice exists, optional tracking defaults to off.</li>
             <li>You can revisit choices at any time in <Link className="text-foreground underline" to={legal.privacyChoicesPath}>Your Privacy Choices</Link>.</li>
           </ul>
           <div className="mt-3">

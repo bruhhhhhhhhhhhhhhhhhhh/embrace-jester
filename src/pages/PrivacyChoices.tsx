@@ -63,6 +63,10 @@ const PrivacyChoices = () => {
           campaign performance, and storefront conversion. Cart, checkout, account, and security
           features continue to work without optional tracking.
         </p>
+        <p>
+          If your browser sends a Global Privacy Control signal and no saved choice is present,
+          optional tracking defaults to off in this browser.
+        </p>
 
         <section>
           <h2 className="font-heading text-base font-bold uppercase tracking-wide text-foreground">
@@ -137,16 +141,26 @@ const PrivacyChoices = () => {
             4. Contact for Privacy Requests
           </h2>
           <p className="mt-2">
-            For privacy requests or questions about how this store uses personal information, contact{" "}
-            <a className="text-foreground underline" href={`mailto:${legal.privacyEmail}`}>
-              {legal.privacyEmail}
-            </a>
-            . You can also review the full <Link className="text-foreground underline" to="/privacy">Privacy Policy</Link>.
+            Designated privacy contact:{" "}
+            {legal.supportInboxOperational ? (
+              <a className="text-foreground underline" href={`mailto:${legal.privacyEmail}`}>
+                {legal.privacyEmail}
+              </a>
+            ) : (
+              <span className="text-foreground">{legal.privacyEmail}</span>
+            )}
+            . You can also review the full <Link className="text-foreground underline" to="/privacy">Privacy Policy</Link> or use the{" "}
+            <Link className="text-foreground underline" to="/contact">Contact page</Link>.
           </p>
           <p className="mt-2">
             Current privacy-request response window:{" "}
             {formatLegalResponseWindow(legal.privacyRequestResponseWindowBusinessDays)}.
           </p>
+          {!legal.supportInboxOperational ? (
+            <p className="mt-2 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              Mailbox activation is in progress. Confirm inbox delivery before launch.
+            </p>
+          ) : null}
         </section>
 
         {statusMessage ? <p className="text-sm text-foreground">{statusMessage}</p> : null}
