@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:social": "vite --config vite.social.config.ts",
-    "build": "vite build",
+    "build": "vite build && tsx scripts/prerender_legal_pages.ts",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",

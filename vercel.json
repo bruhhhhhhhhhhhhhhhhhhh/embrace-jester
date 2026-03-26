@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    { "source": "/cookies", "destination": "/cookies/index.html" },
+    { "source": "/privacy", "destination": "/privacy/index.html" },
+    { "source": "/terms", "destination": "/terms/index.html" },
+    { "source": "/shipping", "destination": "/shipping/index.html" },
+    { "source": "/returns", "destination": "/returns/index.html" },
+    { "source": "/privacy-choices", "destination": "/privacy-choices/index.html" },
+    { "source": "/accessibility", "destination": "/accessibility/index.html" },
+    { "source": "/review-policy", "destination": "/review-policy/index.html" },
+    { "source": "/contact", "destination": "/contact/index.html" },
+    { "source": "/unsubscribe", "destination": "/unsubscribe/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
